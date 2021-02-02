@@ -1,0 +1,40 @@
+<div class='dd-auth-scaffold-container'>
+
+  <div class='dd-auth-scaffold left-column'>
+
+    <h1>Daily Diabetes</h1>
+
+    <div class='text'>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In odit rem saepe sequi suscipit tenetur ullam veniam
+        voluptatum! Commodi enim et exercitationem itaque iusto labore omnis quas quibusdam rem ullam?</p>
+      <p>Ad alias, animi, aut, commodi culpa dicta eaque eligendi est minus nihil obcaecati odit omnis optio porro
+        repudiandae rerum sint suscipit totam. Culpa dolores eligendi est quod rem sed temporibus?</p>
+    </div>
+
+  </div>
+
+  <div class='dd-auth-scaffold right-column'>
+
+    <mat-vertical-stepper [linear]='true'>
+
+      <mat-step [stepControl]='patientInfoForm.form'>
+
+        <ng-template matStepLabel>Patient info</ng-template>
+
+        <dd-patient-info></dd-patient-info>
+
+      </mat-step>
+
+      <mat-step [stepControl]='patientDiseaseForm.form'>
+
+        <ng-template matStepLabel>Patient disease info</ng-template>
+
+        <dd-patient-disease-info></dd-patient-disease-info>
+
+      </mat-step>
+
+    </mat-vertical-stepper>
+
+  </div>
+
+</div>

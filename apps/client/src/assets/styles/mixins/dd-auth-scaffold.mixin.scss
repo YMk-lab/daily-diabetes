@@ -1,0 +1,48 @@
+@mixin auth-scaffold {
+
+  .dd-auth-scaffold-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    background-image: url('../../../assets/images/background.jpg');
+    background-size: cover;
+
+    .dd-auth-scaffold {
+      padding: 0 30px;
+
+      &.left-column,
+      &.right-column {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+      }
+
+      form {
+
+        .buttons-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          a {
+            color: white;
+            text-decoration: none;
+          }
+        }
+
+      }
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      .mat-stepper-vertical {
+        background-color: transparent;
+      }
+    }
+  }
+
+}
