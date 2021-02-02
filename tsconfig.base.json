@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@daily-diabetes/material-shared": ["libs/material-shared/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
