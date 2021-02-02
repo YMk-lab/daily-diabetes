@@ -2,39 +2,54 @@
 
   <mat-form-field appearance="outline">
     <mat-label>First name</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input required matInput
+           placeholder="Type in your first name"
+           formControlName='firstName' />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Last name</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input required matInput
+           placeholder="Type in your last name"
+           formControlName='lastName' />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Birth date</mat-label>
-    <input matInput [matDatepicker]="dp3" disabled>
+    <input required matInput
+           placeholder='Type in or select your birth date'
+           formControlName='birthDate'
+           [matDatepicker]="dp3" />
     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Phone</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input required matInput
+           placeholder="Type in your contact phone number"
+           formControlName='phone' />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input required matInput type='email'
+           placeholder="Type in your valid email address"
+           formControlName='email' />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input required matInput type='password'
+           placeholder="Type in your password"
+           formControlName='password' />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Confirm password</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input required matInput type='password'
+           placeholder="Placeholder"
+           formControlName='confirmPassword' />
   </mat-form-field>
 
 </form>

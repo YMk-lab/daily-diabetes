@@ -20,26 +20,22 @@
 
       }
 
-      form {
+      .buttons-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        .buttons-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          a {
-            color: white;
-            text-decoration: none;
-          }
+        button {
+          color: white;
+          text-decoration: none;
         }
-
       }
 
       mat-form-field {
         width: 100%;
       }
 
-      .mat-stepper-vertical {
+      .mat-stepper-horizontal {
         background-color: transparent;
       }
     }

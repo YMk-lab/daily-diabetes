@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectorRef, Component, OnInit,
+  ViewChild, ViewEncapsulation
+} from '@angular/core';
 
 import { PatientInfoComponent } from '../patient-info/patient-info.component';
+import { PatientAddressInfoComponent } from '../patient-address-info/patient-address-info.component';
 import { PatientDiseaseInfoComponent } from '../patient-disease-info/patient-disease-info.component';
-
-;
 
 @Component({
   selector: 'dd-registration',
@@ -14,15 +16,23 @@ import { PatientDiseaseInfoComponent } from '../patient-disease-info/patient-dis
 export class RegistrationComponent implements OnInit {
 
   @ViewChild(PatientInfoComponent, { static: true })
-  patientInfoForm: PatientInfoComponent;
+  patientInfoCmp: PatientInfoComponent;
+
+  @ViewChild(PatientAddressInfoComponent, { static: true })
+  patientAddressCmp: PatientAddressInfoComponent;
 
   @ViewChild(PatientDiseaseInfoComponent, { static: true })
-  patientDiseaseForm: PatientDiseaseInfoComponent;
+  patientDiseaseCmp: PatientDiseaseInfoComponent;
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-
+    this.cdr.detectChanges();
   }
 
+  submit(): void {
+
+    console.log('Submit');
+
+  }
 }

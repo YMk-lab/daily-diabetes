@@ -11,29 +11,63 @@
         repudiandae rerum sint suscipit totam. Culpa dolores eligendi est quod rem sed temporibus?</p>
     </div>
 
+    <div class='buttons-container'>
+
+      <button mat-stroked-button routerLink='/login'>Already registered, go and login</button>
+
+    </div>
+
   </div>
 
   <div class='dd-auth-scaffold right-column'>
 
-    <mat-vertical-stepper [linear]='true'>
+    <mat-horizontal-stepper [linear]='true' #stepper>
 
-      <mat-step [stepControl]='patientInfoForm.form'>
+      <mat-step [stepControl]='patientInfoCmp.form'>
 
         <ng-template matStepLabel>Patient info</ng-template>
 
         <dd-patient-info></dd-patient-info>
 
-      </mat-step>
-
-      <mat-step [stepControl]='patientDiseaseForm.form'>
-
-        <ng-template matStepLabel>Patient disease info</ng-template>
-
-        <dd-patient-disease-info></dd-patient-disease-info>
+        <button mat-flat-button
+                color='primary'
+                (click)='stepper.next()'>Next</button>
 
       </mat-step>
 
-    </mat-vertical-stepper>
+<!--      <mat-step [stepControl]='patientInfoCmp.form'>-->
+
+<!--        <ng-template matStepLabel>Patient address</ng-template>-->
+
+<!--        <dd-patient-address-info></dd-patient-address-info>-->
+
+<!--        <button mat-flat-button-->
+<!--                color='primary'-->
+<!--                (click)='stepper.previous()'>Back</button>-->
+
+<!--        <button mat-flat-button-->
+<!--                color='primary'-->
+<!--                (click)='stepper.next()'>Next</button>-->
+
+<!--      </mat-step>-->
+
+<!--      <mat-step [stepControl]='patientDiseaseCmp.form'>-->
+
+<!--        <ng-template matStepLabel>Patient disease info</ng-template>-->
+
+<!--        <dd-patient-disease-info></dd-patient-disease-info>-->
+
+<!--        <button mat-flat-button-->
+<!--                color='primary'-->
+<!--                (click)='stepper.previous()'>Back</button>-->
+
+<!--        <button mat-flat-button-->
+<!--                color='primary'-->
+<!--                (click)='submit()'>Submit</button>-->
+
+<!--      </mat-step>-->
+
+    </mat-horizontal-stepper>
 
   </div>
 
