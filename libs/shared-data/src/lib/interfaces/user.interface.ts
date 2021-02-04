@@ -9,6 +9,7 @@ export interface UserInterface {
   phone: string;
   email: string;
   password?: string;
+  confirmPassword?: string;
   address: UserAddressInterface;
   diseaseInfo: UserDiseaseInfoInterface;
 }

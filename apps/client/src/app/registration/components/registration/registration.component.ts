@@ -7,6 +7,8 @@ import { PatientInfoComponent } from '../patient-info/patient-info.component';
 import { PatientAddressInfoComponent } from '../patient-address-info/patient-address-info.component';
 import { PatientDiseaseInfoComponent } from '../patient-disease-info/patient-disease-info.component';
 
+import { AuthService } from '../../../services/auth.service';
+
 @Component({
   selector: 'dd-registration',
   templateUrl: './registration.component.html',
@@ -24,10 +26,12 @@ export class RegistrationComponent implements OnInit {
   @ViewChild(PatientDiseaseInfoComponent, { static: true })
   patientDiseaseCmp: PatientDiseaseInfoComponent;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cdr.detectChanges();
+
+    this.authService.patient$.subscribe((patient) => console.log(patient));
   }
 
   submit(): void {
