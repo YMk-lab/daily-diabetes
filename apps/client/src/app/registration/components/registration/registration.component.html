@@ -23,50 +23,58 @@
 
     <mat-horizontal-stepper [linear]='true' #stepper>
 
-      <mat-step [stepControl]='patientInfoCmp.form'>
-
-        <ng-template matStepLabel>Patient info</ng-template>
-
-        <dd-patient-info></dd-patient-info>
-
-        <button mat-flat-button
-                color='primary'
-                [disabled]='patientInfoCmp.form.invalid'
-                (click)='stepper.next()'>Next</button>
-
-      </mat-step>
-
 <!--      <mat-step [stepControl]='patientInfoCmp.form'>-->
+
+<!--        <ng-template matStepLabel>Patient info</ng-template>-->
+
+<!--        <dd-patient-info></dd-patient-info>-->
+
+<!--        <button mat-flat-button-->
+<!--                color='primary'-->
+<!--                [disabled]='patientInfoCmp.form.invalid'-->
+<!--                (click)='stepper.next()'>Next</button>-->
+
+<!--      </mat-step>-->
+
+<!--      <mat-step [stepControl]='patientAddressCmp.form'>-->
 
 <!--        <ng-template matStepLabel>Patient address</ng-template>-->
 
 <!--        <dd-patient-address-info></dd-patient-address-info>-->
 
-<!--        <button mat-flat-button-->
-<!--                color='primary'-->
-<!--                (click)='stepper.previous()'>Back</button>-->
+<!--        <div class='buttons-container'>-->
 
-<!--        <button mat-flat-button-->
-<!--                color='primary'-->
-<!--                (click)='stepper.next()'>Next</button>-->
+<!--          <button mat-flat-button-->
+<!--                  color='primary'-->
+<!--                  (click)='stepper.previous()'>Back</button>-->
 
-<!--      </mat-step>-->
-
-<!--      <mat-step [stepControl]='patientDiseaseCmp.form'>-->
-
-<!--        <ng-template matStepLabel>Patient disease info</ng-template>-->
-
-<!--        <dd-patient-disease-info></dd-patient-disease-info>-->
-
-<!--        <button mat-flat-button-->
-<!--                color='primary'-->
-<!--                (click)='stepper.previous()'>Back</button>-->
-
-<!--        <button mat-flat-button-->
-<!--                color='primary'-->
-<!--                (click)='submit()'>Submit</button>-->
+<!--          <button mat-flat-button-->
+<!--                  color='primary'-->
+<!--                  [disabled]='patientAddressCmp.form.invalid'-->
+<!--                  (click)='stepper.next()'>Next</button>-->
+<!--        </div>-->
 
 <!--      </mat-step>-->
+
+      <mat-step [stepControl]='patientDiseaseCmp.form'>
+
+        <ng-template matStepLabel>Patient disease info</ng-template>
+
+        <dd-patient-disease-info></dd-patient-disease-info>
+
+        <div class='buttons-container'>
+
+          <button mat-flat-button
+                  color='primary'
+                  (click)='stepper.previous()'>Back</button>
+
+          <button mat-flat-button
+                  color='primary'
+                  (click)='submit()'>Submit</button>
+
+        </div>
+
+      </mat-step>
 
     </mat-horizontal-stepper>
 

@@ -37,6 +37,15 @@
 
       .mat-stepper-horizontal {
         background-color: transparent;
+
+        mat-step {
+
+          .buttons-container {
+            display: flex;
+            justify-content: space-between;
+          }
+
+        }
       }
     }
   }

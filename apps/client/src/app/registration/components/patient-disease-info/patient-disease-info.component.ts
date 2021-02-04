@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
+import { UserDiseaseInfoInterface } from '@daily-diabetes/shared-data';
 
 @Component({
   selector: 'dd-patient-disease-info',
@@ -20,10 +21,16 @@ export class PatientDiseaseInfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      firstName: []
+      diabetesType: ['', Validators.required],
+      illPeriod: {
+        time:       ['', Validators.required],
+        timeUnit:   ['', Validators.required]
+      },
+      shortInsulin: ['', Validators.required],
+      baseInsulin:  ['', Validators.required]
     });
 
-    const formChangesSubscription = this.form.valueChanges.subscribe((changes: any) => {
+    const formChangesSubscription = this.form.valueChanges.subscribe((changes: UserDiseaseInfoInterface) => {
       console.log('PatientInfo:Form: ', changes);
     });
 

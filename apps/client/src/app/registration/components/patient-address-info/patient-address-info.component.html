@@ -1,1 +1,51 @@
-<p>patient-address-info works!</p>
+<form [formGroup]='form'>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Country</mat-label>
+    <input required matInput
+           placeholder="Type in your country"
+           formControlName='country' />
+
+    <mat-error *ngIf="form.controls.country.errors?.required">
+      Country is required field
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>City or village</mat-label>
+    <input required matInput
+           placeholder="Type in your location"
+           formControlName='cityOrVillage' />
+
+    <mat-error *ngIf="form.controls.cityOrVillage.errors?.required">
+      Location is required field
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Address</mat-label>
+    <input required matInput
+           placeholder="Type in your address"
+           formControlName='address' />
+
+    <mat-error *ngIf="form.controls.address.errors?.required">
+      Address is required field
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Postal zip code</mat-label>
+    <input required matInput
+           placeholder="Type in your postal zip code"
+           formControlName='postalZipCode' />
+
+    <mat-error *ngIf="form.controls.postalZipCode.errors?.required">
+      Postal Zip code is required field
+    </mat-error>
+
+  </mat-form-field>
+
+</form>
