@@ -72,7 +72,7 @@
             "aot": true,
             "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "apps/client/src/styles.scss"
             ],
             "scripts": []
@@ -249,6 +249,31 @@
           "outputs": ["coverage/libs/material-shared"],
           "options": {
             "jestConfig": "libs/material-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data": {
+      "root": "libs/shared-data",
+      "sourceRoot": "libs/shared-data/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared-data/tsconfig.lib.json",
+              "libs/shared-data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared-data/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared-data"],
+          "options": {
+            "jestConfig": "libs/shared-data/jest.config.js",
             "passWithNoTests": true
           }
         }

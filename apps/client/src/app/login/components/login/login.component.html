@@ -1,0 +1,52 @@
+<div class='dd-auth-scaffold-container'>
+
+  <div class='dd-auth-scaffold left-column'>
+
+    <h1>Daily Diabetes</h1>
+
+    <div class='text'>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In odit rem saepe sequi suscipit tenetur ullam veniam
+        voluptatum! Commodi enim et exercitationem itaque iusto labore omnis quas quibusdam rem ullam?</p>
+      <p>Ad alias, animi, aut, commodi culpa dicta eaque eligendi est minus nihil obcaecati odit omnis optio porro
+        repudiandae rerum sint suscipit totam. Culpa dolores eligendi est quod rem sed temporibus?</p>
+    </div>
+
+    <div class='buttons-container'>
+
+      <button mat-stroked-button routerLink='/registration'>
+        Not yet registered ?
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class='dd-auth-scaffold right-column'>
+
+    <form [formGroup]='loginForm'>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Login</mat-label>
+        <input matInput autofocus placeholder="Type in your valid email address" />
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Type in your password" />
+
+      </mat-form-field>
+
+      <div class='buttons-container'>
+
+        <button mat-flat-button color='primary'>Submit</button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
