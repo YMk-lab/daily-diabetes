@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MaterialSharedModule } from '@daily-diabetes/material-shared';
 
 import { RegistrationRoutingModule } from './registration-routing.module';
@@ -28,7 +30,11 @@ import { PatientAddressInfoComponent } from './components/patient-address-info/p
     MatPasswordStrengthModule,
 
     // DD library imports
-    MaterialSharedModule
+    MaterialSharedModule,
+    TranslateModule
+  ],
+  exports: [
+    TranslateModule
   ]
 })
 export class RegistrationModule { }

@@ -2,19 +2,12 @@
 
   <div class='dd-auth-scaffold left-column'>
 
-    <h1>Daily Diabetes</h1>
+    <h1>{{ 'APP.TITLE' | translate }}</h1>
 
     <div class='text'>
-      <p>
-        Вітаємо в нашій системі щоденного логування ваших показників щодо діабету.
-      </p>
-      <p>Тут, ви маєте змогу вести свій щоденник по кількості введених одиниць інсуліну, вести особистий щоденник прийому їжі,
-        графік прийомів до ендокринолога та багато іншого
-      </p>
-      <p>
-        Система будує відповідну статистику по ваших щоденних записах,
-        та дає змогу формувати звіти, які пізніше будуть передаватись вашому ендокринологу.
-      </p>
+      <p>{{ 'APP.MOTO.PARAGRAPH_ONE' | translate }}</p>
+      <p>{{ 'APP.MOTO.PARAGRAPH_TWO' | translate }}</p>
+      <p>{{ 'APP.MOTO.PARAGRAPH_THREE' | translate }}</p>
     </div>
 
     <div class='buttons-container'>
@@ -32,7 +25,7 @@
       </div>
 
       <button mat-stroked-button color='primary' routerLink='/registration'>
-        Not yet registered?
+        {{ 'LOGIN.NAV_BUTTON' | translate }}
       </button>
 
     </div>
@@ -45,21 +38,24 @@
 
       <mat-form-field appearance="outline">
 
-        <mat-label>Login</mat-label>
-        <input matInput autofocus placeholder="Type in your valid email address" />
+        <mat-label>{{ 'LOGIN.FORM.EMAIL_CONTROL.LABEL' | translate }}</mat-label>
+        <input matInput autofocus placeholder="{{ 'LOGIN.FORM.EMAIL_CONTROL.PLACEHOLDER' | translate }}" />
 
       </mat-form-field>
 
       <mat-form-field appearance="outline">
 
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="Type in your password" />
+        <mat-label>{{ 'LOGIN.FORM.PASSWORD_CONTROL.LABEL' | translate }}</mat-label>
+        <input matInput placeholder="{{'LOGIN.FORM.PASSWORD_CONTROL.PLACEHOLDER' | translate }}" />
 
       </mat-form-field>
 
       <div class='buttons-container'>
 
-        <button mat-flat-button color='primary' [disabled]='loginForm.invalid'>Submit</button>
+        <button mat-flat-button color='primary'
+                [disabled]='loginForm.invalid'>
+          {{ 'LOGIN.FORM.SUBMIT_BUTTON_TEXT' | translate }}
+        </button>
 
       </div>
 

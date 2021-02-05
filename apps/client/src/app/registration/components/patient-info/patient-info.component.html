@@ -1,77 +1,90 @@
 <form [formGroup]='form'>
 
   <mat-form-field appearance="outline">
-    <mat-label>First name</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.FIRST_NAME_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your first name"
+           placeholder="{{ 'PATIENT_INFO.FORM.FIRST_NAME_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='firstName' />
 
     <mat-error *ngIf="form.controls.firstName.errors?.required">
-      First name is required field
+      {{ 'PATIENT_INFO.FORM.FIRST_NAME_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Last name</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.LAST_NAME_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your last name"
+           placeholder="{{ 'PATIENT_INFO.FORM.LAST_NAME_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='lastName' />
 
     <mat-error *ngIf="form.controls.lastName.errors?.required">
-      Last name is required field
+      {{ 'PATIENT_INFO.FORM.LAST_NAME_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Birth date</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.BIRTH_DATE_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder='Type in or select your birth date'
+           placeholder="{{ 'PATIENT_INFO.FORM.BIRTH_DATE_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='birthDate'
            [matDatepicker]="dp3" />
     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
 
     <mat-error *ngIf="form.controls.birthDate.errors?.required">
-      Birth date is required field
+      {{ 'PATIENT_INFO.FORM.BIRTH_DATE_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Phone number</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.PHONE_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your contact phone number"
+           placeholder="{{ 'PATIENT_INFO.FORM.PHONE_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='phone' />
 
     <mat-error *ngIf="form.controls.phone.errors?.required">
-      Contact phone number is required field
+      {{ 'PATIENT_INFO.FORM.PHONE_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.EMAIL_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput type='email'
-           placeholder="Type in your valid email address"
+           placeholder="{{ 'PATIENT_INFO.FORM.EMAIL_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='email' />
 
     <mat-error *ngIf='form.controls.email.errors?.email'>
-      Email is not valid
+      {{ 'PATIENT_INFO.FORM.EMAIL_CONTROL.ERRORS.INVALID' | translate }}
     </mat-error>
 
     <mat-error *ngIf='form.controls.email.errors?.required'>
-      Email is required field
+      {{ 'PATIENT_INFO.FORM.EMAIL_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Password</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.PASSWORD_CONTROL.LABEL' | translate }}
+    </mat-label>
 
     <input required matInput minlength='5' maxlength='50'
-           placeholder="Type in your password" formControlName='password'
+           placeholder="{{ 'PATIENT_INFO.FORM.PASSWORD_CONTROL.PLACEHOLDER' | translate }}"
+           formControlName='password'
            [type]="hidePassword ? 'password' : 'text'">
 
     <button mat-icon-button matSuffix
@@ -83,24 +96,26 @@
     <mat-password-strength [password]="form.controls.password.value"></mat-password-strength>
 
     <mat-error *ngIf="form.controls.password.errors?.required">
-      Password is required field
+      {{ 'PATIENT_INFO.FORM.PASSWORD_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
     <mat-error *ngIf="form.controls.password.errors?.minlength">
-      Password must contain at least 5 characters
+      {{ 'PATIENT_INFO.FORM.PASSWORD_CONTROL.ERRORS.MIN_LENGTH' | translate }}
     </mat-error>
 
     <mat-error *ngIf="form.controls.password.errors?.maxlength">
-      Password can not contain more than 50 characters
+      {{ 'PATIENT_INFO.FORM.PASSWORD_CONTROL.ERRORS.MAX_LENGTH' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Confirm password</mat-label>
+    <mat-label>
+      {{ 'PATIENT_INFO.FORM.CONFIRM_PASSWORD_CONTROL.LABEL' | translate }}
+    </mat-label>
 
     <input required matInput
-           placeholder="Type in confirmation password"
+           placeholder="{{ 'PATIENT_INFO.FORM.CONFIRM_PASSWORD_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='confirmPassword'
            [type]="hideConfirmPassword ? 'password' : 'text'">
 
@@ -111,11 +126,11 @@
     </button>
 
     <mat-error *ngIf="form.controls.confirmPassword.errors?.required">
-      Confirm password is required field
+      {{ 'PATIENT_INFO.FORM.CONFIRM_PASSWORD_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
     <mat-error *ngIf="form.controls.confirmPassword.errors?.notMatched">
-      Confirm password does not match
+      {{ 'PATIENT_INFO.FORM.CONFIRM_PASSWORD_CONTROL.ERRORS.NOT_MATCHED' | translate }}
     </mat-error>
 
   </mat-form-field>

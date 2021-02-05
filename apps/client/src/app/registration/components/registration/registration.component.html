@@ -2,19 +2,12 @@
 
   <div class='dd-auth-scaffold left-column'>
 
-    <h1>Daily Diabetes</h1>
+    <h1>{{ 'APP.TITLE' | translate }}</h1>
 
     <div class='text'>
-      <p>
-        Вітаємо в нашій системі щоденного логування ваших показників щодо діабету.
-      </p>
-      <p>Тут, ви маєте змогу вести свій щоденник по кількості введених одиниць інсуліну, вести особистий щоденник прийому їжі,
-        графік прийомів до ендокринолога та багато іншого
-      </p>
-      <p>
-        Система будує відповідну статистику по ваших щоденних записах,
-        та дає змогу формувати звіти, які пізніше будуть передаватись вашому ендокринологу.
-      </p>
+      <p>{{ 'APP.MOTO.PARAGRAPH_ONE' | translate }}</p>
+      <p>{{ 'APP.MOTO.PARAGRAPH_TWO' | translate }}</p>
+      <p>{{ 'APP.MOTO.PARAGRAPH_THREE' | translate }}</p>
     </div>
 
     <div class='buttons-container'>
@@ -32,7 +25,7 @@
       </div>
 
       <button mat-stroked-button color='primary' routerLink='/login'>
-        Already registered? Go and login
+        {{ 'REGISTER.NAV_BUTTON' | translate }}
       </button>
 
     </div>
@@ -45,20 +38,26 @@
 
       <mat-step [stepControl]='patientInfoCmp.form'>
 
-        <ng-template matStepLabel>Patient info</ng-template>
+        <ng-template matStepLabel>
+          {{ 'REGISTER.STEPPER.STEP_ONE.LABEL' | translate }}
+        </ng-template>
 
         <dd-patient-info></dd-patient-info>
 
         <button mat-flat-button
                 color='primary'
                 [disabled]='patientInfoCmp.form.invalid'
-                (click)='stepper.next()'>Next</button>
+                (click)='stepper.next()'>
+          {{ 'REGISTER.STEPPER.BUTTONS.NEXT' | translate }}
+        </button>
 
       </mat-step>
 
       <mat-step [stepControl]='patientAddressCmp.form'>
 
-        <ng-template matStepLabel>Patient address</ng-template>
+        <ng-template matStepLabel>
+          {{ 'REGISTER.STEPPER.STEP_TWO.LABEL' | translate }}
+        </ng-template>
 
         <dd-patient-address-info></dd-patient-address-info>
 
@@ -66,19 +65,25 @@
 
           <button mat-flat-button
                   color='primary'
-                  (click)='stepper.previous()'>Back</button>
+                  (click)='stepper.previous()'>
+            {{ 'REGISTER.STEPPER.BUTTONS.BACK' | translate }}
+          </button>
 
           <button mat-flat-button
                   color='primary'
                   [disabled]='patientAddressCmp.form.invalid'
-                  (click)='stepper.next()'>Next</button>
+                  (click)='stepper.next()'>
+            {{ 'REGISTER.STEPPER.BUTTONS.NEXT' | translate }}
+          </button>
         </div>
 
       </mat-step>
 
       <mat-step [stepControl]='patientDiseaseCmp.form'>
 
-        <ng-template matStepLabel>Patient disease info</ng-template>
+        <ng-template matStepLabel>
+          {{ 'REGISTER.STEPPER.STEP_THREE.LABEL' | translate }}
+        </ng-template>
 
         <dd-patient-disease-info></dd-patient-disease-info>
 
@@ -86,11 +91,15 @@
 
           <button mat-flat-button
                   color='primary'
-                  (click)='stepper.previous()'>Back</button>
+                  (click)='stepper.previous()'>
+            {{ 'REGISTER.STEPPER.BUTTONS.BACK' | translate }}
+          </button>
 
           <button mat-flat-button
                   color='primary'
-                  (click)='submit()'>Submit</button>
+                  (click)='submit()'>
+            {{ 'REGISTER.STEPPER.BUTTONS.SUBMIT' | translate }}
+          </button>
 
         </div>
 

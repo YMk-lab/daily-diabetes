@@ -1,0 +1,17 @@
+{
+  "LOGIN": {
+    "NAV_BUTTON": "Ще не зареєстровані?",
+    "FORM": {
+      "EMAIL_CONTROL": {
+        "LABEL": "Електронна пошта",
+        "PLACEHOLDER": "Введіть вашу електронну пошту"
+      },
+      "PASSWORD_CONTROL": {
+        "LABEL": "Пароль",
+        "PLACEHOLDER": "Введіть пароль"
+      },
+      "SUBMIT_BUTTON_TEXT": "Зареєструватися"
+
+    }
+  }
+}

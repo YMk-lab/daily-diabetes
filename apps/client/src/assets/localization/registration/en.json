@@ -1,0 +1,22 @@
+{
+  "REGISTER": {
+    "TITLE": "Daily Diabetes",
+    "NAV_BUTTON": "Already registered? Login",
+    "STEPPER": {
+      "STEP_ONE": {
+        "LABEL": "Patient info"
+      },
+      "STEP_TWO": {
+        "LABEL": "Patient address"
+      },
+      "STEP_THREE": {
+        "LABEL": "Patient disease"
+      },
+      "BUTTONS": {
+        "NEXT": "Next",
+        "BACK": "Back",
+        "SUBMIT": "Submit"
+      }
+    }
+  }
+}
