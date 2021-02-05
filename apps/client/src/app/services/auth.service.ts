@@ -33,4 +33,8 @@ export class AuthService {
     this.patient.diseaseInfo = { ...disease };
     this.patientSubject.next(this.patient);
   }
+
+  submit(patient: UserInterface): void {
+    console.log(patient);
+  }
 }

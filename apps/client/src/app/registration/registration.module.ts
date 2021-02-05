@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 import { MaterialSharedModule } from '@daily-diabetes/material-shared';
 
@@ -23,6 +24,8 @@ import { PatientAddressInfoComponent } from './components/patient-address-info/p
     RegistrationRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+
+    MatPasswordStrengthModule,
 
     // DD library imports
     MaterialSharedModule

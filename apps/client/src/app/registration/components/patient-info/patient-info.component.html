@@ -69,9 +69,18 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
-    <input required matInput minlength='5' maxlength='50' type='password'
-           placeholder="Type in your password"
-           formControlName='password' />
+
+    <input required matInput minlength='5' maxlength='50'
+           placeholder="Type in your password" formControlName='password'
+           [type]="hidePassword ? 'password' : 'text'">
+
+    <button mat-icon-button matSuffix
+            (click)="hidePassword = !hidePassword; $event.preventDefault()"
+            [attr.aria-pressed]="hidePassword">
+      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+
+    <mat-password-strength [password]="form.controls.password.value"></mat-password-strength>
 
     <mat-error *ngIf="form.controls.password.errors?.required">
       Password is required field
@@ -89,9 +98,17 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Confirm password</mat-label>
-    <input required matInput type='password'
-           placeholder="Placeholder"
-           formControlName='confirmPassword' />
+
+    <input required matInput
+           placeholder="Type in confirmation password"
+           formControlName='confirmPassword'
+           [type]="hideConfirmPassword ? 'password' : 'text'">
+
+    <button mat-icon-button matSuffix
+            (click)="hideConfirmPassword = !hideConfirmPassword; $event.preventDefault()"
+            [attr.aria-pressed]="hideConfirmPassword">
+      <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
 
     <mat-error *ngIf="form.controls.confirmPassword.errors?.required">
       Confirm password is required field
