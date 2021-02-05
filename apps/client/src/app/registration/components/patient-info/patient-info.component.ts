@@ -18,6 +18,9 @@ export class PatientInfoComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
+  hidePassword = true;
+  hideConfirmPassword = true;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private authService: AuthService) { }

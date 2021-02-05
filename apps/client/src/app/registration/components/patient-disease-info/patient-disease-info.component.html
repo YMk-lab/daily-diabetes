@@ -1,5 +1,88 @@
-<form [formGroup]='form'>
+<form class='dd-patient-disease-info-form' [formGroup]='form'>
 
-  <h1>Patient deases</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>Choose one</mat-label>
+
+    <mat-select required formControlName='diabetesType'>
+
+      <mat-option *ngFor='let type of diabetesTypes' [value]='type'>{{ type }}</mat-option>
+
+    </mat-select>
+
+    <mat-error *ngIf='form.controls.diabetesType.errors?.required'>
+      Please choose your diabetes type
+    </mat-error>
+
+  </mat-form-field>
+
+  <table class='table-full-width' formGroupName='illPeriod'>
+
+    <tr>
+
+      <td>
+
+        <mat-form-field appearance="outline">
+          <mat-label>How long have you been sick ?</mat-label>
+          <input required matInput type='number' min='0' max='150'
+                 placeholder="Set an approximate time"
+                 formControlName='time' />
+
+          <mat-error *ngIf='illPeriodFormGroup.controls.time.errors?.required'>
+            Ill time is required field
+          </mat-error>
+
+        </mat-form-field>
+
+      </td>
+
+      <td>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Choose unit</mat-label>
+
+          <mat-select required formControlName='timeUnit'>
+
+            <mat-option *ngFor='let unit of illPeriodUnits' [value]='unit'>
+              {{ unit }}
+            </mat-option>
+
+          </mat-select>
+
+          <mat-error *ngIf='illPeriodFormGroup.controls.timeUnit.errors?.required'>
+            Time unit is required field
+          </mat-error>
+
+        </mat-form-field>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Short insulin name</mat-label>
+    <input required matInput
+           placeholder="Type in name of short insulin"
+           formControlName='shortInsulin' />
+
+    <mat-error *ngIf='form.controls.shortInsulin.errors?.required'>
+      Short insulin name is required field
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Base insulin name</mat-label>
+    <input required matInput
+           placeholder="Type in name of base insulin"
+           formControlName='baseInsulin' />
+
+    <mat-error *ngIf='form.controls.baseInsulin.errors?.required'>
+      Base insulin name is required field
+    </mat-error>
+
+  </mat-form-field>
 
 </form>
