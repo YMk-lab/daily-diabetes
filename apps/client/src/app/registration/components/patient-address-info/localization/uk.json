@@ -1,0 +1,34 @@
+{
+  "PATIENT_ADDRESS": {
+    "FORM": {
+      "COUNTRY_CONTROL": {
+        "LABEL": "Країна",
+        "PLACEHOLDER": "Україна",
+        "ERRORS": {
+          "REQUIRED": "Країна є обовязковим полем для заповнення"
+        }
+      },
+      "CITY_OR_VILLAGE_CONTROL": {
+        "LABEL": "Місто чи село",
+        "PLACEHOLDER": "Львів",
+        "ERRORS": {
+          "REQUIRED": "Місто або село є обовязковим полем для заповнення"
+        }
+      },
+      "ADDRESS_CONTROL": {
+        "LABEL": "Адреса",
+        "PLACEHOLDER": "вулиця площа Ринок",
+        "ERRORS": {
+          "REQUIRED": "Адреса є обовязковим полем для заповнення"
+        }
+      },
+      "ZIP_CODE_CONTROL": {
+        "LABEL": "Поштовий індекс",
+        "PLACEHOLDER": "79007",
+        "ERRORS": {
+          "REQUIRED": "Поштовий індекс є обовязковим полем для заповнення"
+        }
+      }
+    }
+  }
+}

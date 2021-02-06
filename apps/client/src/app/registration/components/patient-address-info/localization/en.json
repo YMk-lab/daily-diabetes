@@ -1,0 +1,34 @@
+{
+  "PATIENT_ADDRESS": {
+    "FORM": {
+      "COUNTRY_CONTROL": {
+        "LABEL": "Country",
+        "PLACEHOLDER": "Ukraine",
+        "ERRORS": {
+          "REQUIRED": "Country is required field"
+        }
+      },
+      "CITY_OR_VILLAGE_CONTROL": {
+        "LABEL": "City or village",
+        "PLACEHOLDER": "Lviv",
+        "ERRORS": {
+          "REQUIRED": "City or village is required field"
+        }
+      },
+      "ADDRESS_CONTROL": {
+        "LABEL": "Address",
+        "PLACEHOLDER": "Rynok square street",
+        "ERRORS": {
+          "REQUIRED": "Address is required field"
+        }
+      },
+      "ZIP_CODE_CONTROL": {
+        "LABEL": "Postal code",
+        "PLACEHOLDER": "79007",
+        "ERRORS": {
+          "REQUIRED": "Postal code is required field"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "PATIENT_DISEASE": {
+    "FORM": {
+      "DIABETES_TYPE_CONTROL": {
+        "LABEL": "Тип діабету",
+        "PLACEHOLDER": "Виберіть ваш тип діабету",
+        "TYPE_ONE": "1й тип діабету",
+        "TYPE_TWO": "2й тип діабету",
+        "ERRORS": {
+          "REQUIRED": "Тип діабету є обовязковим полем для заповнення"
+        }
+      },
+      "ILL_TIME_CONTROL": {
+        "LABEL": "Період хворування",
+        "PLACEHOLDER": "Вкажіть паріод хворування",
+        "ERRORS": {
+          "REQUIRED": "Період хворування є обовязковим полем для заповнення"
+        }
+      },
+      "ILL_TIME_UNIT_CONTROL": {
+        "LABEL": "Тип періоду",
+        "PLACEHOLDER": "",
+        "TYPE_MONTH": "місяць (місяців)",
+        "TYPE_YEARS": "рік (роки)",
+        "ERRORS": {
+          "REQUIRED": "Тип періоду є обовязковим полем для заповнення"
+        }
+      },
+      "SHORT_INSULIN_CONTROL": {
+        "LABEL": "Короткий інсуліну",
+        "PLACEHOLDER": "Новорапід",
+        "ERRORS": {
+          "REQUIRED": "Назва інсуліну є обовязковим полем для заповнення"
+        }
+      },
+      "BASE_INSULIN_CONTROL": {
+        "LABEL": "Базвовий інсулін",
+        "PLACEHOLDER": "Тресіба",
+        "ERRORS": {
+          "REQUIRED": "Назва інсуліну є обовязковим полем для заповнення"
+        }
+      }
+    }
+  }
+}

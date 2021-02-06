@@ -1,0 +1,22 @@
+{
+  "REGISTER": {
+    "TITLE": "Daily Diabetes",
+    "NAV_BUTTON": "Вже зареєстровані? Залогуватись",
+    "STEPPER": {
+      "STEP_ONE": {
+        "LABEL": "Пацієнт"
+      },
+      "STEP_TWO": {
+        "LABEL": "Адреса"
+      },
+      "STEP_THREE": {
+        "LABEL": "Хвороба"
+      },
+      "BUTTONS": {
+        "NEXT": "Далі",
+        "BACK": "Назад",
+        "SUBMIT": "Зареєструватися"
+      }
+    }
+  }
+}

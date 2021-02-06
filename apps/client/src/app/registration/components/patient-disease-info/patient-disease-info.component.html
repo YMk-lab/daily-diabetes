@@ -1,16 +1,22 @@
 <form class='dd-patient-disease-info-form' [formGroup]='form'>
 
   <mat-form-field appearance="outline">
-    <mat-label>Choose one</mat-label>
+    <mat-label>
+      {{ 'PATIENT_DISEASE.FORM.DIABETES_TYPE_CONTROL.LABEL' | translate }}
+    </mat-label>
 
-    <mat-select required formControlName='diabetesType'>
+    <mat-select required
+                placeholder="{{ 'PATIENT_DISEASE.FORM.DIABETES_TYPE_CONTROL.PLACEHOLDER' | translate }}"
+                formControlName='diabetesType'>
 
-      <mat-option *ngFor='let type of diabetesTypes' [value]='type'>{{ type }}</mat-option>
+      <mat-option *ngFor='let type of diabetesTypes' [value]='type'>
+        {{ type | translate }}
+      </mat-option>
 
     </mat-select>
 
     <mat-error *ngIf='form.controls.diabetesType.errors?.required'>
-      Please choose your diabetes type
+      {{ 'PATIENT_DISEASE.FORM.DIABETES_TYPE_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
@@ -22,13 +28,15 @@
       <td>
 
         <mat-form-field appearance="outline">
-          <mat-label>How long have you been sick ?</mat-label>
+          <mat-label>
+            {{ 'PATIENT_DISEASE.FORM.ILL_TIME_CONTROL.LABEL' | translate }}
+          </mat-label>
           <input required matInput type='number' min='0' max='150'
-                 placeholder="Set an approximate time"
+                 placeholder="{{ 'PATIENT_DISEASE.FORM.ILL_TIME_CONTROL.PLACEHOLDER' | translate }}"
                  formControlName='time' />
 
           <mat-error *ngIf='illPeriodFormGroup.controls.time.errors?.required'>
-            Ill time is required field
+            {{ 'PATIENT_DISEASE.FORM.ILL_TIME_CONTROL.ERRORS.REQUIRED' | translate }}
           </mat-error>
 
         </mat-form-field>
@@ -39,18 +47,22 @@
 
         <mat-form-field appearance="outline">
 
-          <mat-label>Choose unit</mat-label>
+          <mat-label>
+            {{ 'PATIENT_DISEASE.FORM.ILL_TIME_UNIT_CONTROL.LABEL' | translate }}
+          </mat-label>
 
-          <mat-select required formControlName='timeUnit'>
+          <mat-select required
+                      placeholder="{{ 'PATIENT_DISEASE.FORM.ILL_TIME_UNIT_CONTROL.PLACEHOLDER' | translate }}"
+                      formControlName='timeUnit'>
 
             <mat-option *ngFor='let unit of illPeriodUnits' [value]='unit'>
-              {{ unit }}
+              {{ unit | translate }}
             </mat-option>
 
           </mat-select>
 
           <mat-error *ngIf='illPeriodFormGroup.controls.timeUnit.errors?.required'>
-            Time unit is required field
+            {{ 'PATIENT_DISEASE.FORM.ILL_TIME_UNIT_CONTROL.ERRORS.REQUIRED' | translate }}
           </mat-error>
 
         </mat-form-field>
@@ -62,25 +74,29 @@
   </table>
 
   <mat-form-field appearance="outline">
-    <mat-label>Short insulin name</mat-label>
+    <mat-label>
+      {{ 'PATIENT_DISEASE.FORM.SHORT_INSULIN_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in name of short insulin"
+           placeholder="{{ 'PATIENT_DISEASE.FORM.SHORT_INSULIN_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='shortInsulin' />
 
     <mat-error *ngIf='form.controls.shortInsulin.errors?.required'>
-      Short insulin name is required field
+      {{ 'PATIENT_DISEASE.FORM.SHORT_INSULIN_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Base insulin name</mat-label>
+    <mat-label>
+      {{ 'PATIENT_DISEASE.FORM.BASE_INSULIN_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in name of base insulin"
+           placeholder="{{ 'PATIENT_DISEASE.FORM.BASE_INSULIN_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='baseInsulin' />
 
     <mat-error *ngIf='form.controls.baseInsulin.errors?.required'>
-      Base insulin name is required field
+      {{ 'PATIENT_DISEASE.FORM.BASE_INSULIN_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>

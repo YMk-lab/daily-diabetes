@@ -1,0 +1,17 @@
+{
+  "LOGIN": {
+    "NAV_BUTTON": "Not registered yet?",
+    "FORM": {
+      "EMAIL_CONTROL": {
+        "LABEL": "Email",
+        "PLACEHOLDER": "john-doe@test.com"
+      },
+      "PASSWORD_CONTROL": {
+        "LABEL": "Password",
+        "PLACEHOLDER": "Type in your password"
+      },
+      "SUBMIT_BUTTON_TEXT": "Submit"
+
+    }
+  }
+}
