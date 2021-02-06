@@ -4,11 +4,18 @@
     "FORM": {
       "EMAIL_CONTROL": {
         "LABEL": "Email",
-        "PLACEHOLDER": "john-doe@test.com"
+        "PLACEHOLDER": "john-doe@test.com",
+        "ERRORS": {
+          "REQUIRED": "Email address is required field",
+          "INVALID": "Email address is not valid"
+        }
       },
       "PASSWORD_CONTROL": {
         "LABEL": "Password",
-        "PLACEHOLDER": "Type in your password"
+        "PLACEHOLDER": "Type in your password",
+        "ERRORS": {
+          "REQUIRED": "Password is required field"
+        }
       },
       "SUBMIT_BUTTON_TEXT": "Submit"
 

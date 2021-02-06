@@ -34,19 +34,43 @@
 
   <div class='dd-auth-scaffold right-column'>
 
-    <form [formGroup]='loginForm'>
+    <form [formGroup]='loginForm' (ngSubmit)='submit()'>
 
       <mat-form-field appearance="outline">
 
         <mat-label>{{ 'LOGIN.FORM.EMAIL_CONTROL.LABEL' | translate }}</mat-label>
-        <input matInput autofocus placeholder="{{ 'LOGIN.FORM.EMAIL_CONTROL.PLACEHOLDER' | translate }}" />
+        <input required matInput
+               placeholder="{{ 'LOGIN.FORM.EMAIL_CONTROL.PLACEHOLDER' | translate }}"
+               formControlName='email' />
+
+        <mat-error *ngIf='loginForm.controls.email.errors?.email'>
+          {{ 'LOGIN.FORM.EMAIL_CONTROL.ERRORS.INVALID' | translate }}
+        </mat-error>
+
+        <mat-error *ngIf='loginForm.controls.email.errors?.required'>
+          {{ 'LOGIN.FORM.EMAIL_CONTROL.ERRORS.REQUIRED' | translate }}
+        </mat-error>
 
       </mat-form-field>
 
       <mat-form-field appearance="outline">
 
         <mat-label>{{ 'LOGIN.FORM.PASSWORD_CONTROL.LABEL' | translate }}</mat-label>
-        <input matInput placeholder="{{'LOGIN.FORM.PASSWORD_CONTROL.PLACEHOLDER' | translate }}" />
+
+        <input matInput
+               placeholder="{{ 'LOGIN.FORM.PASSWORD_CONTROL.PLACEHOLDER' | translate }}"
+               formControlName='password'
+               [type]="hidePassword ? 'password' : 'text'">
+
+        <button mat-icon-button matSuffix
+                (click)="hidePassword = !hidePassword; $event.preventDefault()"
+                [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+
+        <mat-error *ngIf="loginForm.controls.password.errors?.required">
+          {{ 'LOGIN.FORM.PASSWORD_CONTROL.ERRORS.REQUIRED' | translate }}
+        </mat-error>
 
       </mat-form-field>
 
