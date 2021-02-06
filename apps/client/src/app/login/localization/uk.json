@@ -4,11 +4,18 @@
     "FORM": {
       "EMAIL_CONTROL": {
         "LABEL": "Електронна пошта",
-        "PLACEHOLDER": "john-doe@test.com"
+        "PLACEHOLDER": "john-doe@test.com",
+        "ERRORS": {
+          "REQUIRED": "Електронна пошта є обовязковим полем для заповнення",
+          "INVALID": "Електронна пошта є невалідна"
+        }
       },
       "PASSWORD_CONTROL": {
         "LABEL": "Пароль",
-        "PLACEHOLDER": "Введіть пароль"
+        "PLACEHOLDER": "Введіть пароль",
+        "ERRORS": {
+          "REQUIRED": "Пароль є обовязковим полем для заповнення"
+        }
       },
       "SUBMIT_BUTTON_TEXT": "Зареєструватися"
 

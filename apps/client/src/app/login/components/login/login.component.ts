@@ -12,14 +12,22 @@ import { LOGIN_FORM_PARAMS } from './login-form.params';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  hidePassword = true;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      [LOGIN_FORM_PARAMS.EMAIL]:    ['', Validators.required, Validators.pattern('')],
+      [LOGIN_FORM_PARAMS.EMAIL]:    ['', [Validators.required, Validators.email]],
       [LOGIN_FORM_PARAMS.PASSWORD]: ['', Validators.required]
     });
   }
 
+  submit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    console.log(this.loginForm.value);
+  }
 }
