@@ -4,7 +4,7 @@
     "FORM": {
       "EMAIL_CONTROL": {
         "LABEL": "Електронна пошта",
-        "PLACEHOLDER": "Введіть вашу електронну пошту"
+        "PLACEHOLDER": "john-doe@test.com"
       },
       "PASSWORD_CONTROL": {
         "LABEL": "Пароль",

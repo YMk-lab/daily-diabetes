@@ -4,6 +4,8 @@
       "DIABETES_TYPE_CONTROL": {
         "LABEL": "Diabetes type",
         "PLACEHOLDER": "Choose diabetes type",
+        "TYPE_ONE": "1st type of diabetes",
+        "TYPE_TWO": "2nd type of diabetes",
         "ERRORS": {
           "REQUIRED": "Diabetes type is required field"
         }
@@ -18,21 +20,22 @@
       "ILL_TIME_UNIT_CONTROL": {
         "LABEL": "Ill period unit",
         "PLACEHOLDER": "Choose period unit",
-        "TYPES": ["month", "year (years)"],
+        "TYPE_MONTH": "month",
+        "TYPE_YEARS": "year(s)",
         "ERRORS": {
-          "REQUIRED": "Ill period is required field"
+          "REQUIRED": "Ill period unit is required field"
         }
       },
       "SHORT_INSULIN_CONTROL": {
         "LABEL": "Short insulin name",
-        "PLACEHOLDER": "Type in short insulin name",
+        "PLACEHOLDER": "Novorapid",
         "ERRORS": {
           "REQUIRED": "Insulin name is required field"
         }
       },
       "BASE_INSULIN_CONTROL": {
-        "LABEL": "Prolong insulin (Base)",
-        "PLACEHOLDER": "Type in prolonged insulin name",
+        "LABEL": "Prolonged insulin (Base)",
+        "PLACEHOLDER": "Tresiba",
         "ERRORS": {
           "REQUIRED": "Insulin name is required"
         }

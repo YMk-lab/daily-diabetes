@@ -4,7 +4,7 @@
     "FORM": {
       "EMAIL_CONTROL": {
         "LABEL": "Email",
-        "PLACEHOLDER": "Type in your email address"
+        "PLACEHOLDER": "john-doe@test.com"
       },
       "PASSWORD_CONTROL": {
         "LABEL": "Password",

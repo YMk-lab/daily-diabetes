@@ -3,28 +3,28 @@
     "FORM": {
       "COUNTRY_CONTROL": {
         "LABEL": "Country",
-        "PLACEHOLDER": "Type in your country",
+        "PLACEHOLDER": "Ukraine",
         "ERRORS": {
           "REQUIRED": "Country is required field"
         }
       },
       "CITY_OR_VILLAGE_CONTROL": {
         "LABEL": "City or village",
-        "PLACEHOLDER": "Type in your city or village",
+        "PLACEHOLDER": "Lviv",
         "ERRORS": {
-          "REQUIRED": "City of village is required field"
+          "REQUIRED": "City or village is required field"
         }
       },
       "ADDRESS_CONTROL": {
         "LABEL": "Address",
-        "PLACEHOLDER": "Type in your address",
+        "PLACEHOLDER": "Rynok square street",
         "ERRORS": {
           "REQUIRED": "Address is required field"
         }
       },
       "ZIP_CODE_CONTROL": {
         "LABEL": "Postal code",
-        "PLACEHOLDER": "Type in your postal code",
+        "PLACEHOLDER": "79007",
         "ERRORS": {
           "REQUIRED": "Postal code is required field"
         }

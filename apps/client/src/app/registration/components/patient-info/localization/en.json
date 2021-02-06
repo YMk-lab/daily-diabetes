@@ -17,21 +17,21 @@
       },
       "BIRTH_DATE_CONTROL": {
         "LABEL": "Birth date",
-        "PLACEHOLDER": "type in or choose your birth date",
+        "PLACEHOLDER": "MM.DD.YYYY",
         "ERRORS": {
           "REQUIRED": "Birth date is required field"
         }
       },
       "PHONE_CONTROL": {
         "LABEL": "Phone",
-        "PLACEHOLDER": "Type in your contact phone",
+        "PLACEHOLDER": "+1(000)123-4567",
         "ERRORS": {
           "REQUIRED": "Phone is required field"
         }
       },
       "EMAIL_CONTROL": {
         "LABEL": "Email",
-        "PLACEHOLDER": "Type in your email address",
+        "PLACEHOLDER": "john-doe@test.com",
         "ERRORS": {
           "REQUIRED": "Email address is required field",
           "INVALID": "Email address is not valid"

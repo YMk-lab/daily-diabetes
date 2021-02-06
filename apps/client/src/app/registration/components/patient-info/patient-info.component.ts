@@ -7,6 +7,7 @@ import { UserInterface } from '@daily-diabetes/shared-data';
 
 import { AuthService } from '../../../services/auth.service';
 import { ComparePasswordsValidator } from '../../validators/compare-passwords.validator';
+import { PATIENT_INFO_FORM } from './patient-info-form.params';
 
 @Component({
   selector: 'dd-patient-info',
@@ -28,20 +29,17 @@ export class PatientInfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      firstName:        ['', Validators.required],
-      lastName:         ['', Validators.required],
-      birthDate:        ['', Validators.required],
-      phone:            ['', Validators.required],
-      email:            ['', [
-        Validators.required,
-        Validators.email
-      ] ],
-      password:         ['', [
+      [PATIENT_INFO_FORM.FIRST_NAME]: ['', Validators.required],
+      [PATIENT_INFO_FORM.LAST_NAME]: ['', Validators.required],
+      [PATIENT_INFO_FORM.BIRTH_DATE]: ['', Validators.required],
+      [PATIENT_INFO_FORM.PHONE]: ['', Validators.required],
+      [PATIENT_INFO_FORM.EMAIL]: ['', [Validators.required, Validators.email] ],
+      [PATIENT_INFO_FORM.PASSWORD]: ['', [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(50)]
       ],
-      confirmPassword:  ['', Validators.required]
+      [PATIENT_INFO_FORM.CONFIRM_PASSWORD]: ['', Validators.required]
     }, { validators: ComparePasswordsValidator.compare() });
 
     const formChangesSubscription = this.form.valueChanges.subscribe((changes: UserInterface) => {

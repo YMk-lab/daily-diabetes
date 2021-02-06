@@ -26,12 +26,10 @@ import { PatientAddressInfoComponent } from './components/patient-address-info/p
     RegistrationRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
     MatPasswordStrengthModule,
+    TranslateModule,
 
-    // DD library imports
     MaterialSharedModule,
-    TranslateModule
   ],
   exports: [
     TranslateModule

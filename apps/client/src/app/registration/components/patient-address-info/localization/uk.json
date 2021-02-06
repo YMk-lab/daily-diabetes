@@ -3,28 +3,28 @@
     "FORM": {
       "COUNTRY_CONTROL": {
         "LABEL": "Країна",
-        "PLACEHOLDER": "Введіть вашу країну",
+        "PLACEHOLDER": "Україна",
         "ERRORS": {
           "REQUIRED": "Країна є обовязковим полем для заповнення"
         }
       },
       "CITY_OR_VILLAGE_CONTROL": {
         "LABEL": "Місто чи село",
-        "PLACEHOLDER": "Введіть місто або село в якому ви проживаєте",
+        "PLACEHOLDER": "Львів",
         "ERRORS": {
           "REQUIRED": "Місто або село є обовязковим полем для заповнення"
         }
       },
       "ADDRESS_CONTROL": {
         "LABEL": "Адреса",
-        "PLACEHOLDER": "Введіть адресу за якою ви проживаєте",
+        "PLACEHOLDER": "вулиця площа Ринок",
         "ERRORS": {
           "REQUIRED": "Адреса є обовязковим полем для заповнення"
         }
       },
       "ZIP_CODE_CONTROL": {
         "LABEL": "Поштовий індекс",
-        "PLACEHOLDER": "Введіть поштовий індекс",
+        "PLACEHOLDER": "79007",
         "ERRORS": {
           "REQUIRED": "Поштовий індекс є обовязковим полем для заповнення"
         }

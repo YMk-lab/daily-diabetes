@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { UserDiseaseInfoInterface } from '@daily-diabetes/shared-data';
+
 import { AuthService } from '../../../services/auth.service';
+import { PATIENT_DISEASE_FORM } from './patient-disease-form.params';
 
 @Component({
   selector: 'dd-patient-disease-info',
@@ -17,12 +19,12 @@ export class PatientDiseaseInfoComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
   diabetesTypes: string[] = [
-    '1st type of diabetes',
-    '2st type of diabetes',
+    'PATIENT_DISEASE.FORM.DIABETES_TYPE_CONTROL.TYPE_ONE',
+    'PATIENT_DISEASE.FORM.DIABETES_TYPE_CONTROL.TYPE_TWO',
   ];
   illPeriodUnits: string[] = [
-    'month',
-    'year (\'s)'
+    'PATIENT_DISEASE.FORM.ILL_TIME_UNIT_CONTROL.TYPE_MONTH',
+    'PATIENT_DISEASE.FORM.ILL_TIME_UNIT_CONTROL.TYPE_YEARS'
   ];
 
   get illPeriodFormGroup(): FormGroup {
@@ -36,13 +38,13 @@ export class PatientDiseaseInfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      diabetesType: ['', Validators.required],
-      illPeriod: this.fb.group({
-        time:       ['', Validators.required],
-        timeUnit:   ['', Validators.required]
+      [PATIENT_DISEASE_FORM.DIABETES_TYPE]: ['', Validators.required],
+      [PATIENT_DISEASE_FORM.ILL_PERIOD]: this.fb.group({
+        [PATIENT_DISEASE_FORM.TIME]: ['', Validators.required],
+        [PATIENT_DISEASE_FORM.TIME_UNIT]: ['', Validators.required]
       }),
-      shortInsulin: ['', Validators.required],
-      baseInsulin:  ['', Validators.required]
+      [PATIENT_DISEASE_FORM.SHORT_INSULIN]: ['', Validators.required],
+      [PATIENT_DISEASE_FORM.BASE_INSULIN]: ['', Validators.required]
     });
 
     const formChangesSubscription = this.form.valueChanges.subscribe((changes: UserDiseaseInfoInterface) => {
@@ -55,5 +57,4 @@ export class PatientDiseaseInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
 }
