@@ -1,49 +1,57 @@
 <form [formGroup]='form'>
 
   <mat-form-field appearance="outline">
-    <mat-label>Country</mat-label>
+    <mat-label>
+      {{ 'PATIENT_ADDRESS.FORM.COUNTRY_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your country"
+           placeholder="{{ 'PATIENT_ADDRESS.FORM.COUNTRY_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='country' />
 
     <mat-error *ngIf="form.controls.country.errors?.required">
-      Country is required field
+      {{ 'PATIENT_ADDRESS.FORM.COUNTRY_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>City or village</mat-label>
+    <mat-label>
+      {{ 'PATIENT_ADDRESS.FORM.CITY_OR_VILLAGE_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your location"
+           placeholder="{{ 'PATIENT_ADDRESS.FORM.CITY_OR_VILLAGE_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='cityOrVillage' />
 
     <mat-error *ngIf="form.controls.cityOrVillage.errors?.required">
-      Location is required field
+      {{ 'PATIENT_ADDRESS.FORM.CITY_OR_VILLAGE_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Address</mat-label>
+    <mat-label>
+      {{ 'PATIENT_ADDRESS.FORM.ADDRESS_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your address"
+           placeholder="{{ 'PATIENT_ADDRESS.FORM.ADDRESS_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='address' />
 
     <mat-error *ngIf="form.controls.address.errors?.required">
-      Address is required field
+      {{ 'PATIENT_ADDRESS.FORM.ADDRESS_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Postal zip code</mat-label>
+    <mat-label>
+      {{ 'PATIENT_ADDRESS.FORM.ZIP_CODE_CONTROL.LABEL' | translate }}
+    </mat-label>
     <input required matInput
-           placeholder="Type in your postal zip code"
+           placeholder="{{ 'PATIENT_ADDRESS.FORM.ZIP_CODE_CONTROL.PLACEHOLDER' | translate }}"
            formControlName='postalZipCode' />
 
     <mat-error *ngIf="form.controls.postalZipCode.errors?.required">
-      Postal Zip code is required field
+      {{ 'PATIENT_ADDRESS.FORM.ZIP_CODE_CONTROL.ERRORS.REQUIRED' | translate }}
     </mat-error>
 
   </mat-form-field>

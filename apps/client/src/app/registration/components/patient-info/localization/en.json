@@ -1,0 +1,59 @@
+{
+  "PATIENT_INFO": {
+    "FORM": {
+      "FIRST_NAME_CONTROL": {
+        "LABEL": "First name",
+        "PLACEHOLDER": "Type in your first name",
+        "ERRORS": {
+          "REQUIRED": "First name is required field"
+        }
+      },
+      "LAST_NAME_CONTROL": {
+        "LABEL": "Last name",
+        "PLACEHOLDER": "Type in your last name",
+        "ERRORS": {
+          "REQUIRED": "Last name is required field"
+        }
+      },
+      "BIRTH_DATE_CONTROL": {
+        "LABEL": "Birth date",
+        "PLACEHOLDER": "type in or choose your birth date",
+        "ERRORS": {
+          "REQUIRED": "Birth date is required field"
+        }
+      },
+      "PHONE_CONTROL": {
+        "LABEL": "Phone",
+        "PLACEHOLDER": "Type in your contact phone",
+        "ERRORS": {
+          "REQUIRED": "Phone is required field"
+        }
+      },
+      "EMAIL_CONTROL": {
+        "LABEL": "Email",
+        "PLACEHOLDER": "Type in your email address",
+        "ERRORS": {
+          "REQUIRED": "Email address is required field",
+          "INVALID": "Email address is not valid"
+        }
+      },
+      "PASSWORD_CONTROL": {
+        "LABEL": "Password",
+        "PLACEHOLDER": "Type in your password",
+        "ERRORS": {
+          "REQUIRED": "Password is required field",
+          "MIN_LENGTH": "Password can not be less than 8 symbols",
+          "MAX_LENGTH": "Password can not be longer than 50 symbols"
+        }
+      },
+      "CONFIRM_PASSWORD_CONTROL": {
+        "LABEL": "Confirm password",
+        "PLACEHOLDER": "Type in confirm password",
+        "ERRORS": {
+          "REQUIRED": "Confirm password is required field",
+          "NOT_MATCHED": "Confirm password does not match with general one"
+        }
+      }
+    }
+  }
+}

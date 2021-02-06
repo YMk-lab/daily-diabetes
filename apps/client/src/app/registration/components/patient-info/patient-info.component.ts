@@ -38,7 +38,7 @@ export class PatientInfoComponent implements OnInit, OnDestroy {
       ] ],
       password:         ['', [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(8),
         Validators.maxLength(50)]
       ],
       confirmPassword:  ['', Validators.required]

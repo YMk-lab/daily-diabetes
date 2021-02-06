@@ -1,0 +1,42 @@
+{
+  "PATIENT_DISEASE": {
+    "FORM": {
+      "DIABETES_TYPE_CONTROL": {
+        "LABEL": "Diabetes type",
+        "PLACEHOLDER": "Choose diabetes type",
+        "ERRORS": {
+          "REQUIRED": "Diabetes type is required field"
+        }
+      },
+      "ILL_TIME_CONTROL": {
+        "LABEL": "Ill period",
+        "PLACEHOLDER": "How long you have been sick",
+        "ERRORS": {
+          "REQUIRED": "Ill period is required field"
+        }
+      },
+      "ILL_TIME_UNIT_CONTROL": {
+        "LABEL": "Ill period unit",
+        "PLACEHOLDER": "Choose period unit",
+        "TYPES": ["month", "year (years)"],
+        "ERRORS": {
+          "REQUIRED": "Ill period is required field"
+        }
+      },
+      "SHORT_INSULIN_CONTROL": {
+        "LABEL": "Short insulin name",
+        "PLACEHOLDER": "Type in short insulin name",
+        "ERRORS": {
+          "REQUIRED": "Insulin name is required field"
+        }
+      },
+      "BASE_INSULIN_CONTROL": {
+        "LABEL": "Prolong insulin (Base)",
+        "PLACEHOLDER": "Type in prolonged insulin name",
+        "ERRORS": {
+          "REQUIRED": "Insulin name is required"
+        }
+      }
+    }
+  }
+}

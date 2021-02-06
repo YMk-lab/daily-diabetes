@@ -1,0 +1,34 @@
+{
+  "PATIENT_ADDRESS": {
+    "FORM": {
+      "COUNTRY_CONTROL": {
+        "LABEL": "Country",
+        "PLACEHOLDER": "Type in your country",
+        "ERRORS": {
+          "REQUIRED": "Country is required field"
+        }
+      },
+      "CITY_OR_VILLAGE_CONTROL": {
+        "LABEL": "City or village",
+        "PLACEHOLDER": "Type in your city or village",
+        "ERRORS": {
+          "REQUIRED": "City of village is required field"
+        }
+      },
+      "ADDRESS_CONTROL": {
+        "LABEL": "Address",
+        "PLACEHOLDER": "Type in your address",
+        "ERRORS": {
+          "REQUIRED": "Address is required field"
+        }
+      },
+      "ZIP_CODE_CONTROL": {
+        "LABEL": "Postal code",
+        "PLACEHOLDER": "Type in your postal code",
+        "ERRORS": {
+          "REQUIRED": "Postal code is required field"
+        }
+      }
+    }
+  }
+}
