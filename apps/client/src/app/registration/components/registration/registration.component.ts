@@ -3,13 +3,15 @@ import {
   ViewChild, ViewEncapsulation
 } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
+import { UserInterface } from '@daily-diabetes/shared-data';
+
+import { AuthService } from '../../../services/auth.service';
 import { PatientInfoComponent } from '../patient-info/patient-info.component';
 import { PatientAddressInfoComponent } from '../patient-address-info/patient-address-info.component';
 import { PatientDiseaseInfoComponent } from '../patient-disease-info/patient-disease-info.component';
-
-import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'dd-registration',
@@ -39,12 +41,17 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   submit(): void {
 
     const patientSubscription = this.authService.patient$
-      .subscribe((patient) => this.authService.submit(patient));
+      .pipe(switchMap((patient: UserInterface) => this.initRegistration(patient)))
+      .subscribe((response: any) => console.log(response));
 
     this.subscriptions.add(patientSubscription);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  private initRegistration(patient: UserInterface): Observable<any> {
+    return this.authService.register(patient);
   }
 }

@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  server: {
+    host: 'http://localhost:3333',
+    prefix: 'api'
+  }
 };
 
 /*

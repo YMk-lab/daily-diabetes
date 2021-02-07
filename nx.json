@@ -16,9 +16,9 @@
     }
   },
   "projects": {
-    "client": { "tags": [] },
+    "client": { "tags": ["client"] },
     "client-e2e": { "tags": [], "implicitDependencies": ["client"] },
-    "backend": { "tags": [] },
+    "backend": { "tags": ["backend"] },
     "material-shared": { "tags": [] },
     "shared-data": { "tags": [] }
   }

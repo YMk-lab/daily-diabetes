@@ -1,20 +1,33 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
+import * as helmet from 'helmet';
+import * as rateLimit from 'express-rate-limit';
+
 import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
 async function bootstrap() {
+
   const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 3333;
+
+  app.setGlobalPrefix(environment.server.globalPrefix);
+  app.enableCors({
+    origin: environment.client.host,
+    credentials: true
+  });
+  app.use(helmet());
+  // app.use(rateLimit({
+  //   rateLimit: {
+  //     windowMs: 15 * 60 * 1000,
+  //     max: 100
+  //   }
+  // }));
+
+  const port = process.env.PORT || environment.server.port;
+
   await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
+    Logger.log('Listening at http://localhost:' + port + '/' + environment.server.globalPrefix);
   });
 }
 
