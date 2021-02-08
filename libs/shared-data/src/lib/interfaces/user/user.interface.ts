@@ -2,7 +2,7 @@ import { UserAddressInterface } from './user-address.interface';
 import { UserDiseaseInfoInterface } from './user-disease-info.interface';
 
 export interface UserInterface {
-  id: string;
+  _id?: any;
   firstName: string;
   lastName: string;
   birthDate: Date;

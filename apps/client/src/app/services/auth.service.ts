@@ -49,7 +49,7 @@ export class AuthService {
 
   register(patient: UserInterface): Observable<any> {
     return this.http.post(
-      `${ environment.server.host }/${ environment.server.prefix }/${ API_ENDPOINTS.REGISTRATION }`,
+      `${ environment.server.host }/${ environment.server.prefix }/${ API_ENDPOINTS.REGISTRATION.CREATE }`,
       patient
     );
   }

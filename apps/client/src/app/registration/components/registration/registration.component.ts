@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  private initRegistration(patient: UserInterface): Observable<any> {
+  private initRegistration(patient: UserInterface, mocked?: boolean): Observable<any> {
     return this.authService.register(patient);
   }
 }

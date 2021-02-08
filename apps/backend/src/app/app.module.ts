@@ -1,14 +1,19 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { environment } from '../environments/environment';
 
 
 @Module({
   imports: [
     AuthModule,
-    UsersModule
+    UsersModule,
+    MongooseModule.forRoot(
+      `${environment.server.db.host}:${environment.server.db.port}/${environment.server.db.name}`
+    )
   ],
   providers: [
     {
