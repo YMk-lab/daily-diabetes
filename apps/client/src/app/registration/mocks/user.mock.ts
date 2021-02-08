@@ -1,7 +1,7 @@
 import { UserInterface } from '@daily-diabetes/shared-data';
 
 export const READY_MADE_USER: UserInterface = {
-  id: null,
+  _id: null,
   firstName: 'Yura',
   lastName: 'Moryliak',
   birthDate: new Date(),
