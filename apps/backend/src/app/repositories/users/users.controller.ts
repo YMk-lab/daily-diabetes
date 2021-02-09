@@ -2,10 +2,10 @@ import { Controller, Get, Req, Post, UseGuards, Body } from '@nestjs/common';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
 import { UsersService } from './users.service';
 import { User } from './schemas/user.schema';
-import { SkipAuth } from '../decorators/skip-auth.decorator';
+import { SkipAuth } from '../../decorators/skip-auth.decorator';
 
 @Controller('users')
 export class UsersController {
