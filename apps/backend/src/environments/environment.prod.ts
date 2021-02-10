@@ -4,7 +4,12 @@ export const environment = {
     port: 3333,
     globalPrefix: 'api',
     jwt: {
-      secretKey: 'mySuperSecretKey'
+      access: {
+        secretKey: 'mySuperSecretKey',
+      },
+      refresh: {
+        secretKey: 'mySuperSecretRefreshKey',
+      }
     }
   },
   client: {
