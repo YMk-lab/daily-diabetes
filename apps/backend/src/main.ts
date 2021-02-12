@@ -5,15 +5,15 @@ import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import configuration from './app/config/configuration';
 
 async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
-  app.setGlobalPrefix(environment.server.globalPrefix);
+  app.setGlobalPrefix(configuration().globalPrefix);
   app.enableCors({
-    origin: environment.client.host,
+    origin: configuration().client.host,
     credentials: true
   });
   app.use(helmet());
@@ -24,10 +24,8 @@ async function bootstrap() {
   //   }
   // }));
 
-  const port = process.env.PORT || environment.server.port;
-
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/' + environment.server.globalPrefix);
+  await app.listen(configuration().port, () => {
+    Logger.log('Listening at http://localhost:' + configuration().port + '/' + configuration().globalPrefix);
   });
 }
 

@@ -1,34 +1,31 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { environment } from '../environments/environment';
-import { AuthModule } from './repositories/auth/auth.module';
 import { UsersModule } from './repositories/users/users.module';
-import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-
+import { AuthModule } from './repositories/auth/auth.module';
+import { ENV_VARS } from './config/variables';
 
 @Module({
-  controllers: [
-
-  ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    }
-  ],
+  controllers: [ ],
+  providers: [],
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     UsersModule,
     PassportModule,
-    MongooseModule.forRoot(
-      `${environment.server.db.host}:${environment.server.db.port}/${environment.server.db.name}`,
-      {
-        useFindAndModify: false
-      }
-    )
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: `
+          ${configService.get<string>(ENV_VARS.DATABASE_HOST)}:
+          ${configService.get<string>(ENV_VARS.DATABASE_PORT)}
+        `,
+        dbName: `${configService.get<string>(ENV_VARS.DATABASE_NAME)}`
+      }),
+      inject: [ConfigService]
+    })
   ],
 })
 export class AppModule { }

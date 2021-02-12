@@ -1,28 +1,24 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 
-import { UserInterface } from '@daily-diabetes/shared-data';
-import { JwtAuthGuard } from '../../../guards/jwt-auth.guard';
+import { UsersService } from '../services/users.service';
 import { SkipAuth } from '../../../decorators/skip-auth.decorator';
+import { JwtAuthGuard } from '../../../guards/jwt-auth.guard';
+import { UserDocument } from '../schemas/user.schema';
 
 @Controller('users')
 export class UsersController {
 
-  @UseGuards(JwtAuthGuard) // protected route
-  @Get('profile')
-  getProfile(@Req() request: any): Promise<any> {
-    return request.user;
-  }
+  constructor(private usersService: UsersService) { }
 
-  @Post('create')
-  async create(@Body() user: UserInterface): Promise<any> {
-    return user;
-  }
-
-  // test route without jwt validation
   @SkipAuth()
-  @Get('all')
-  async findAll(): Promise<any> {
-    return [];
+  @Post('create')
+  async create(@Body() body: any): Promise<UserDocument> {
+    return this.usersService.createUser(body);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  async getProfile(@Param() userId: any): Promise<UserDocument> {
+    return this.usersService.findById(userId.id);
+  }
 }
