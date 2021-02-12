@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Subscription } from 'rxjs';
+
+import { AuthService } from '../../../services/auth.service';
 import { LOGIN_FORM_PARAMS } from './login-form.params';
 
 @Component({
@@ -9,12 +12,14 @@ import { LOGIN_FORM_PARAMS } from './login-form.params';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   hidePassword = true;
 
-  constructor(private fb: FormBuilder) { }
+  private subscriptions: Subscription = new Subscription();
+
+  constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,6 +33,13 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.loginForm.value);
+    const loginSubscription = this.authService.login(this.loginForm.value).subscribe((response: any) => {
+      console.log(response);
+    });
+
+    this.subscriptions.add(loginSubscription);
+  }
+
+  ngOnDestroy(): void {
   }
 }
