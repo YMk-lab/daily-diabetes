@@ -23,7 +23,6 @@ import { ENV_VARS } from '../../config/variables';
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      // TODO move everything into class
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>(ENV_VARS.ACCESS_TOKEN),
         signOptions: { expiresIn: configService.get<string>(ENV_VARS.ACCESS_TOKEN_EXPIRES) }
