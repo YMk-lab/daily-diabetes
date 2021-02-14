@@ -5,6 +5,8 @@ import { ConfigService } from '@nestjs/config';
 import { AuthTokensInterface } from '@daily-diabetes/shared-data';
 
 import { UsersService } from '../../users/services/users.service';
+import { UserDocument } from '../../users/schemas/user.schema';
+
 import { ENV_VARS } from '../../../config/variables';
 
 @Injectable()
@@ -19,11 +21,11 @@ export class AuthService {
     private configService: ConfigService
   ) { }
 
-  async validateUser(email: string): Promise<any> {
+  async validateUser(email: string): Promise<UserDocument | any> {
     return this.usersService.findOneToValidate(email);
   }
 
-  async login(user: any): Promise<AuthTokensInterface> {
+  async login(user: any): Promise<AuthTokensInterface | any> {
 
     const payload = { id: user.uuid, sub: user.uuid };
     const generatedRefreshToken = this.generateRefreshToken(payload);
@@ -38,7 +40,7 @@ export class AuthService {
 
   }
 
-  async refreshToken(token: string): Promise<AuthTokensInterface> {
+  async refreshToken(token: string): Promise<AuthTokensInterface | any> {
 
     if (!token) {
       throw new UnauthorizedException();
