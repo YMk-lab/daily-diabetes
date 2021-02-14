@@ -15,13 +15,13 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() request: any): Promise<AuthTokensInterface | any> {
-    return this.authService.login(request.user);
+    return this.authService.login(request.user, request.headers['user-agent']);
   }
 
   @SkipAuth()
   @Post('token')
-  async refreshToken(@Body() body: any): Promise<AuthTokensInterface | any> {
-    return this.authService.refreshToken(body.token);
+  async refreshToken(@Body('refreshToken') refreshToken: any): Promise<AuthTokensInterface | any> {
+    return this.authService.refreshToken(refreshToken);
   }
 
 }

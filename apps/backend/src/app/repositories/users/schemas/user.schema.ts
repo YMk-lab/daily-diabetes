@@ -22,7 +22,7 @@ export class User extends Document {
   lastName: string;
 
   @Prop()
-  birthDate: Date;
+  birthDate: string;
 
   @Prop()
   phone: string;

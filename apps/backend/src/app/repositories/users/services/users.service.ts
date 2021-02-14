@@ -38,7 +38,7 @@ export class UsersService {
     return this.userModel.findOne({ email: email });
   }
 
-  async findById(id: string): Promise<UserDocument | any> {
+  async getMe(id: string): Promise<UserDocument | any> {
     const user = await this.userModel.findOne({ uuid: id }).select('-password');
 
     if (!user) {

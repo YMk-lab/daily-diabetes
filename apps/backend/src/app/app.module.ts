@@ -22,7 +22,8 @@ import { ENV_VARS } from './config/variables';
           ${configService.get<string>(ENV_VARS.DATABASE_HOST)}:
           ${configService.get<string>(ENV_VARS.DATABASE_PORT)}
         `,
-        dbName: `${configService.get<string>(ENV_VARS.DATABASE_NAME)}`
+        dbName: `${configService.get<string>(ENV_VARS.DATABASE_NAME)}`,
+        useFindAndModify: false
       }),
       inject: [ConfigService]
     })
