@@ -20,7 +20,7 @@ export class AuthController {
 
   @SkipAuth()
   @Post('token')
-  async refreshToken(@Body('refreshToken') refreshToken: any): Promise<AuthTokensInterface | any> {
+  async refreshToken(@Body('refreshToken') refreshToken: string): Promise<AuthTokensInterface | any> {
     return this.authService.refreshToken(refreshToken);
   }
 

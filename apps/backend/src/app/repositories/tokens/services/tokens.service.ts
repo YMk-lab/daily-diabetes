@@ -13,6 +13,9 @@ import { ENV_VARS } from '../../../config/variables';
 export class TokensService {
 
   private userTokenData: UserTokenDataInterface;
+  private tokensList: RefreshTokenDocument[];
+  private currentUserDevice: RefreshTokenDocument;
+  private currentUserSession: RefreshTokenDocument;
 
   constructor(
     private jwtService: JwtService,
@@ -20,34 +23,38 @@ export class TokensService {
     @InjectModel(RefreshToken.name) private refreshTokenModel: Model<RefreshTokenDocument>
   ) { }
 
-  async createToken(userTokenData: UserTokenDataInterface): Promise<RefreshTokenDocument> {
+  async createToken(userTokenData: UserTokenDataInterface): Promise<RefreshTokenDocument | any> {
 
     this.userTokenData = userTokenData;
 
-    const tokensList = await this.refreshTokenModel.find({
+    this.tokensList = await this.refreshTokenModel.find({
       userId: userTokenData.user.uuid
     });
 
-    const currentDevice = await this.refreshTokenModel.findOne({
+    this.currentUserDevice = await this.refreshTokenModel.findOne({
       userId: userTokenData.user.uuid,
       fingerPrint: userTokenData.fingerPrint
     });
 
-    const hasUserRefreshToken = tokensList && !tokensList.length && !currentDevice;
-    const hasUserCurrentSession = tokensList && tokensList.length && currentDevice;
+    this.currentUserSession = new this.refreshTokenModel({
+      userId: this.userTokenData.user.uuid,
+      refreshToken: this.signRefreshToken(this.userTokenData.payload),
+      fingerPrint: this.userTokenData.fingerPrint
+    });
 
-    if (hasUserRefreshToken) {
-      return await this.saveToken();
+    if (this.tokensList.length === +this.configService.get<string>(ENV_VARS.ALLOWED_DEVICES_COUNT)) {
+      return this.removeUserSessionsExceptLast();
     }
 
-    if (hasUserCurrentSession) {
-      return await this.updateToken();
-    }
-
+    return this.performSession();
   }
 
   async findByToken(token: string): Promise<RefreshTokenDocument | any> {
     return await this.refreshTokenModel.findOne({ refreshToken: token }).exec();
+  }
+
+  async revoke(token: string): Promise<RefreshTokenDocument | any> {
+    return await this.refreshTokenModel.findOneAndRemove({ refreshToken: token }).exec();
   }
 
   signAccessToken(payload: AuthPayloadInterface): string {
@@ -60,15 +67,24 @@ export class TokensService {
     });
   }
 
-  async revoke(token: string): Promise<RefreshTokenDocument | any> {
-    return await this.refreshTokenModel.findOneAndRemove({ refreshToken: token }).exec();
-  }
-
   private signRefreshToken(payload: AuthPayloadInterface): string {
     return this.jwtService.sign(payload, {
       secret: this.configService.get<string>(ENV_VARS.REFRESH_TOKEN),
       expiresIn: this.configService.get<string>(ENV_VARS.REFRESH_TOKEN_EXPIRES)
     });
+  }
+
+  private async performSession(): Promise<RefreshTokenDocument | any> {
+    const hasUserRefreshToken = this.tokensList && !this.tokensList.length && !this.currentUserDevice;
+    const hasUserCurrentSession = this.tokensList && this.tokensList.length && this.currentUserDevice;
+
+    if (hasUserRefreshToken || !this.currentUserDevice) {
+      return await this.saveToken();
+    }
+
+    if (hasUserCurrentSession) {
+      return await this.updateToken();
+    }
   }
 
   private async saveToken(): Promise<RefreshTokenDocument | any> {
@@ -85,5 +101,14 @@ export class TokensService {
       fingerPrint: this.userTokenData.fingerPrint
     },{ refreshToken: this.signRefreshToken(this.userTokenData.payload) },
       { new: true }).exec();
+  }
+
+  private async removeUserSessionsExceptLast(): Promise<RefreshTokenDocument | any> {
+
+    await this.refreshTokenModel.deleteMany({
+      userId: this.userTokenData.user.uuid
+    });
+
+    return this.currentUserSession.save();
   }
 }
