@@ -1,4 +1,6 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+
+import { UserInterface } from '@daily-diabetes/shared-data';
 
 import { UsersService } from '../services/users.service';
 import { SkipAuth } from '../../../decorators/skip-auth.decorator';
@@ -12,13 +14,13 @@ export class UsersController {
 
   @SkipAuth()
   @Post('create')
-  async create(@Body() body: any): Promise<UserDocument> {
-    return this.usersService.createUser(body);
+  async create(@Body() user: UserInterface): Promise<UserDocument | any> {
+    return this.usersService.createUser(user);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  async getProfile(@Param() userId: any): Promise<UserDocument> {
-    return this.usersService.findById(userId.id);
+  @Get('me')
+  async getProfile(@Req() request: any): Promise<UserDocument | any> {
+    return this.usersService.getMe(request.user.id);
   }
 }

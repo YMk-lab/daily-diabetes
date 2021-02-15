@@ -13,7 +13,7 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
-  async createUser(user: UserInterface): Promise<UserDocument> {
+  async createUser(user: UserInterface): Promise<UserDocument | any> {
 
     const userExist = await this.userModel.findOne({ email: user.email });
 
@@ -34,11 +34,11 @@ export class UsersService {
     return createdUser.save();
   }
 
-  async findOneToValidate(email: string): Promise<UserDocument> {
+  async findOneToValidate(email: string): Promise<UserDocument | any> {
     return this.userModel.findOne({ email: email });
   }
 
-  async findById(id: string): Promise<UserDocument> {
+  async getMe(id: string): Promise<UserDocument | any> {
     const user = await this.userModel.findOne({ uuid: id }).select('-password');
 
     if (!user) {

@@ -14,14 +14,14 @@ export class AuthController {
   @SkipAuth()
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Req() request: any): Promise<AuthTokensInterface> {
-    return this.authService.login(request.user);
+  async login(@Req() request: any): Promise<AuthTokensInterface | any> {
+    return this.authService.login(request.user, request.headers['user-agent']);
   }
 
   @SkipAuth()
   @Post('token')
-  async refreshToken(@Body() body: any): Promise<AuthTokensInterface> {
-    return this.authService.refreshToken(body.token);
+  async refreshToken(@Body('refreshToken') refreshToken: string): Promise<AuthTokensInterface | any> {
+    return this.authService.refreshToken(refreshToken);
   }
 
 }
