@@ -54,7 +54,7 @@ export class TokensService {
     return this.jwtService.sign(payload);
   }
 
-  verifyToken(token: string): object {
+  verifyToken(token: string): any {
     return this.jwtService.verify(token, {
       secret: this.configService.get<string>(ENV_VARS.REFRESH_TOKEN)
     });
