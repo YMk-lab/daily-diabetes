@@ -17,6 +17,10 @@
         "BACK": "Back",
         "SUBMIT": "Submit"
       }
+    },
+    "LOGIN_TEXT": {
+      "TITLE": "Already registered, go and ",
+      "LINK": "login"
     }
   }
 }

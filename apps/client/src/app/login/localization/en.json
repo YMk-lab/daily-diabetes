@@ -19,6 +19,10 @@
       },
       "SUBMIT_BUTTON_TEXT": "Submit"
 
+    },
+    "REGISTER_TEXT": {
+      "TITLE": "Sign up if your are not yet",
+      "LINK": "registered"
     }
   }
 }
