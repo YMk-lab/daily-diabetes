@@ -15,8 +15,8 @@ export class AuthService {
     private tokensService: TokensService
   ) { }
 
-  async validateUser(email: string): Promise<UserDocument | any> {
-    return this.usersService.findOneToValidate(email);
+  async validateUser(emailOrPhone: string): Promise<UserDocument | any> {
+    return this.usersService.findOneToValidate(emailOrPhone);
   }
 
   async login(user: UserInterface, fingerPrint: string): Promise<AuthTokensInterface | any> {
