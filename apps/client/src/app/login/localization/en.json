@@ -2,12 +2,11 @@
   "LOGIN": {
     "NAV_BUTTON": "Not registered yet?",
     "FORM": {
-      "EMAIL_CONTROL": {
-        "LABEL": "Email",
-        "PLACEHOLDER": "john-doe@test.com",
+      "EMAIL_OR_PHONE_CONTROL": {
+        "LABEL": "Email or phone number",
+        "PLACEHOLDER": "Please type in your email address or phone number",
         "ERRORS": {
-          "REQUIRED": "Email address is required field",
-          "INVALID": "Email address is not valid"
+          "REQUIRED": "Email or phone number is required field"
         }
       },
       "PASSWORD_CONTROL": {

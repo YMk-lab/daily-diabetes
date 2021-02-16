@@ -34,8 +34,18 @@ export class UsersService {
     return createdUser.save();
   }
 
-  async findOneToValidate(email: string): Promise<UserDocument | any> {
-    return this.userModel.findOne({ email: email });
+  async findOneToValidate(emailOrPhone: string): Promise<UserDocument | any> {
+
+    const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    const phoneRegex = /^[+]*[(]?[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+
+    const isEmail = emailRegex.test(emailOrPhone);
+    const isPhone = phoneRegex.test(emailOrPhone);
+
+    return this.userModel.findOne({ $or: [
+        { email: (isEmail && !isPhone) ? emailOrPhone: '' },
+        { phone: (!isEmail && isPhone) ? emailOrPhone : '' }
+      ] });
   }
 
   async getMe(id: string): Promise<UserDocument | any> {
