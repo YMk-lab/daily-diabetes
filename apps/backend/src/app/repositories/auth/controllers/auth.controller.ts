@@ -27,6 +27,7 @@ export class AuthController {
   @SkipAuth()
   @Post('logout')
   async logout(@Body('refreshTokenID') refreshTokenID: string): Promise<any> {
+    // TODO Real problem comes when no client send null
     return this.authService.logout(refreshTokenID);
   }
 

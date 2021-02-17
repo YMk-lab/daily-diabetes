@@ -82,4 +82,8 @@ export class AuthService {
       return fromPromise(this.router.navigate(['/login']));
     }))
   }
+
+  isLoggedIn(): boolean {
+    return !!(this.lsService.get('access-token') && this.lsService.get('refresh-token-id'));
+  }
 }

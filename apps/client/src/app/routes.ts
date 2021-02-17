@@ -1,24 +1,34 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { SkipAuthGuard } from './guards/skip-auth.guard';
 
 export const appRoutes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module')
-      .then(m => m.LoginModule)
+      .then(m => m.LoginModule),
+    canActivate: [ SkipAuthGuard ]
   },
   {
     path: 'registration',
     loadChildren: () => import('./registration/registration.module')
-      .then(m => m.RegistrationModule)
+      .then(m => m.RegistrationModule),
+    canActivate: [ SkipAuthGuard ]
   },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module')
-      .then(m => m.MainModule)
+      .then(m => m.MainModule),
+    canActivate: [ AuthGuard ]
   },
   {
     path: '',
     redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'main',
     pathMatch: 'full'
   }
 ];
