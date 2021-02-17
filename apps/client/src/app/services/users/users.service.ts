@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
@@ -13,12 +14,18 @@ import { environment } from '../../../environments/environment';
 })
 export class UsersService {
 
+  get patient$(): Observable<UserInterface> {
+    return this.patientSubject.asObservable();
+  }
+
+  private patientSubject: Subject<UserInterface> = new Subject<UserInterface>();
+
   constructor(private http: HttpClient) { }
 
   getMe(): Observable<UserInterface> {
     return this.http.get<UserInterface>(
       `${ environment.server.host }/${environment.server.prefix}/${ API_ENDPOINTS.USERS.ME }`
-    );
+    ).pipe(tap((patient: UserInterface) => this.patientSubject.next(patient)));
   }
 
 }

@@ -16,7 +16,7 @@
           "REQUIRED": "Пароль є обовязковим полем для заповнення"
         }
       },
-      "SUBMIT_BUTTON_TEXT": "Зареєструватися"
+      "SUBMIT_BUTTON_TEXT": "Увійти"
 
     },
     "REGISTER_TEXT": {

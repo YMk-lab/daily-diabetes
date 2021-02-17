@@ -1,33 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+
+import { Subscription } from 'rxjs';
+
+import { UserInterface } from '@daily-diabetes/shared-data';
 
 import { UsersService } from '../../../services/users/users.service';
-import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'dd-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
-  constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  patient: UserInterface;
+
+  private subscriptions: Subscription = new Subscription();
+
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getMe().subscribe((user) => console.log(user))
+    const patientSubscription = this.usersService.getMe()
+      .subscribe((patient: UserInterface) => this.patient = patient);
+    this.subscriptions.add(patientSubscription);
   }
 
-  getMe() {
-    this.usersService.getMe().subscribe((user) => console.log(user));
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
-  logout() {
-    this.authService.logout().subscribe((_) => {
-      this.router.navigate(['/login']).then();
-    })
-  }
 }

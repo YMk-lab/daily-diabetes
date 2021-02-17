@@ -1,4 +1,38 @@
-<p>main works!</p>
+<mat-drawer-container class="dd-main-container" autosize>
 
-<button (click)='getMe()'>Ge me</button>
-<button (click)='logout()'>logout</button>
+  <mat-drawer class="dd-main-sidenav-start"
+              mode="side"
+              position='start'
+              opened
+              disableClose>
+
+    <ng-container *ngIf='patient; else showProgressBar'>
+
+      <dd-sidenav-start [patient]='patient'></dd-sidenav-start>
+
+    </ng-container>
+
+    <ng-template #showProgressBar>
+
+      <div class='dd-main-sidenav-start-progress-bar'>
+        <mat-spinner mode='indeterminate'></mat-spinner>
+      </div>
+
+    </ng-template>
+
+    <div class='dd-main-sidenav-start-background'></div>
+  </mat-drawer>
+
+  <mat-drawer #sidebarEnd class="dd-main-sidenav-end" mode="over" position='end'>
+
+    <dd-sidenav-end></dd-sidenav-end>
+
+  </mat-drawer>
+
+  <div class="dd-main-content">
+
+    <!-- dd-navbar -->
+
+  </div>
+
+</mat-drawer-container>
