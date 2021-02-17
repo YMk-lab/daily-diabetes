@@ -1,10 +1,13 @@
 export const API_ENDPOINTS = {
-  LOGIN: 'auth/login',
+  AUTH: {
+    LOGIN: 'auth/login',
+    REFRESH_TOKEN: 'auth/refresh-token',
+    LOGOUT: 'auth/logout'
+  },
   REGISTRATION: {
-    CREATE: 'users/create',
-    FIND_ALL: 'users/all',
-    FIND: 'users/find',
-    UPDATE: 'users/update',
-    DELETE: 'users/delete'
+    CREATE: 'users/create'
+  },
+  USERS: {
+    ME: 'users/me'
   }
 };

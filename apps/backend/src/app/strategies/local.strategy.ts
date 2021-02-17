@@ -17,7 +17,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     const user = await this.authService.validateUser(emailOrPhone);
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: 'User does not exist'
+      }, HttpStatus.FORBIDDEN);
     }
 
     const arePasswordsMatch = await compare(password, user.password);

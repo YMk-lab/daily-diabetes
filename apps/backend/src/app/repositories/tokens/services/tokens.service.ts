@@ -47,12 +47,17 @@ export class TokensService {
     return await this.performSession();
   }
 
-  async findByToken(token: string): Promise<RefreshTokenDocument | any> {
-    return await this.refreshTokenModel.findOne({ refreshToken: token }).exec();
+  async findByID(id: string): Promise<RefreshTokenDocument | any> {
+    return await this.refreshTokenModel.findById({ _id: id }).exec();
   }
 
   async revoke(token: string): Promise<RefreshTokenDocument | any> {
     return await this.refreshTokenModel.findOneAndRemove({ refreshToken: token }).exec();
+  }
+
+  async removeSession(refreshTokenID): Promise<RefreshTokenDocument> {
+    return await this.refreshTokenModel
+      .findByIdAndRemove({ _id: refreshTokenID }).exec();
   }
 
   signAccessToken(payload: AuthPayloadInterface): string {

@@ -27,18 +27,18 @@ export class AuthService {
 
     return {
       accessToken,
-      refreshToken: refreshToken.refreshToken
+      refreshTokenID: refreshToken._id
     }
 
   }
 
-  async refreshToken(token: string): Promise<AuthTokensInterface | any> {
+  async refreshToken(refreshTokenID: string): Promise<AuthTokensInterface | any> {
 
-    if (!token) {
+    if (!refreshTokenID) {
       throw new UnauthorizedException();
     }
 
-    const userRefreshToken = await this.tokensService.findByToken(token);
+    const userRefreshToken = await this.tokensService.findByID(refreshTokenID);
 
     if (!userRefreshToken) {
       throw new HttpException({
@@ -63,5 +63,21 @@ export class AuthService {
       }
     }
 
+  }
+
+  async logout(refreshTokenID): Promise<boolean> {
+
+    if (!refreshTokenID) {
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'Refresh token is not provided'
+      }, HttpStatus.BAD_REQUEST)
+    }
+
+    const removedToken = await this.tokensService.removeSession(refreshTokenID);
+
+    if (removedToken) {
+      return true;
+    }
   }
 }

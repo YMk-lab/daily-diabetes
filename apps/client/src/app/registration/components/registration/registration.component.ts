@@ -8,7 +8,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { PatientInfoComponent } from '../patient-info/patient-info.component';
 import { PatientAddressInfoComponent } from '../patient-address-info/patient-address-info.component';
 import { PatientDiseaseInfoComponent } from '../patient-disease-info/patient-disease-info.component';
