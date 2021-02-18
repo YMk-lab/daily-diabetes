@@ -19,9 +19,16 @@ export class AuthController {
   }
 
   @SkipAuth()
-  @Post('token')
-  async refreshToken(@Body('refreshToken') refreshToken: string): Promise<AuthTokensInterface | any> {
-    return this.authService.refreshToken(refreshToken);
+  @Post('refresh-token')
+  async refreshToken(@Body('refreshTokenID') refreshTokenID: string): Promise<AuthTokensInterface | any> {
+    return this.authService.refreshToken(refreshTokenID);
+  }
+
+  @SkipAuth()
+  @Post('logout')
+  async logout(@Body('refreshTokenID') refreshTokenID: string): Promise<any> {
+    // TODO Real problem comes when no client send null
+    return this.authService.logout(refreshTokenID);
   }
 
 }

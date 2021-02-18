@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { UserDiseaseInfoInterface } from '@daily-diabetes/shared-data';
 
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { PATIENT_DISEASE_FORM } from './patient-disease-form.params';
 
 @Component({

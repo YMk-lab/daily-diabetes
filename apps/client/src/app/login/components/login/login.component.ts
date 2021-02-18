@@ -1,10 +1,16 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { forkJoin, Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
-import { AuthService } from '../../../services/auth.service';
+import { AuthTokensInterface } from '@daily-diabetes/shared-data';
+
+import { AuthService } from '../../../services/auth/auth.service';
+import { LocalStorageService } from '../../../services/local-storage/local-storage.service';
 import { LOGIN_FORM_PARAMS } from './login-form.params';
+
 
 @Component({
   selector: 'dd-login',
@@ -19,7 +25,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private lsService: LocalStorageService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,13 +44,21 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const loginSubscription = this.authService.login(this.loginForm.value).subscribe((response: any) => {
-      console.log(response);
-    });
+    const loginSubscription = this.authService.login(this.loginForm.value).pipe(
+      switchMap((tokens: AuthTokensInterface) => this.storeTokens(tokens))
+    ).subscribe((_: unknown) => this.router.navigate(['/main']));
 
     this.subscriptions.add(loginSubscription);
   }
 
   ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  private storeTokens(tokens: AuthTokensInterface): Observable<unknown> {
+    return forkJoin([
+      this.lsService.set('access-token', tokens.accessToken),
+      this.lsService.set('refresh-token-id', tokens.refreshTokenID)
+    ]);
   }
 }

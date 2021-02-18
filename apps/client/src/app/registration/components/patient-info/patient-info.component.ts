@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { ComparePasswordsValidator } from '../../validators/compare-passwords.validator';
 import { PATIENT_INFO_FORM } from './patient-info-form.params';
 

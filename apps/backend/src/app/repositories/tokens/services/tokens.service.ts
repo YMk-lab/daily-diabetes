@@ -30,31 +30,34 @@ export class TokensService {
     this.tokensList = await this.refreshTokenModel.find({
       userId: userTokenData.user.uuid
     });
-
     this.currentUserDevice = await this.refreshTokenModel.findOne({
       userId: userTokenData.user.uuid,
       fingerPrint: userTokenData.fingerPrint
     });
-
     this.currentUserSession = new this.refreshTokenModel({
       userId: this.userTokenData.user.uuid,
       refreshToken: this.signRefreshToken(this.userTokenData.payload),
       fingerPrint: this.userTokenData.fingerPrint
     });
 
-    if (this.tokensList.length === +this.configService.get<string>(ENV_VARS.ALLOWED_DEVICES_COUNT)) {
-      return this.removeUserSessionsExceptLast();
+    if (this._maxReachedSessionPerUser()) {
+      return await this.removeUserSessionsExceptLast();
     }
 
-    return this.performSession();
+    return await this.performSession();
   }
 
-  async findByToken(token: string): Promise<RefreshTokenDocument | any> {
-    return await this.refreshTokenModel.findOne({ refreshToken: token }).exec();
+  async findByID(id: string): Promise<RefreshTokenDocument | any> {
+    return await this.refreshTokenModel.findById({ _id: id }).exec();
   }
 
   async revoke(token: string): Promise<RefreshTokenDocument | any> {
     return await this.refreshTokenModel.findOneAndRemove({ refreshToken: token }).exec();
+  }
+
+  async removeSession(refreshTokenID): Promise<RefreshTokenDocument> {
+    return await this.refreshTokenModel
+      .findByIdAndRemove({ _id: refreshTokenID }).exec();
   }
 
   signAccessToken(payload: AuthPayloadInterface): string {
@@ -99,8 +102,7 @@ export class TokensService {
     return await this.refreshTokenModel.findOneAndUpdate({
       userId: this.userTokenData.user.uuid,
       fingerPrint: this.userTokenData.fingerPrint
-    },{ refreshToken: this.signRefreshToken(this.userTokenData.payload) },
-      { new: true }).exec();
+    },{ refreshToken: this.signRefreshToken(this.userTokenData.payload) }).exec();
   }
 
   private async removeUserSessionsExceptLast(): Promise<RefreshTokenDocument | any> {
@@ -110,5 +112,14 @@ export class TokensService {
     });
 
     return this.currentUserSession.save();
+  }
+
+  private _maxReachedSessionPerUser = (): boolean => {
+    const newDevice = !this.tokensList
+      .map((device: RefreshTokenDocument) => device.fingerPrint)
+      .includes(this.userTokenData.fingerPrint);
+
+    const reachedMaxDevices = this.tokensList.length === +this.configService.get<string>(ENV_VARS.ALLOWED_DEVICES_COUNT);
+    return reachedMaxDevices && newDevice;
   }
 }

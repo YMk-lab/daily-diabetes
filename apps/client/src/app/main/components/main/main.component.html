@@ -1,0 +1,32 @@
+<mat-drawer-container class="dd-main-container" autosize>
+
+  <mat-drawer class="dd-main-sidenav-start"
+              mode="side"
+              position='start'
+              opened
+              disableClose>
+
+    <ng-container *ngIf='patient; else showProgressBar'>
+
+      <dd-sidenav-start [patient]='patient'></dd-sidenav-start>
+
+    </ng-container>
+
+    <ng-template #showProgressBar>
+
+      <div class='dd-main-sidenav-start-progress-bar'>
+        <mat-spinner mode='indeterminate'></mat-spinner>
+      </div>
+
+    </ng-template>
+
+    <div class='dd-main-sidenav-start-background'></div>
+  </mat-drawer>
+
+  <div class="dd-main-content">
+
+    <router-outlet></router-outlet>
+
+  </div>
+
+</mat-drawer-container>
