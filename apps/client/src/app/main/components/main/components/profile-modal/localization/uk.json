@@ -1,0 +1,24 @@
+{
+  "PROFILE_MODAL": {
+    "CONTACTS": {
+      "SUBHEADER": "Ваші Контакти",
+      "BIRTHDAY": "День народження",
+      "EMAIL": "Електронна пошта",
+      "PHONE": "Телефон"
+    },
+    "ADDRESS": {
+      "SUBHEADER": "Ваше місце проживання",
+      "COUNTRY": "Країна",
+      "CITY_OR_VILLAGE": "Місто чи село",
+      "ADDRESS": "Адреса",
+      "POSTAL_ZIP_CODE": "Поштовий індекс"
+    },
+    "DISEASE": {
+      "SUBHEADER": "Інформація про діагноз",
+      "DIABETES_TYPES": "Тип діабету",
+      "ILL_PERIOD": "Період хвороби",
+      "SHORT_INSULIN": "Короткий інсулін",
+      "BASE_INSULIN": "Базальний інсулін"
+    }
+  }
+}

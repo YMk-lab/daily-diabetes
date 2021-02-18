@@ -1,1 +1,25 @@
-<p>profile-modal works!</p>
+<div class='dd-profile-modal-container'>
+
+  <mat-tab-group>
+
+    <mat-tab label='{{ "MAIN.USER.PROFILE_MODAL.GENERAL_TAB_TITLE" | translate }}'>
+
+      <dd-general-info-tab
+        [patientProfile]='modalData.patientProfile'>
+      </dd-general-info-tab>
+
+    </mat-tab>
+
+    <mat-tab label='{{ "MAIN.USER.PROFILE_MODAL.EDIT_TAB_TITLE" | translate }}'>
+      Edit tab should go here...
+    </mat-tab>
+
+  </mat-tab-group>
+
+  <div class='dd-profile-modal-footer'>
+    <button mat-raised-button color='primary' (click)='close()'>
+      {{ "MAIN.USER.PROFILE_MODAL.CLOSE_BUTTON" | translate }}
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+{
+  "MAIN": {
+    "NAV_LINKS": {
+      "MY_CASES": "My cases",
+      "STATISTICS": "Statistics",
+      "ADD_PREVIOUS_CASES": "Add previous cases",
+      "PRODUCTS_TABLE": "Products table",
+      "SETTINGS": "Settings"
+    },
+    "USER": {
+      "PROFILE_MODAL": {
+        "GENERAL_TAB_TITLE": "General information",
+        "EDIT_TAB_TITLE": "Edit profile data",
+        "CLOSE_BUTTON": "Close"
+      }
+    }
+  }
+}

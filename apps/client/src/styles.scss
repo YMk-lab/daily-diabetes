@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
 // DD styles
 @import "assets/styles/mixins/dd-auth-scaffold.mixin";
 
 html, body {height: 100%; }
-body { margin: 0; font-family: 'Ubuntu', sans-serif; }
+body { margin: 0; font-family: 'Helvetica', sans-serif; }
 
 @include auth-scaffold;

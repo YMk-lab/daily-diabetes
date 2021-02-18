@@ -1,0 +1,70 @@
+.dd-general-info-tab {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%;
+  font-family: 'Ubuntu', sans-serif;
+
+  .user-credentials {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    user-select: none;
+
+    .avatar {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        box-shadow: 0 0 7px 0 rgba(62, 78, 80, 0.84);
+      }
+
+      .toggle-form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h3 {
+          font-size: 20px;
+          margin-left: 20px;
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+      }
+
+    }
+
+    .main-credentials {
+      width: 100%;
+    }
+  }
+
+  .user-address {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    user-select: none;
+
+    mat-list {
+
+      mat-list-item {
+
+        span {
+          max-width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+      }
+
+    }
+  }
+
+}

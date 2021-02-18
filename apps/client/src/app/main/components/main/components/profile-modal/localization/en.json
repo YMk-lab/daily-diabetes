@@ -1,0 +1,24 @@
+{
+  "PROFILE_MODAL": {
+    "CONTACTS": {
+      "SUBHEADER": "Contacts",
+      "BIRTHDAY": "Birthday",
+      "EMAIL": "Email",
+      "PHONE": "Phone"
+    },
+    "ADDRESS": {
+      "SUBHEADER": "Address",
+      "COUNTRY": "Country",
+      "CITY_OR_VILLAGE": "City or village",
+      "ADDRESS": "Address",
+      "POSTAL_ZIP_CODE": "Postal zip code"
+    },
+    "DISEASE": {
+      "SUBHEADER": "Disease",
+      "DIABETES_TYPES": "Diabetes type",
+      "ILL_PERIOD": "Ill period",
+      "SHORT_INSULIN": "Short insulin",
+      "BASE_INSULIN": "Prolonged insulin"
+    }
+  }
+}

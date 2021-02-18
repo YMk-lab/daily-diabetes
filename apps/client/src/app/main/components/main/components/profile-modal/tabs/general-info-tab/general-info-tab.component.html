@@ -1,0 +1,99 @@
+<div class='dd-general-info-tab'>
+
+  <div class='user-credentials'>
+
+    <div class='avatar'>
+
+      <img src='./assets/images/avatar.png'
+           alt='{{ patientProfile.firstName }} {{ patientProfile.lastName }}' />
+
+      <div class='toggle-form'>
+        <h3>{{ patientProfile.firstName }} {{ patientProfile.lastName }}</h3>
+      </div>
+
+    </div>
+
+    <div class='main-credentials'>
+
+      <mat-list>
+        <div mat-subheader>
+          {{ 'PROFILE_MODAL.CONTACTS.SUBHEADER' | translate }}
+        </div>
+
+        <mat-list-item>
+          <div mat-line>{{ 'PROFILE_MODAL.CONTACTS.BIRTHDAY' | translate }}:</div>
+          <span>{{ patientProfile.birthDate | date }}</span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div mat-line>{{ 'PROFILE_MODAL.CONTACTS.PHONE' | translate }}:</div>
+          <span>{{ patientProfile.phone }}</span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div mat-line>{{ 'PROFILE_MODAL.CONTACTS.EMAIL' | translate }}:</div>
+          <span>{{ patientProfile.email }}</span>
+        </mat-list-item>
+
+      </mat-list>
+
+    </div>
+
+  </div>
+
+  <div class='user-address'>
+
+    <mat-list>
+      <div mat-subheader>{{ 'PROFILE_MODAL.ADDRESS.SUBHEADER' | translate }}</div>
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.ADDRESS.COUNTRY' | translate }}:</div>
+        <span>{{ patientProfile.address.country }}</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.ADDRESS.CITY_OR_VILLAGE' | translate }}:</div>
+        <span>{{ patientProfile.address.cityOrVillage }}</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.ADDRESS.ADDRESS' | translate }}:</div>
+        <span>{{ patientProfile.address.address }}</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.ADDRESS.POSTAL_ZIP_CODE' | translate }}:</div>
+        <span>{{ patientProfile.address.postalZipCode }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+
+    <mat-list>
+      <div mat-subheader>
+        {{ 'PROFILE_MODAL.DISEASE.SUBHEADER' | translate }}
+      </div>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.DISEASE.DIABETES_TYPES' | translate }}:</div>
+        <span>{{ patientProfile.diseaseInfo.diabetesType | translate }}</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.DISEASE.ILL_PERIOD' | translate }}:</div>
+        <span>{{ patientProfile.diseaseInfo.illPeriod.time }} {{ patientProfile.diseaseInfo.illPeriod.timeUnit | translate }}</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.DISEASE.SHORT_INSULIN' | translate }}:</div>
+        <span>{{ patientProfile.diseaseInfo.shortInsulin }}</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div mat-line>{{ 'PROFILE_MODAL.DISEASE.BASE_INSULIN' | translate }}:</div>
+        <span>{{ patientProfile.diseaseInfo.baseInsulin }}</span>
+      </mat-list-item>
+
+    </mat-list>
+
+  </div>
+
+</div>

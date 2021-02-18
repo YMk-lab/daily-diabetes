@@ -31,8 +31,8 @@ dd-sidenav-start {
         position: relative;
 
         img {
-          width: 200px;
-          height: 200px;
+          width: 150px;
+          height: 150px;
           border-radius: 50%;
           box-shadow: 0 0 7px 0 rgba(62, 78, 80, 0.84);
         }
@@ -41,7 +41,7 @@ dd-sidenav-start {
           position: absolute;
           right: 0;
           top: 0;
-          transform: translate(-50%, 50%);
+          transform: translate(-100%, 0%);
 
           svg {
             width: 15px;
@@ -55,10 +55,6 @@ dd-sidenav-start {
 
         h3 {
           margin-top: 20px;
-        }
-
-        small {
-          color: #999;
         }
 
       }
