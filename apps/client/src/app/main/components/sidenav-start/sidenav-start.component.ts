@@ -1,6 +1,7 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatSelectionListChange } from '@angular/material/list';
+
+import { Subscription } from 'rxjs';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
@@ -12,7 +13,7 @@ import { NavigationLinksInterface } from '../../interfaces/navigation-links.inte
   styleUrls: ['./sidenav-start.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SidenavStartComponent implements OnInit, OnDestroy {
+export class SidenavStartComponent implements OnDestroy {
 
   @Input() set patient(patient: UserInterface) {
     if (!patient) {
@@ -23,11 +24,10 @@ export class SidenavStartComponent implements OnInit, OnDestroy {
   }
 
   patientProfile: UserInterface;
-
   navigationLinks: NavigationLinksInterface[] = [
     {
-      label: 'My profile',
-      link: 'main/profile'
+      label: 'My cases',
+      link: '/main/cases'
     },
     {
       label: 'Statistics',
@@ -40,17 +40,26 @@ export class SidenavStartComponent implements OnInit, OnDestroy {
     {
       label: 'Products tables',
       link: 'main/products-table'
+    },
+    {
+      label: 'Settings',
+      link: 'main/settings'
     }
   ];
 
+  private subscriptions: Subscription = new Subscription();
+
   constructor(private router: Router) { }
 
-  ngOnInit(): void { }
+  async navigateTo(link: string): Promise<void> {
+    await this.router.navigate([link]);
+  }
 
-  ngOnDestroy(): void { }
+  editProfile(): void {
+    console.log('Open profile modal...');
+  }
 
-  async navigateTo(selectionList: MatSelectionListChange): Promise<void> {
-    const navigationLink = selectionList.options[0].value as NavigationLinksInterface;
-    await this.router.navigate([navigationLink.link]);
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

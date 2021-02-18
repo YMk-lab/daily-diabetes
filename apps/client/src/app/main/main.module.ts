@@ -7,14 +7,14 @@ import { MaterialSharedModule } from '@daily-diabetes/material-shared';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './components/main/main.component';
 import { SidenavStartComponent } from './components/sidenav-start/sidenav-start.component';
-import { SidenavEndComponent } from './components/sidenav-end/sidenav-end.component';
+import { ProfileModalComponent } from './components/main/components/profile-modal/profile-modal.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     SidenavStartComponent,
-    SidenavEndComponent
+    ProfileModalComponent
   ],
   imports: [
     CommonModule,

@@ -8,16 +8,12 @@ dd-main {
     width: inherit;
     height: inherit;
 
-    .dd-main-sidenav-start,
-    .dd-main-sidenav-end {
+    .dd-main-sidenav-start {
       max-width: 320px;
       min-width: 320px;
       background-color: transparent;
       border-right: none;
       box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
-    }
-
-    .dd-main-sidenav-start {
 
       .dd-main-sidenav-start-progress-bar {
         position: absolute;
@@ -56,9 +52,16 @@ dd-main {
 
     }
 
+    .dd-patient-profile-info-sidenav {
+      width: calc(100% - 330px);
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
     .dd-main-content {
       color: #000000;
       padding: 20px;
+      height: calc(100% - 40px);
     }
 
   }

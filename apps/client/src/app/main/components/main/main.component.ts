@@ -15,6 +15,7 @@ import { UsersService } from '../../../services/users/users.service';
 export class MainComponent implements OnInit, OnDestroy {
 
   patient: UserInterface;
+  isOpenEditModalOpen: boolean;
 
   private subscriptions: Subscription = new Subscription();
 

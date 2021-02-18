@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavEndComponent } from './sidenav-end.component';
+import { ProfileModalComponent } from './profile-modal.component';
 
-describe('SidenavEndComponent', () => {
-  let component: SidenavEndComponent;
-  let fixture: ComponentFixture<SidenavEndComponent>;
+describe('ProfileModalComponent', () => {
+  let component: ProfileModalComponent;
+  let fixture: ComponentFixture<ProfileModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidenavEndComponent ]
+      declarations: [ ProfileModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidenavEndComponent);
+    fixture = TestBed.createComponent(ProfileModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -28,16 +28,49 @@ dd-sidenav-start {
         margin-top: 40px;
         flex-direction: column;
         cursor: default;
+        position: relative;
 
         img {
-          width: 150px;
-          height: 150px;
+          width: 200px;
+          height: 200px;
           border-radius: 50%;
           box-shadow: 0 0 7px 0 rgba(62, 78, 80, 0.84);
         }
 
+        button {
+          position: absolute;
+          right: 0;
+          top: 0;
+          transform: translate(-50%, 50%);
+
+          svg {
+            width: 15px;
+            height: 15px;
+
+            path {
+              fill: #ffffff;
+            }
+          }
+        }
+
         h3 {
           margin-top: 20px;
+        }
+
+        small {
+          color: #999;
+        }
+
+      }
+
+      .app-links {
+
+        mat-list {
+
+          mat-list-item {
+            cursor: pointer;
+          }
+
         }
 
       }
