@@ -80,38 +80,28 @@
               },
               {
                 "glob": "**/*",
-                "input": "apps/client/src/app/login/localization/",
+                "input": "apps/client/src/app/pages/login/localization/",
                 "output": "./assets/localization/login"
               },
               {
                 "glob": "**/*",
-                "input": "apps/client/src/app/registration/localization",
+                "input": "apps/client/src/app/pages/registration/localization",
                 "output": "./assets/localization/registration"
               },
               {
                 "glob": "**/*",
-                "input": "apps/client/src/app/registration/components/patient-info/localization",
+                "input": "apps/client/src/app/pages/registration/components/patient-info/localization",
                 "output": "./assets/localization/registration/patient-info"
               },
               {
                 "glob": "**/*",
-                "input": "apps/client/src/app/registration/components/patient-address-info/localization",
+                "input": "apps/client/src/app/pages/registration/components/patient-address-info/localization",
                 "output": "./assets/localization/registration/patient-address-info"
               },
               {
                 "glob": "**/*",
-                "input": "apps/client/src/app/registration/components/patient-disease-info/localization",
+                "input": "apps/client/src/app/pages/registration/components/patient-disease-info/localization",
                 "output": "./assets/localization/registration/patient-disease-info"
-              },
-              {
-                "glob": "**/*",
-                "input": "apps/client/src/app/main/localization",
-                "output": "./assets/localization/main"
-              },
-              {
-                "glob": "**/*",
-                "input": "apps/client/src/app/main/components/main/components/profile-modal/localization",
-                "output": "./assets/localization/main/profile-modal"
               }
             ],
             "styles": [
