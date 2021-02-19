@@ -37,36 +37,36 @@ dd-sidenav-start {
           box-shadow: 0 0 7px 0 rgba(62, 78, 80, 0.84);
         }
 
-        button {
-          position: absolute;
-          right: 0;
-          top: 0;
-          transform: translate(-100%, 0%);
-
-          svg {
-            width: 15px;
-            height: 15px;
-
-            path {
-              fill: #ffffff;
-            }
-          }
-        }
-
         h3 {
           margin-top: 20px;
+          max-width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
       }
 
       .app-links {
+        list-style: none;
 
-        mat-list {
+        ul {
+          margin: 0 10px;
+          padding: 0;
 
-          mat-list-item {
+          li {
+            padding: 15px;
+            outline: none;
+            user-select: none;
+            border-radius: 8px;
             cursor: pointer;
           }
 
+        }
+
+        .is-link-active {
+          background-color: #673ab7;
+          color: #ffffff;
         }
 
       }

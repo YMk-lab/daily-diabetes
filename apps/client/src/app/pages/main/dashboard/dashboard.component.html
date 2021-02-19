@@ -6,7 +6,7 @@
               opened
               disableClose>
 
-    <ng-container *ngIf='patient; else showProgressBar'>
+    <ng-container *ngIf='(patient$ | async) as patient; else showProgressBar'>
 
       <dd-sidenav-start [patient]='patient'></dd-sidenav-start>
 
@@ -14,7 +14,7 @@
 
     <ng-template #showProgressBar>
 
-      <div class='dd-main-sidenav-start-progress-bar'>
+      <div class='dd-progress-bar-onload'>
         <mat-spinner mode='indeterminate'></mat-spinner>
       </div>
 

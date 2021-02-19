@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
@@ -12,23 +12,14 @@ import { UsersService } from '../../../services/users/users.service';
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
 
-  patient: UserInterface;
-  isOpenEditModalOpen: boolean;
-
-  private subscriptions: Subscription = new Subscription();
+  patient$: Observable<UserInterface>;
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    const patientSubscription = this.usersService.getMe()
-      .subscribe((patient: UserInterface) => this.patient = patient);
-    this.subscriptions.add(patientSubscription);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.patient$ = this.usersService.getMe();
   }
 
 }

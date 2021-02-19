@@ -29,15 +29,16 @@
 
     <div class='app-links'>
 
-      <mat-list role="list">
+      <ul>
+        <li mat-ripple *ngFor='let link of navigationLinks'
+            [routerLink]='link.link'
+            [routerLinkActiveOptions]='{ exact: true }'
+            [routerLinkActive]='["is-link-active"]'>
 
-        <mat-list-item role="link" mat-ripple
-                       *ngFor='let navLink of navigationLinks'
-                       (click)='navigateTo(navLink.link)'>
-          {{ navLink.label }}
-        </mat-list-item>
+          <span>{{ link.label }}</span>
 
-      </mat-list>
+        </li>
+      </ul>
 
     </div>
 

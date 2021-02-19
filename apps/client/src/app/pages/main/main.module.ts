@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MaterialSharedModule } from '@daily-diabetes/material-shared';
@@ -21,8 +20,7 @@ import { SidenavStartComponent } from './dashboard/components/sidenav-start/side
 
     // DD library imports
     MaterialSharedModule,
-    TranslateModule,
-    ReactiveFormsModule
+    TranslateModule
   ]
 })
 export class MainModule { }

@@ -1,5 +1,4 @@
 import { Component, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -27,37 +26,31 @@ export class SidenavStartComponent implements OnDestroy {
   navigationLinks: NavigationLinksInterface[] = [
     {
       label: 'My cases',
-      link: 'dashboard/cases'
+      link: 'patient-cases'
     },
     {
       label: 'My profile',
-      link: 'dashboard/profile'
+      link: 'patient-profile'
     },
     {
       label: 'Statistics',
-      link: 'dashboard/statistics'
+      link: 'statistics'
     },
     {
       label: 'Add new previous cases',
-      link: 'dashboard/add-previous-cases'
+      link: 'add-previous-cases'
     },
     {
       label: 'Products table',
-      link: 'dashboard/products-table'
+      link: 'products-table'
     },
     {
       label: 'Settings',
-      link: 'dashboard/settings'
+      link: 'settings'
     }
   ];
 
   private subscriptions: Subscription = new Subscription();
-
-  constructor(private router: Router) { }
-
-  async navigateTo(link: string): Promise<void> {
-    await this.router.navigate([link]);
-  }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

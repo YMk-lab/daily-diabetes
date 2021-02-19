@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
@@ -18,7 +18,7 @@ export class UsersService {
     return this.patientSubject.asObservable();
   }
 
-  private patientSubject: Subject<UserInterface> = new Subject<UserInterface>();
+  private patientSubject: ReplaySubject<UserInterface> = new ReplaySubject<UserInterface>();
 
   constructor(private http: HttpClient) { }
 
