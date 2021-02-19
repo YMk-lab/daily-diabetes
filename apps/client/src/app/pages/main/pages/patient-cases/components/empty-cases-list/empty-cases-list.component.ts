@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { Subscription } from 'rxjs';
+
 import { AddNewCaseModalComponent } from '../add-new-case-modal/add-new-case-modal.component';
 
 @Component({
