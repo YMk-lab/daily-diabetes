@@ -23,7 +23,7 @@ export class SkipAuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/main']).then();
+      this.router.navigate(['/dashboard']).then();
       return false;
     }
 
