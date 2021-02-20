@@ -57,13 +57,13 @@
 
       <mat-form-field appearance="outline">
 
-        <mat-label>{{ 'LOGIN.FORM.EMAIL_OR_PHONE_CONTROL.LABEL' | translate }}</mat-label>
+        <mat-label>{{ 'LOGIN.FORM.EMAIL_CONTROL.LABEL' | translate }}</mat-label>
         <input required matInput
-               placeholder="{{ 'LOGIN.FORM.EMAIL_OR_PHONE_CONTROL.PLACEHOLDER' | translate }}"
-               formControlName='emailOrPhone' />
+               placeholder="{{ 'LOGIN.FORM.EMAIL_CONTROL.PLACEHOLDER' | translate }}"
+               formControlName='email' />
 
-        <mat-error *ngIf='loginForm.controls.emailOrPhone.errors?.required'>
-          {{ 'LOGIN.FORM.EMAIL_OR_PHONE_CONTROL.ERRORS.REQUIRED' | translate }}
+        <mat-error *ngIf='loginForm.controls.email.errors?.required'>
+          {{ 'LOGIN.FORM.EMAIL_CONTROL.ERRORS.REQUIRED' | translate }}
         </mat-error>
 
       </mat-form-field>

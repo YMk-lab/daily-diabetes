@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 import { AuthTokensInterface, UserInterface } from '@daily-diabetes/shared-data';
 
@@ -6,6 +6,7 @@ import { UsersService } from '../../users/services/users.service';
 import { UserDocument } from '../../users/schemas/user.schema';
 import { TokensService } from '../../tokens/services/tokens.service';
 import { AuthPayloadInterface } from '../interfaces/auth-payload.interface';
+import { errorTranslationKeys } from '../../../config/errors-translations-keys';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +16,8 @@ export class AuthService {
     private tokensService: TokensService
   ) { }
 
-  async validateUser(emailOrPhone: string): Promise<UserDocument | any> {
-    return this.usersService.findOneToValidate(emailOrPhone);
+  async validateUser(email: string): Promise<UserDocument | any> {
+    return this.usersService.findOneToValidate(email);
   }
 
   async login(user: UserInterface, fingerPrint: string): Promise<AuthTokensInterface | any> {
@@ -35,15 +36,18 @@ export class AuthService {
   async refreshToken(refreshTokenID: string): Promise<AuthTokensInterface | any> {
 
     if (!refreshTokenID) {
-      throw new UnauthorizedException();
+      throw new HttpException({
+        title: errorTranslationKeys.TOKEN_NO_TOKEN_TITLE,
+        error: errorTranslationKeys.TOKEN_NO_TOKEN_TEXT
+      }, HttpStatus.UNAUTHORIZED);
     }
 
     const userRefreshToken = await this.tokensService.findByID(refreshTokenID);
 
     if (!userRefreshToken) {
       throw new HttpException({
-        status: HttpStatus.FORBIDDEN,
-        error: 'Refresh token is not set'
+        title: errorTranslationKeys.TOKEN_NO_TOKEN_SET_TITLE,
+        error: errorTranslationKeys.TOKEN_NO_TOKEN_SET_TEXT
       }, HttpStatus.FORBIDDEN);
     }
 
@@ -59,7 +63,10 @@ export class AuthService {
       const isRefreshTokenRevoked = await this.tokensService.revoke(userRefreshToken.refreshToken);
 
       if (error && isRefreshTokenRevoked) {
-        throw new UnauthorizedException();
+        throw new HttpException({
+          title: errorTranslationKeys.TOKEN_EXPIRED_TITLE,
+          error: errorTranslationKeys.TOKEN_EXPIRED_TEXT
+        }, HttpStatus.UNAUTHORIZED);
       }
     }
 
@@ -69,9 +76,9 @@ export class AuthService {
 
     if (!refreshTokenID) {
       throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: 'Refresh token is not provided'
-      }, HttpStatus.BAD_REQUEST)
+        title: 'Logout error',
+        error: 'Something went wrong while log you out the system'
+      }, HttpStatus.BAD_REQUEST);
     }
 
     const removedToken = await this.tokensService.removeSession(refreshTokenID);
