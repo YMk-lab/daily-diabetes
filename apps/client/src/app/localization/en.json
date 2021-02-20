@@ -2,7 +2,7 @@
   "APP": {
     "TITLE": "Daily Diabetes",
     "MOTO": {
-      "PARAGRAPH_ONE": "Welcome to our daily diabetes logging system",
+      "PARAGRAPH_ONE": "Welcome to our daily diabetes diary system",
       "PARAGRAPH_TWO": "Here you can make your diary about inject insulin, meal you ate, schedule visits to the endocrinologist and much more",
       "PARAGRAPH_THREE": "The system builds relevant statistics on your daily records, and allows you to generate reports that will later be passed to your endocrinologist"
     },

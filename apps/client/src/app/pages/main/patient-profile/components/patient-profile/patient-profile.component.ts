@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { UsersService } from '../../../../../../services/users/users.service';
+import { UsersService } from '../../../../../services/users/users.service';
 import { PatientProfileEditComponent } from '../patient-profile-edit/patient-profile-edit.component';
 
 @Component({

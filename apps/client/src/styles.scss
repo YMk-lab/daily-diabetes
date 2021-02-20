@@ -1,6 +1,7 @@
+@import '~ngx-toastr/toastr';
+
 // DD styles
 @import "assets/styles/mixins/dd-auth-scaffold.mixin";
-@import '~ngx-toastr/toastr';
 
 html, body {height: 100%; }
 body { margin: 0; font-family: 'Helvetica', sans-serif; }

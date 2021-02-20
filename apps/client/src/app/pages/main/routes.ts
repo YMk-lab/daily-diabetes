@@ -9,12 +9,12 @@ export const mainRoutes: Routes = [
     children: [
       {
         path: 'patient-cases',
-        loadChildren: () => import('./pages/patient-cases/patient-cases.module')
+        loadChildren: () => import('./patient-cases/patient-cases.module')
           .then(m => m.PatientCasesModule)
       },
       {
         path: 'patient-profile',
-        loadChildren: () => import('./pages/patient-profile/patient-profile.module')
+        loadChildren: () => import('./patient-profile/patient-profile.module')
           .then(m => m.PatientProfileModule)
       },
       {

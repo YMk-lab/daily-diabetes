@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { NavigationLinksInterface } from '../../../interfaces/navigation-links.interface';
+import { NavigationLinksInterface } from '../../../../../interfaces/navigation-links.interface';
 
 @Component({
   selector: 'dd-sidenav-start',

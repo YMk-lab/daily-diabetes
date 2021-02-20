@@ -4,10 +4,8 @@ export const API_ENDPOINTS = {
     REFRESH_TOKEN: 'auth/refresh-token',
     LOGOUT: 'auth/logout'
   },
-  REGISTRATION: {
-    CREATE: 'users/create'
-  },
   USERS: {
+    CREATE: 'users/create',
     ME: 'users/me'
   }
 };

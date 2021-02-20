@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { PATIENT_INFO_FORM } from '../../../../../registration/components/patient-info/patient-info-form.params';
-import { PATIENT_ADDRESS_FORM } from '../../../../../registration/components/patient-address-info/patient-address-form.params';
+import { PATIENT_INFO_FORM } from '../../../../registration/components/patient-info/patient-info-form.params';
+import { PATIENT_ADDRESS_FORM } from '../../../../registration/components/patient-address-info/patient-address-form.params';
 
 @Component({
   selector: 'dd-patient-profile-edit',
