@@ -1,25 +1,26 @@
-import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { compare } from 'bcrypt';
 
 import { AuthService } from '../repositories/auth/service/auth.service';
+import { errorTranslationKeys } from '../config/errors-translations-keys';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
 
   constructor(private authService: AuthService) {
-    super({ usernameField: 'emailOrPhone' });
+    super({ usernameField: 'email' });
   }
 
-  async validate(emailOrPhone: string, password: string) {
+  async validate(email: string, password: string) {
 
-    const user = await this.authService.validateUser(emailOrPhone);
+    const user = await this.authService.validateUser(email);
 
     if (!user) {
       throw new HttpException({
-        status: HttpStatus.FORBIDDEN,
-        error: 'User does not exist'
+        title: errorTranslationKeys.LOGIN_TITLE,
+        error: errorTranslationKeys.LOGIN_TEXT
       }, HttpStatus.FORBIDDEN);
     }
 
@@ -27,8 +28,8 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
     if (!arePasswordsMatch) {
       throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: 'Wrong email or password. Please try again'
+        title: errorTranslationKeys.LOGIN_TITLE,
+        error: errorTranslationKeys.LOGIN_TEXT
       }, HttpStatus.BAD_REQUEST);
     }
 

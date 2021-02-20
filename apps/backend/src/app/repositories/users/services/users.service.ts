@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { UserInterface } from '@daily-diabetes/shared-data';
 
 import { User, UserDocument } from '../schemas/user.schema';
+import { errorTranslationKeys } from '../../../config/errors-translations-keys';
 
 @Injectable()
 export class UsersService {
@@ -20,11 +21,11 @@ export class UsersService {
     if (userExist) {
       throw new HttpException(
         {
-          status: HttpStatus.CONFLICT,
-          error: 'User already exist'
+          title: errorTranslationKeys.USER_SAVE_TITLE,
+          error: errorTranslationKeys.USER_SAVE_TEXT
         },
         HttpStatus.CONFLICT
-      )
+      );
     }
 
     user.password = await hash(user.password, 10);
@@ -34,18 +35,8 @@ export class UsersService {
     return createdUser.save();
   }
 
-  async findOneToValidate(emailOrPhone: string): Promise<UserDocument | any> {
-
-    const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    const phoneRegex = /^[+]*[(]?[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
-
-    const isEmail = emailRegex.test(emailOrPhone);
-    const isPhone = phoneRegex.test(emailOrPhone);
-
-    return this.userModel.findOne({ $or: [
-        { email: (isEmail && !isPhone) ? emailOrPhone: '' },
-        { phone: (!isEmail && isPhone) ? emailOrPhone : '' }
-      ] });
+  async findOneToValidate(email: string): Promise<UserDocument | any> {
+    return this.userModel.findOne({ email: email });
   }
 
   async getMe(id: string): Promise<UserDocument | any> {
@@ -53,8 +44,8 @@ export class UsersService {
 
     if (!user) {
       throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: 'User not found'
+        title: errorTranslationKeys.USER_NOT_FOUND_TITLE,
+        error: errorTranslationKeys.USER_NOT_FOUND_TEXT
       }, HttpStatus.BAD_REQUEST);
     }
 

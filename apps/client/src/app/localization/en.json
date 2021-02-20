@@ -5,6 +5,48 @@
       "PARAGRAPH_ONE": "Welcome to our daily diabetes logging system",
       "PARAGRAPH_TWO": "Here you can make your diary about inject insulin, meal you ate, schedule visits to the endocrinologist and much more",
       "PARAGRAPH_THREE": "The system builds relevant statistics on your daily records, and allows you to generate reports that will later be passed to your endocrinologist"
+    },
+    "ERRORS": {
+      "UNDEFINED": {
+        "TITLE": "Undefined error",
+        "TEXT": "We cant recognize occurred error"
+      },
+      "SERVER": {
+        "TITLE": "Server error",
+        "TEXT": "Something went wrong on server side"
+      },
+      "LOGIN": {
+        "TITLE": "Authentication error",
+        "TEXT": "Wrong credentials or you are not registered yet"
+      },
+      "LOGOUT": {
+        "TITLE": "Logout error",
+        "TEXT": "Something went wrong while log you out the system"
+      },
+      "TOKEN": {
+        "NO_TOKEN": {
+          "TITLE": "Authorization error",
+          "TEXT": "Refresh token is not provided by client"
+        },
+        "NO_TOKEN_SET": {
+          "TITLE": "Authorization error",
+          "TEXT": "Refresh token was not found"
+        },
+        "EXPIRED": {
+          "TITLE": "Authorization error",
+          "TEXT": "Refresh token has been expired"
+        }
+      },
+      "USER": {
+        "SAVE": {
+          "TITLE": "User saving error",
+          "TEXT": "User with such registration data already exist"
+        },
+        "NOT_FOUND": {
+          "TITLE": "User identification error",
+          "TEXT": "Such user does not exist"
+        }
+      }
     }
   }
 }

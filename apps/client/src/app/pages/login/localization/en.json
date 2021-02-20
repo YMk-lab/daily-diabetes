@@ -2,8 +2,8 @@
   "LOGIN": {
     "NAV_BUTTON": "Not registered yet?",
     "FORM": {
-      "EMAIL_OR_PHONE_CONTROL": {
-        "LABEL": "Email or phone number",
+      "EMAIL_CONTROL": {
+        "LABEL": "Email",
         "PLACEHOLDER": "Please type in your email address or phone number",
         "ERRORS": {
           "REQUIRED": "Email or phone number is required field"

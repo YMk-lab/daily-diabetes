@@ -8,9 +8,9 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { AuthTokensInterface } from '@daily-diabetes/shared-data';
 
-import { AuthService } from '../../services/auth/auth.service';
-import { LocalStorageService } from '../../services/local-storage/local-storage.service';
-import { HttpStatusesEnum } from '../../enums/http-statuses.enum';
+import { AuthService } from '../services/auth/auth.service';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
+import { HttpStatusesEnum } from '../enums/http-statuses.enum';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
