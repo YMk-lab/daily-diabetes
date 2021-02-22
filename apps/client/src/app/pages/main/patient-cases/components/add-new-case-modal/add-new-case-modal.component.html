@@ -23,7 +23,7 @@
 
         <mat-form-field class='current-time' appearance='outline'>
           <mat-label>Current time</mat-label>
-          <input matInput type='time' formControlName='time' />
+          <input matInput type='time' formControlName='currentTime' />
         </mat-form-field>
 
       </div>
@@ -31,14 +31,24 @@
       <div class='form-field-row column-direction'>
 
         <mat-label>Amount of short insulin</mat-label>
-        <mat-slider thumbLabel tickInterval="1000" min="1" max="100"></mat-slider>
+        <mat-slider thumbLabel
+                    tickInterval="1"
+                    min="0"
+                    max="99"
+                    formControlName='shortInsulin'>
+        </mat-slider>
 
       </div>
 
       <div class='form-field-row column-direction'>
 
         <mat-label>Amount of prolonged insulin</mat-label>
-        <mat-slider thumbLabel tickInterval="1000" min="1" max="100"></mat-slider>
+        <mat-slider thumbLabel
+                    tickInterval="1"
+                    min="0"
+                    max="99"
+                    formControlName='baseInsulin'>
+        </mat-slider>
 
       </div>
 
@@ -47,11 +57,12 @@
         <mat-form-field appearance='outline'>
           <mat-label>Choose meal type</mat-label>
 
-          <mat-chip-list>
-            <mat-chip [value]='"breakfast"' [selected]='true'>Breakfast</mat-chip>
-            <mat-chip [value]='"dinner"'>Dinner</mat-chip>
-            <mat-chip [value]='"supper"'>Supper</mat-chip>
-            <mat-chip [value]='"snack"'>Snack</mat-chip>
+          <mat-chip-list [selectable]='true' [multiple]='false' formControlName='mealType'>
+            <mat-chip *ngFor='let mealType of mealTypeChipList;'
+                      (click)='selectMealType(mealType)'
+                      [value]='mealType.value' [selected]='mealType.selected'>
+              {{ mealType.label }}
+            </mat-chip>
           </mat-chip-list>
         </mat-form-field>
 
@@ -60,8 +71,9 @@
       <div class='form-field-row'>
 
         <quill-editor
+          formControlName='mealDescription'
           class="content-editor"
-          [placeholder]="'Describe your meal'"
+          [placeholder]="'Describe your meal it\'s amount'"
           [styles]='{ "max-height": "150px", "min-height": "150px" }'
           [modules]='editorConfig'>
         </quill-editor>
@@ -89,14 +101,15 @@
 
         <mat-form-field class='glucometer-input'>
           <mat-label>Indication</mat-label>
-          <input matInput type='number' min='0' max='999' />
+          <input matInput type='number' min='0' max='999' formControlName='glucometerIndication' />
         </mat-form-field>
 
         <mat-form-field class='glucometer-value-type'>
           <mat-label>Indication type</mat-label>
-          <mat-select>
-            <mat-option [value]='"mmol/L"'>mmol/L</mat-option>
-            <mat-option [value]='"mg/dL"'>mg/dL</mat-option>
+          <mat-select formControlName='glucometerIndicationType'>
+            <mat-option *ngFor='let type of indicationTypes' [value]='type'>
+              {{ type }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -106,7 +119,7 @@
 
   </div>
 
-  <div class='dd-add-new-case-modal-footer'>
+  <div class='dd-add-new-case-modal-footer space-between align-center'>
 
     <button mat-raised-button color='primary' (click)='close()'>
       Close

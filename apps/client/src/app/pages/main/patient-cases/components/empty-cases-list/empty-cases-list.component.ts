@@ -24,10 +24,10 @@ export class EmptyCasesListComponent implements OnInit, OnDestroy {
 
   openNewCaseModal(): void {
     const modal = this.modal.open(AddNewCaseModalComponent, {
-      width: '65vw',
-      height: '90vh',
-      maxWidth: '65vw',
-      maxHeight: '90vh',
+      width: '60vw',
+      height: '85vh',
+      maxWidth: '60vw',
+      maxHeight: '85vh',
       disableClose: true,
       panelClass: 'dd-general-modal',
       id: 'add-new-case-modal'
