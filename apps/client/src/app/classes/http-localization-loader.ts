@@ -10,7 +10,10 @@ export function HttpLocalizationLoader(http: HttpClient) {
     { prefix: './assets/localization/registration/', suffix: '.json' },
     { prefix: './assets/localization/registration/patient-info/', suffix: '.json' },
     { prefix: './assets/localization/registration/patient-address-info/', suffix: '.json' },
-    { prefix: './assets/localization/registration/patient-disease-info/', suffix: '.json' }
+    { prefix: './assets/localization/registration/patient-disease-info/', suffix: '.json' },
+
+    { prefix: './assets/localization/dashboard/sidenav-start/', suffix: '.json' },
+    { prefix: './assets/localization/patient-cases/', suffix: '.json' }
   ]);
 
 }

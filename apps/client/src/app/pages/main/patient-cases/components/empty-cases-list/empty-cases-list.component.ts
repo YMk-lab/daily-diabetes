@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Subscription } from 'rxjs';
@@ -11,21 +11,32 @@ import { AddNewCaseModalComponent } from '../add-new-case-modal/add-new-case-mod
   styleUrls: ['./empty-cases-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EmptyCasesListComponent implements OnDestroy {
+export class EmptyCasesListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription();
 
   constructor(private modal: MatDialog) { }
 
+  ngOnInit(): void {
+    // TODO remove after whole modal implementation
+    this.openNewCaseModal();
+  }
+
   openNewCaseModal(): void {
     const modal = this.modal.open(AddNewCaseModalComponent, {
-      width: '60vw',
-      height: '80vh',
-      maxWidth: '60vw',
-      maxHeight: '80vh',
+      width: '65vw',
+      height: '90vh',
+      maxWidth: '65vw',
+      maxHeight: '90vh',
       disableClose: true,
-      data: {}
+      panelClass: 'dd-general-modal',
+      id: 'add-new-case-modal'
     });
+
+    const modalSubscription = modal.afterClosed().subscribe((data) => {
+      console.log(data);
+    });
+    this.subscriptions.add(modalSubscription);
   }
 
   ngOnDestroy(): void {

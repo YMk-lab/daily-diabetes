@@ -102,6 +102,16 @@
                 "glob": "**/*",
                 "input": "apps/client/src/app/pages/registration/components/patient-disease-info/localization",
                 "output": "./assets/localization/registration/patient-disease-info"
+              },
+              {
+                "glob": "**/*",
+                "input": "apps/client/src/app/pages/main/dashboard/components/sidenav-start/localization",
+                "output": "./assets/localization/dashboard/sidenav-start"
+              },
+              {
+                "glob": "**/*",
+                "input": "apps/client/src/app/pages/main/patient-cases/localization",
+                "output": "./assets/localization/patient-cases/"
               }
             ],
             "styles": [

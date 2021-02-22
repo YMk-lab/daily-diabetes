@@ -1,0 +1,12 @@
+{
+  "SIDENAV_START": {
+    "LINKS": {
+      "MY_CASES": "My cases",
+      "MY_PROFILE": "My profile",
+      "STATISTICS": "Statistics",
+      "ADD_PREVIOUS_CASES": "Add previous cases",
+      "PRODUCT_TABLE": "Products table",
+      "SETTINGS": "Settings"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+@import "../../../../../../assets/styles/variables";
+
+dd-add-new-case-modal {
+
+  form {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 60px calc(100% - 110px) 50px;
+
+    .dd-add-new-case-modal-content {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      height: 100%;
+
+      .inputs-container {
+        padding: 20px 0;
+        display: flex;
+
+        .glucometer {
+          position: relative;
+
+          .glucometer-input {
+            position: absolute;
+            left: 60px;
+            top: 100px;
+            font-size: 26px;
+            text-align: center;
+          }
+
+          .glucometer-value-type {
+            position: absolute;
+            left: 60px;
+            top: 200px;
+          }
+        }
+
+      }
+    }
+
+    .dd-add-new-case-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-field-row {
+      display: flex;
+      justify-content: space-between;
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      .current-time {
+        margin-left: 10px;
+      }
+    }
+
+    .column-direction {
+      flex-direction: column;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .align-center {
+      align-items: center;
+    }
+
+    .content-editor {
+      width: 100%;
+      .ql-toolbar {
+        background-color: $whiteColor;
+      }
+
+      .ql-container {
+        border: 1px solid rgba(255,255,255,.3);
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+      }
+    }
+  }
+}
