@@ -15,6 +15,10 @@
         "TITLE": "Server error",
         "TEXT": "Something went wrong on server side"
       },
+      "NOT_FOUND": {
+        "TITLE": "Resource error",
+        "TEXT": "Resource not found or just not implemented yet"
+      },
       "LOGIN": {
         "TITLE": "Authentication error",
         "TEXT": "Wrong credentials or you are not registered yet"

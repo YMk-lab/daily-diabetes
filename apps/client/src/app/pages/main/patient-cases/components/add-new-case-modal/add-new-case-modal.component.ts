@@ -1,11 +1,16 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
+import { CaseInterface, UserInterface } from '@daily-diabetes/shared-data';
+
 import { DateTimeFormatter } from '../../../../../classes/date-time-formatter';
+import { CasesService } from '../../../../../services/cases/cases.service';
+import { MealTypeInterface } from '../../interfaces/meal-type.interface';
 import { CASE_MODAL_FORM_PARAMS } from './case-modal-form.params';
+
 
 @Component({
   selector: 'dd-add-new-case-modal',
@@ -17,6 +22,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
+  patientProfile: UserInterface;
   currentDay = new Date();
   editorConfig = {
     toolbar: [
@@ -24,50 +30,51 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
       ['bold', 'italic', 'underline']
     ]
   }
-  mealTypeChipList: any[] = [
+  mealTypeChipList: MealTypeInterface[] = [
     {
-      label: 'Breakfast',
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST',
       value: 'breakfast'
     },
     {
-      label: 'Dinner',
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.DINNER',
       value: 'dinner'
     },
     {
-      label: 'Supper',
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SUPPER',
       value: 'supper'
     },
     {
-      label: 'Snack',
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SNACK',
       value: 'snack'
     }
   ];
   indicationTypes: string[] = ['mmol/L', 'mg/dL'];
 
+  private addNewCaseModal: any;
   private subscriptions: Subscription = new Subscription();
 
   constructor(
+    @Inject(MAT_DIALOG_DATA)
+    private modalData: { patientProfile: UserInterface },
     private modal: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private casesService: CasesService
   ) { }
 
   ngOnInit(): void {
+    this.addNewCaseModal = this.modal.getDialogById('add-new-cases-modal');
+    this.patientProfile = this.modalData.patientProfile;
 
     this.form = this.fb.group({
       [CASE_MODAL_FORM_PARAMS.CURRENT_DAY]: [{ value: this.currentDay, disabled: true }],
       [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [DateTimeFormatter.formatTime(new Date())],
-      [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [],
-      [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [],
-      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: [],
+      [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [0],
+      [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [0],
+      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: [''],
       [CASE_MODAL_FORM_PARAMS.MEAL_DESCRIPTION]: [''],
-      [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION]: [],
+      [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION]: ['0.0'],
       [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE]: ['mmol/L']
     });
-
-    const formSubscription = this.form.valueChanges.subscribe((changes: any) => {
-      console.log(changes);
-    });
-    this.subscriptions.add(formSubscription);
   }
 
   selectMealType(mealType: any) {
@@ -75,11 +82,20 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
   }
 
   close(): void {
-    this.modal.getDialogById('add-new-case-modal').close();
+    this.addNewCaseModal.close();
   }
 
   save(): void {
-    console.log('ADD new case...');
+    if (this.form.invalid) {
+      return;
+    }
+
+    const newCase = this.form.value as CaseInterface;
+    newCase.currentDay = this.currentDay;
+    newCase.userId = this.patientProfile.uuid;
+
+    this.casesService.create(newCase)
+      .subscribe((createdCase: CaseInterface) => this.addNewCaseModal.close(createdCase));
   }
 
   ngOnDestroy(): void {

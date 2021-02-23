@@ -2,7 +2,7 @@
 
   <div class='dd-add-new-case-modal-header'>
 
-    <h3>Add new case</h3>
+    <h3>{{ 'PATIENT_CASES.CASE_MODAL.TITLE' | translate }}</h3>
     <mat-divider></mat-divider>
 
   </div>
@@ -14,7 +14,7 @@
       <div class='form-field-row'>
 
         <mat-form-field appearance="outline">
-          <mat-label>Current day</mat-label>
+          <mat-label>{{ 'PATIENT_CASES.CASE_MODAL.CURRENT_DAY_CONTROL.LABEL' | translate }}</mat-label>
           <input matInput [matDatepicker]="today" formControlName='currentDay' />
 
           <mat-datepicker-toggle matSuffix [for]="today"></mat-datepicker-toggle>
@@ -22,7 +22,7 @@
         </mat-form-field>
 
         <mat-form-field class='current-time' appearance='outline'>
-          <mat-label>Current time</mat-label>
+          <mat-label>{{ 'PATIENT_CASES.CASE_MODAL.CURRENT_TIME_CONTROL.LABEL' | translate }}</mat-label>
           <input matInput type='time' formControlName='currentTime' />
         </mat-form-field>
 
@@ -30,7 +30,10 @@
 
       <div class='form-field-row column-direction'>
 
-        <mat-label>Amount of short insulin</mat-label>
+        <mat-label>
+          {{ patientProfile.diseaseInfo.shortInsulin }}
+          {{ 'PATIENT_CASES.CASE_MODAL.SHORT_INSULIN_CONTROL.LABEL_SUFFIX' | translate }}
+        </mat-label>
         <mat-slider thumbLabel
                     tickInterval="1"
                     min="0"
@@ -42,7 +45,10 @@
 
       <div class='form-field-row column-direction'>
 
-        <mat-label>Amount of prolonged insulin</mat-label>
+        <mat-label>
+          {{ patientProfile.diseaseInfo.baseInsulin }}
+          {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.LABEL_SUFFIX' | translate }}
+        </mat-label>
         <mat-slider thumbLabel
                     tickInterval="1"
                     min="0"
@@ -55,13 +61,13 @@
       <div class='form-field-row'>
 
         <mat-form-field appearance='outline'>
-          <mat-label>Choose meal type</mat-label>
+          <mat-label>{{ 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.LABEL' | translate }}</mat-label>
 
           <mat-chip-list [selectable]='true' [multiple]='false' formControlName='mealType'>
             <mat-chip *ngFor='let mealType of mealTypeChipList;'
                       (click)='selectMealType(mealType)'
                       [value]='mealType.value' [selected]='mealType.selected'>
-              {{ mealType.label }}
+              {{ mealType.label | translate }}
             </mat-chip>
           </mat-chip-list>
         </mat-form-field>
@@ -73,7 +79,7 @@
         <quill-editor
           formControlName='mealDescription'
           class="content-editor"
-          [placeholder]="'Describe your meal it\'s amount'"
+          placeholder="{{ 'PATIENT_CASES.CASE_MODAL.MEAL_DESCRIPTION.PLACEHOLDER' | translate }}"
           [styles]='{ "max-height": "150px", "min-height": "150px" }'
           [modules]='editorConfig'>
         </quill-editor>
@@ -100,12 +106,16 @@
         </svg>
 
         <mat-form-field class='glucometer-input'>
-          <mat-label>Indication</mat-label>
+          <mat-label>
+            {{ 'PATIENT_CASES.CASE_MODAL.GLUCOMETER.INDICATION_LABEL' | translate }}
+          </mat-label>
           <input matInput type='number' min='0' max='999' formControlName='glucometerIndication' />
         </mat-form-field>
 
         <mat-form-field class='glucometer-value-type'>
-          <mat-label>Indication type</mat-label>
+          <mat-label>
+            {{ 'PATIENT_CASES.CASE_MODAL.GLUCOMETER.INDICATION_TYPE_LABEL' | translate }}
+          </mat-label>
           <mat-select formControlName='glucometerIndicationType'>
             <mat-option *ngFor='let type of indicationTypes' [value]='type'>
               {{ type }}
@@ -122,11 +132,11 @@
   <div class='dd-add-new-case-modal-footer space-between align-center'>
 
     <button mat-raised-button color='primary' (click)='close()'>
-      Close
+      {{ 'PATIENT_CASES.CASE_MODAL.CLOSE_BUTTON_TITLE' | translate }}
     </button>
 
     <button mat-raised-button color='primary' (click)='save()'>
-      Save
+      {{ 'PATIENT_CASES.CASE_MODAL.CONFIRM_BUTTON_TITLE' | translate }}
     </button>
 
   </div>

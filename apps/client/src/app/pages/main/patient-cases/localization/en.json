@@ -1,3 +1,39 @@
 {
-  "PATIENT_CASES": {}
+  "PATIENT_CASES": {
+    "EMPTY_CASE_LIST_TITLE": "You do not have any added cases yet",
+    "CASE_MODAL": {
+      "TITLE": "Add new case",
+      "CURRENT_DAY_CONTROL": {
+        "LABEL": "Current day"
+      },
+      "CURRENT_TIME_CONTROL": {
+        "LABEL": "Current time"
+      },
+      "SHORT_INSULIN_CONTROL": {
+        "LABEL_SUFFIX": "(Units amount)"
+
+      },
+      "BASE_INSULIN_CONTROL": {
+        "LABEL_SUFFIX": "(Units amount)"
+      },
+      "MEAL_TYPE": {
+        "LABEL": "Choose meal type",
+        "VALUES": {
+          "BREAKFAST": "Breakfast",
+          "DINNER": "Dinner",
+          "SUPPER": "Supper",
+          "SNACK": "Snack"
+        }
+      },
+      "MEAL_DESCRIPTION": {
+        "PLACEHOLDER": "Describe your meal, amount and ingredients"
+      },
+      "GLUCOMETER": {
+        "INDICATION_LABEL": "Indication",
+        "INDICATION_TYPE_LABEL": "Indication type"
+      },
+      "CLOSE_BUTTON_TITLE": "Close",
+      "CONFIRM_BUTTON_TITLE": "Add"
+    }
+  }
 }

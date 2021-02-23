@@ -1,4 +1,4 @@
-export interface UserDiseaseInfoInterface {
+export class UserDiseaseInfoInterface {
   diabetesType: string;
   illPeriod: {
     time: string;

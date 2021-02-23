@@ -4,14 +4,14 @@
  *
  * It does this by:
  *
- * - Patching the Angular CLI to warn you in case you accidentally use the undecorated ng command.
+ * - Patching the Angular CLI to warn you in cases you accidentally use the undecorated ng command.
  * - Symlinking the ng to nx command, so all commands run through the Nx CLI
  * - Updating the package.json postinstall script to give you control over this script
  *
  * The Nx CLI decorates the Angular CLI, so the Nx CLI is fully compatible with it.
  * Every command you run should work the same when using the Nx CLI, except faster.
  *
- * Because of symlinking you can still type `ng build/test/lint` in the terminal. The ng command, in this case,
+ * Because of symlinking you can still type `ng build/test/lint` in the terminal. The ng command, in this cases,
  * will point to nx, which will perform optimizations before invoking ng. So the Angular CLI is always invoked.
  * The Nx CLI simply does some optimizations before invoking the Angular CLI.
  *

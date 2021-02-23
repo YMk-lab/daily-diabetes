@@ -14,7 +14,7 @@ export class UsersController {
 
   @SkipAuth()
   @Post('create')
-  async create(@Body() user: UserInterface): Promise<UserDocument | any> {
+  async create(@Body('user') user: UserInterface): Promise<UserDocument | any> {
     return this.usersService.createUser(user);
   }
 

@@ -7,5 +7,9 @@ export const API_ENDPOINTS = {
   USERS: {
     CREATE: 'users/create',
     ME: 'users/me'
+  },
+  CASES: {
+    CREATE: 'cases/create',
+    FIND_ALL: 'cases/all'
   }
 };

@@ -1,3 +1,39 @@
 {
-  "PATIENT_CASES": {}
+  "PATIENT_CASES": {
+    "EMPTY_CASE_LIST_TITLE": "У вас немає жодних записів поки що",
+    "CASE_MODAL": {
+      "TITLE": "Додати новий запис",
+      "CURRENT_DAY_CONTROL": {
+        "LABEL": "Поточний день"
+      },
+      "CURRENT_TIME_CONTROL": {
+        "LABEL": "Поточний час"
+      },
+      "SHORT_INSULIN_CONTROL": {
+        "LABEL_SUFFIX": "(К-сть. Од.)"
+
+      },
+      "BASE_INSULIN_CONTROL": {
+        "LABEL_SUFFIX": "(К-сть. Од.)"
+      },
+      "MEAL_TYPE": {
+        "LABEL": "Виберіть тип прийому їжі",
+        "VALUES": {
+          "BREAKFAST": "Сніданок",
+          "DINNER": "Обід",
+          "SUPPER": "Вечеря",
+          "SNACK": "Перекус"
+        }
+      },
+      "MEAL_DESCRIPTION": {
+        "PLACEHOLDER": "Опишіть детально їжу, яку ви прийняли, кількість та її інгрідієнти"
+      },
+      "GLUCOMETER": {
+        "INDICATION_LABEL": "Показник",
+        "INDICATION_TYPE_LABEL": "Тип показника"
+      },
+      "CLOSE_BUTTON_TITLE": "Закрити",
+      "CONFIRM_BUTTON_TITLE": "Додати"
+    }
+  }
 }

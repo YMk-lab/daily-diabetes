@@ -2,25 +2,28 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { QuillModule } from 'ngx-quill';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MaterialSharedModule } from '@daily-diabetes/material-shared';
 
 import { PatientCasesComponent } from './components/patient-cases/patient-cases.component';
 import { PatientCasesRoutingModule } from './patient-cases-routing.module';
-import { EmptyCasesListComponent } from './components/empty-cases-list/empty-cases-list.component';
 import { AddNewCaseModalComponent } from './components/add-new-case-modal/add-new-case-modal.component';
-import { QuillModule } from 'ngx-quill';
+import { CasesListComponent } from './components/cases-list/cases-list.component';
 
 
 @NgModule({
   declarations: [
     PatientCasesComponent,
-    EmptyCasesListComponent,
-    AddNewCaseModalComponent
+    AddNewCaseModalComponent,
+    CasesListComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     PatientCasesRoutingModule,
+    TranslateModule,
     QuillModule.forRoot(),
 
     // DD shared modules
