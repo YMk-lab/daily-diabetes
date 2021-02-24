@@ -1,6 +1,10 @@
+@import '~ngx-toastr/toastr';
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+
 // DD styles
 @import "assets/styles/mixins/dd-auth-scaffold.mixin";
-@import '~ngx-toastr/toastr';
+@import "assets/styles/general-classes";
 
 html, body {height: 100%; }
 body { margin: 0; font-family: 'Helvetica', sans-serif; }

@@ -5,15 +5,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { UsersModule } from './repositories/users/users.module';
 import { AuthModule } from './repositories/auth/auth.module';
+import { CasesModule } from './repositories/cases/cases.module';
 import { ENV_VARS } from './config/variables';
 
 @Module({
-  controllers: [ ],
-  providers: [],
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     UsersModule,
+    CasesModule,
     PassportModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

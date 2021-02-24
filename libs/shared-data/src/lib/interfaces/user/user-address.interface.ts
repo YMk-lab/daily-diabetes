@@ -1,4 +1,4 @@
-export interface UserAddressInterface {
+export class UserAddressInterface {
   country: string;
   cityOrVillage: string;
   address: string;

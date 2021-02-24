@@ -1,3 +1,4 @@
+@import "../../../../assets/styles/variables";
 @import "../../../../assets/styles/mixins/dd-progress-bar-onload.mixin";
 
 dd-main {
@@ -6,7 +7,7 @@ dd-main {
   height: 100%;
 
   .dd-main-container {
-    background-color: #eeeeee;
+    background-color: $generalGreyColor;
     width: inherit;
     height: inherit;
 
@@ -15,7 +16,8 @@ dd-main {
       min-width: 320px;
       background-color: transparent;
       border-right: none;
-      box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+      box-shadow: $triFactorBoxShadow;
+      color: $generalBlackColor;
 
       @include dd-progress-bar-onload();
 
@@ -52,7 +54,7 @@ dd-main {
     }
 
     .dd-main-content {
-      color: #000000;
+      color: $generalBlackColor;
       padding: 20px;
       height: calc(100% - 40px);
     }

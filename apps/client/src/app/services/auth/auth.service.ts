@@ -58,8 +58,8 @@ export class AuthService {
 
   register(patient: UserInterface): Observable<UserInterface> {
     return this.http.post<UserInterface>(
-      `${ environment.server.host }/${ environment.server.prefix }/${ API_ENDPOINTS.REGISTRATION.CREATE }`,
-      patient
+      `${ environment.server.host }/${ environment.server.prefix }/${ API_ENDPOINTS.USERS.CREATE }`,
+      { user: patient }
     );
   }
 

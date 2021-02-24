@@ -53,6 +53,13 @@ export class HttpErrorsHandlerInterceptor implements HttpInterceptor {
           );
           break;
 
+        case HttpStatusesEnum.NOT_FOUND:
+          this.getErrorNotification(
+            this.translateService.instant('APP.ERRORS.NOT_FOUND.TITLE'),
+            this.translateService.instant('APP.ERRORS.NOT_FOUND.TEXT'),
+          );
+          break;
+
         case HttpStatusesEnum.CONFLICT:
           this.getErrorNotification(
             this.translateService.instant(`${ error.error.title }`),

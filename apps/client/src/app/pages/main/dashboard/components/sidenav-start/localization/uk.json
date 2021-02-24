@@ -1,0 +1,12 @@
+{
+  "SIDENAV_START": {
+    "LINKS": {
+      "MY_CASES": "Мої записи",
+      "MY_PROFILE": "Мій профіль",
+      "STATISTICS": "Статистика",
+      "ADD_PREVIOUS_CASES": "Додати попередні записи",
+      "PRODUCT_TABLE": "Таблиця продуктів",
+      "SETTINGS": "Налаштування"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { UserAddressInterface } from './user-address.interface';
 import { UserDiseaseInfoInterface } from './user-disease-info.interface';
 
-export interface UserInterface {
+export class UserInterface {
   _id?: any;
   uuid?: string;
   role?: string;

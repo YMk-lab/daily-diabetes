@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { UserInterface } from '@daily-diabetes/shared-data';
 
-import { NavigationLinksInterface } from '../../../interfaces/navigation-links.interface';
+import { NavigationLinksInterface } from '../../../../../interfaces/navigation-links.interface';
 
 @Component({
   selector: 'dd-sidenav-start',
@@ -25,27 +25,27 @@ export class SidenavStartComponent implements OnDestroy {
   patientProfile: UserInterface;
   navigationLinks: NavigationLinksInterface[] = [
     {
-      label: 'My cases',
+      label: 'SIDENAV_START.LINKS.MY_CASES',
       link: 'patient-cases'
     },
     {
-      label: 'My profile',
+      label: 'SIDENAV_START.LINKS.MY_PROFILE',
       link: 'patient-profile'
     },
     {
-      label: 'Statistics',
+      label: 'SIDENAV_START.LINKS.STATISTICS',
       link: 'statistics'
     },
     {
-      label: 'Add new previous cases',
+      label: 'SIDENAV_START.LINKS.ADD_PREVIOUS_CASES',
       link: 'add-previous-cases'
     },
     {
-      label: 'Products table',
+      label: 'SIDENAV_START.LINKS.PRODUCT_TABLE',
       link: 'products-table'
     },
     {
-      label: 'Settings',
+      label: 'SIDENAV_START.LINKS.SETTINGS',
       link: 'settings'
     }
   ];

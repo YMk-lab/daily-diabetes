@@ -1,3 +1,5 @@
+@import "../../../../../../assets/styles/variables";
+
 dd-sidenav-start {
 
   .dd-sidenav-start {
@@ -30,11 +32,11 @@ dd-sidenav-start {
         cursor: default;
         position: relative;
 
-        img {
+        svg {
           width: 100px;
           height: 100px;
           border-radius: 50%;
-          box-shadow: 0 0 7px 0 rgba(62, 78, 80, 0.84);
+          box-shadow: $oneFactorBoxShadow;
         }
 
         h3 {
@@ -65,8 +67,9 @@ dd-sidenav-start {
         }
 
         .is-link-active {
-          background-color: #673ab7;
-          color: #ffffff;
+          background-color: $generalThemeColor;
+          color: $whiteColor;
+          box-shadow: $oneFactorBoxShadow;
         }
 
       }
