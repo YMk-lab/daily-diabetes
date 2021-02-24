@@ -51,6 +51,8 @@
           "TEXT": "Such user does not exist"
         }
       }
-    }
+    },
+    "SAFETY_ERROR_TITLE": "Safety error",
+    "SAFETY_ERROR_MESSAGE": "You been logged out for safety reasons since illegal actions were detected"
   }
 }

@@ -44,7 +44,8 @@ import { HttpErrorsHandlerInterceptor } from './interceptors/http-errors-handler
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorsHandlerInterceptor,
       multi: true
-    }
+    },
+    { provide: 'Window',  useValue: window }
   ],
   bootstrap: [AppComponent],
 })
