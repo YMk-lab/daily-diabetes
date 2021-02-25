@@ -45,15 +45,21 @@
 
       <div class='form-field-row column-direction'>
 
-        <mat-label>
-          {{ patientProfile.diseaseInfo.baseInsulin }}
-          {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.LABEL_SUFFIX' | translate }}
-        </mat-label>
+        <div class='checkbox-row'>
+          <mat-label>
+            {{ patientProfile.diseaseInfo.baseInsulin }}
+            {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.LABEL_SUFFIX' | translate }}
+          </mat-label>
+          <mat-checkbox (change)='saveBaseInsulinState($event)' [checked]='baseInsulinStateChecked'>
+            {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.STABLE_DOSE' | translate }}
+          </mat-checkbox>
+        </div>
+
         <mat-slider thumbLabel
                     tickInterval="1"
                     min="0"
                     max="99"
-                    formControlName='baseInsulin'>
+                    formControlName='baseInsulin' (change)='baseInsulinStateChecked = false'>
         </mat-slider>
 
       </div>
@@ -66,7 +72,7 @@
           <mat-chip-list [selectable]='true' [multiple]='false' formControlName='mealType'>
             <mat-chip *ngFor='let mealType of mealTypeChipList;'
                       (click)='selectMealType(mealType)'
-                      [value]='mealType.value' [selected]='mealType.selected'>
+                      [value]='mealType.value'>
               {{ mealType.label | translate }}
             </mat-chip>
           </mat-chip-list>
@@ -109,7 +115,8 @@
           <mat-label>
             {{ 'PATIENT_CASES.CASE_MODAL.GLUCOMETER.INDICATION_LABEL' | translate }}
           </mat-label>
-          <input matInput type='number' min='0' max='999' formControlName='glucometerIndication' />
+          <input matInput type='number' min='0' formControlName='glucometerIndication'
+                 (keydown)='checkIndicationType($event)' />
         </mat-form-field>
 
         <mat-form-field class='glucometer-value-type'>

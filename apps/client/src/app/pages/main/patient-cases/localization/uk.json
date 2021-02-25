@@ -14,7 +14,8 @@
 
       },
       "BASE_INSULIN_CONTROL": {
-        "LABEL_SUFFIX": "(К-сть. Од.)"
+        "LABEL_SUFFIX": "(К-сть. Од.)",
+        "STABLE_DOSE": "Це моя стабільна доза"
       },
       "MEAL_TYPE": {
         "LABEL": "Виберіть тип прийому їжі",

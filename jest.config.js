@@ -3,6 +3,6 @@ module.exports = {
     '<rootDir>/apps/client',
     '<rootDir>/apps/backend',
     '<rootDir>/libs/material-shared',
-    '<rootDir>/libs/shared-data',
+    '<rootDir>/libs/shared-data'
   ],
 };

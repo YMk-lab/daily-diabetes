@@ -14,7 +14,8 @@
 
       },
       "BASE_INSULIN_CONTROL": {
-        "LABEL_SUFFIX": "(Units amount)"
+        "LABEL_SUFFIX": "(Units amount)",
+        "STABLE_DOSE": "This is my stable dose"
       },
       "MEAL_TYPE": {
         "LABEL": "Choose meal type",

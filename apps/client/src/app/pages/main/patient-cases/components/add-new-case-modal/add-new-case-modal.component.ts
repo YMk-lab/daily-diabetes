@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import * as moment from 'moment';
 
 import { Subscription } from 'rxjs';
@@ -9,6 +10,8 @@ import { CaseInterface, UserInterface } from '@daily-diabetes/shared-data';
 
 import { CasesService } from '../../../../../services/cases/cases.service';
 import { MealTypeInterface } from '../../interfaces/meal-type.interface';
+import { IndicationTypeEnum } from '../../enums/indication-type.enum';
+import { LocalStorageService } from '../../../../../services/local-storage/local-storage.service';
 import { CASE_MODAL_FORM_PARAMS } from './case-modal-form.params';
 
 
@@ -29,8 +32,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
       ['bold', 'italic', 'underline'],
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
       [{ 'indent': '-1'}, { 'indent': '+1' }],
-      [{ 'size': ['small', false, 'large', 'huge'] }],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'header': [1, 2, 3, 4, false] }],
       [{ 'color': [] }, { 'background': [] }],
       [{ 'align': [] }]
     ]
@@ -54,6 +56,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     }
   ];
   indicationTypes: string[] = ['mmol/L', 'mg/dL'];
+  baseInsulinStateChecked: boolean;
 
   private addNewCaseModal: any;
   private subscriptions: Subscription = new Subscription();
@@ -63,7 +66,8 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     private modalData: { patientProfile: UserInterface },
     private modal: MatDialog,
     private fb: FormBuilder,
-    private casesService: CasesService
+    private casesService: CasesService,
+    private lsService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -75,11 +79,14 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
       [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [moment().format('HH:mm')],
       [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [0],
       [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [0],
-      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: [''],
+      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: ['breakfast'],
       [CASE_MODAL_FORM_PARAMS.MEAL_DESCRIPTION]: [''],
-      [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION]: ['0.0'],
+      [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION]: [''],
       [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE]: ['mmol/L']
     });
+
+    this.initIndication();
+    this.initBaseInsulinState();
   }
 
   selectMealType(mealType: any) {
@@ -103,7 +110,65 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
       .subscribe((createdCase: CaseInterface) => this.addNewCaseModal.close(createdCase));
   }
 
+  checkIndicationType(event: KeyboardEvent): void {
+    const isDecimal = this.form.controls[CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE].value === IndicationTypeEnum.DECIMAL;
+
+    if (!isDecimal && event.code === 'Period' || event.code === 'Comma') {
+      event.preventDefault();
+    }
+
+    if (event.code === 'Minus') {
+      event.preventDefault();
+    }
+  }
+
+  saveBaseInsulinState(state: MatCheckboxChange): void {
+    state.checked ? this.storeBaseInsulinState(): this.revokeBaseInsulinState();
+  }
+
+  revokeBaseInsulinState(): void {
+    this.lsService.remove('base-insulin-state');
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  private initIndication(): any {
+    const indicationControl = this.form.controls[CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION];
+    const indicationTypeControl = this.form.controls[CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE];
+
+    if (indicationTypeControl.value === IndicationTypeEnum.DECIMAL) {
+      indicationControl.setValue('0.0');
+    }
+
+    if (indicationTypeControl.value === IndicationTypeEnum.INTEGER) {
+      indicationControl.setValue('0');
+    }
+
+    const indicationTypeSubscription = this.form.controls[CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE]
+      .valueChanges.subscribe(() => this.initIndication());
+
+    this.subscriptions.add(indicationTypeSubscription);
+  }
+
+  private initBaseInsulinState(): void {
+    const state = this.lsService.get('base-insulin-state') as any;
+
+    if (!state) {
+      return;
+    }
+
+    this.form.controls[CASE_MODAL_FORM_PARAMS.BASE_INSULIN].setValue(state.value);
+    this.baseInsulinStateChecked = state.checked;
+  }
+
+  private storeBaseInsulinState(): void {
+    const state = {
+      checked: true,
+      value: this.form.controls[CASE_MODAL_FORM_PARAMS.BASE_INSULIN].value
+    };
+
+    this.lsService.set('base-insulin-state', state);
   }
 }

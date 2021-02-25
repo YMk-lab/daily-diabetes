@@ -17,7 +17,9 @@ import { currentLocale } from './helpers/locale-factory';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
