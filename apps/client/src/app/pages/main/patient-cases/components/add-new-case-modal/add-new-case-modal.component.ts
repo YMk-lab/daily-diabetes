@@ -26,8 +26,13 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
   currentDay = new Date();
   editorConfig = {
     toolbar: [
-      [{ list: 'ordered' }],
-      ['bold', 'italic', 'underline']
+      ['bold', 'italic', 'underline'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }]
     ]
   }
   mealTypeChipList: MealTypeInterface[] = [
