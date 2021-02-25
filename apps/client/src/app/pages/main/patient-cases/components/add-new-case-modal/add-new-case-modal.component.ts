@@ -128,6 +128,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
 
   revokeBaseInsulinState(): void {
     this.lsService.remove('base-insulin-state');
+    this.baseInsulinStateChecked = false;
   }
 
   ngOnDestroy(): void {
