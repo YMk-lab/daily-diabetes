@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
@@ -12,6 +13,8 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpLocalizationLoader } from './classes/http-localization-loader';
 import { HttpErrorsHandlerInterceptor } from './interceptors/http-errors-handler.interceptor';
+import { currentLocale } from './helpers/locale-factory';
+import { LocalStorageService } from './services/local-storage/local-storage.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +38,7 @@ import { HttpErrorsHandlerInterceptor } from './interceptors/http-errors-handler
     })
   ],
   providers: [
+    { provide: 'Window',  useValue: window },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -45,7 +49,12 @@ import { HttpErrorsHandlerInterceptor } from './interceptors/http-errors-handler
       useClass: HttpErrorsHandlerInterceptor,
       multi: true
     },
-    { provide: 'Window',  useValue: window }
+    {
+      provide: MAT_DATE_LOCALE,
+      useFactory: currentLocale,
+      deps: [LocalStorageService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })

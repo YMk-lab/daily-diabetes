@@ -55,6 +55,20 @@
 
     <form [formGroup]='loginForm' (ngSubmit)='submit()'>
 
+      <mat-form-field appearance='outline'>
+
+        <mat-label>{{ 'LOGIN.LANGUAGES.TITLE' | translate }}</mat-label>
+
+        <mat-select formControlName='language'>
+          <mat-option *ngFor='let lang of languagesList'
+                      [value]='lang.value'
+                      (click)='selectLanguage(lang)'>
+            {{ lang.title | translate }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
       <mat-form-field appearance="outline">
 
         <mat-label>{{ 'LOGIN.FORM.EMAIL_CONTROL.LABEL' | translate }}</mat-label>
