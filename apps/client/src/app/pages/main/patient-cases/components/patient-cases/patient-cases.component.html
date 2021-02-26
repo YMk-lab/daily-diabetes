@@ -1,10 +1,6 @@
-<div class='dd-patient-cases-container' *ngIf='casesList; else isLoading'>
+<div class='dd-patient-cases-container' *ngIf='caseGroups; else isLoading'>
 
-  <button mat-mini-fab color='primary' *ngIf='casesList' (click)='openNewCaseModal()'>
-    +
-  </button>
-
-  <div class='dd-empty-cases-list' *ngIf='!(casesList && casesList.length)'>
+  <div class='dd-empty-cases-list' *ngIf='!(caseGroups && caseGroups.length)'>
 
     <h3>{{ 'PATIENT_CASES.EMPTY_CASE_LIST_TITLE' | translate }}</h3>
     <button mat-mini-fab color='primary' (click)='openNewCaseModal()'>
@@ -13,17 +9,25 @@
 
   </div>
 
-  <!-- ADD top nav bar with toggle button for filters sidenav -->
-  <!-- ADD cases-list [case]="case" -->
+  <dd-actions-panel
+    *ngIf='caseGroups && caseGroups.length'
+    (openNewCaseModal)='openNewCaseModal()'>
+  </dd-actions-panel>
 
-  <pre>
-    {{ casesList | json }}
-  </pre>
+  <dd-case-group *ngFor='let group of caseGroups' [group]='group'></dd-case-group>
+
+  <mat-paginator
+    class='dd-patient-cases-paginator'
+    *ngIf='caseGroups && caseGroups.length'
+    [length]="caseGroups.length"
+    [pageSize]="20"></mat-paginator>
 
 </div>
 
 <ng-template #isLoading>
+
   <div class='dd-progress-bar-onload'>
     <mat-progress-bar mode='buffer'></mat-progress-bar>
   </div>
+
 </ng-template>

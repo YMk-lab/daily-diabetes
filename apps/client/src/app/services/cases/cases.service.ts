@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { CaseInterface } from '@daily-diabetes/shared-data';
+import { CaseGroupInterface, CaseInterface } from '@daily-diabetes/shared-data';
 
 import { environment } from '../../../environments/environment';
 import { API_ENDPOINTS } from '../../helpers/api-endpoints.helper';
@@ -22,8 +22,8 @@ export class CasesService {
     );
   }
 
-  getAll(userId: string): Observable<CaseInterface[]> {
-    return this.http.post<CaseInterface[]>(
+  getAll(userId: string): Observable<CaseGroupInterface[]> {
+    return this.http.post<CaseGroupInterface[]>(
       `${ environment.server.host }/${ environment.server.prefix }/${ API_ENDPOINTS.CASES.FIND_ALL }`,
       { userId: userId }
     );

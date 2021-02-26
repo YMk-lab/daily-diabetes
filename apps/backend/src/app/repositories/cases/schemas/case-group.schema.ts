@@ -19,6 +19,18 @@ export class CaseGroup extends Document {
   @Prop()
   title: string;
 
+  @Prop()
+  lastIndication: number;
+
+  @Prop()
+  lastIndicationType: string;
+
+  @Prop()
+  lastShortInsulin: number;
+
+  @Prop()
+  lastBaseInsulin: number;
+
   @Prop({ type: Case })
   caseList: Case[];
 

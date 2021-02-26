@@ -1,5 +1,6 @@
 .dd-patient-cases-container {
   position: relative;
+  flex-direction: column;
   display: flex;
   height: 100%;
 
@@ -10,5 +11,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .dd-patient-cases-paginator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #eeeeee;
+
+    .mat-paginator-container {
+      justify-content: flex-start;
+    }
+
   }
 }

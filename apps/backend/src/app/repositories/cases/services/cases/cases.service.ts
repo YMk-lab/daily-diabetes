@@ -20,7 +20,11 @@ export class CasesService {
     if (!foundCaseGroup) {
       const createdCaseGroup = new this.caseGroupModel({
         userId: newCase.userId,
-        title: newCase.currentDay
+        title: newCase.currentDay,
+        lastIndication: newCase.glucometerIndication,
+        lastIndicationType: newCase.glucometerIndicationType,
+        lastShortInsulin: newCase.shortInsulin,
+        lastBaseInsulin: newCase.baseInsulin
       });
       const savedCaseGroup = await createdCaseGroup.save();
 
@@ -33,6 +37,10 @@ export class CasesService {
     if (foundCaseGroup) {
       return await foundCaseGroup.updateOne({
         uuid: foundCaseGroup.uuid,
+        lastIndication: newCase.glucometerIndication,
+        lastIndicationType: newCase.glucometerIndicationType,
+        lastShortInsulin: newCase.shortInsulin,
+        lastBaseInsulin: newCase.baseInsulin,
         $push: { caseList: newCase }
       }).exec();
     }

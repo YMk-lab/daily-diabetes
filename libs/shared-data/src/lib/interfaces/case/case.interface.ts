@@ -8,6 +8,6 @@ export class CaseInterface {
   baseInsulin: number;
   mealType: string;
   mealDescription: string;
-  glucometerIndication: number | string;
+  glucometerIndication: number;
   glucometerIndicationType: string;
 }
