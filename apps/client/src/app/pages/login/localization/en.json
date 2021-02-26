@@ -22,6 +22,11 @@
     "REGISTER_TEXT": {
       "TITLE": "Sign up if your are not yet",
       "LINK": "registered"
+    },
+    "LANGUAGES": {
+      "TITLE": "Choose your language",
+      "UKR": "Ukrainian",
+      "ENG": "English"
     }
   }
 }

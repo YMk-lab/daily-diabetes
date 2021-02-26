@@ -16,8 +16,8 @@ export class CaseGroup extends Document {
   @Prop({ default: uuv4() })
   uuid: string;
 
-  @Prop({ default: new Date() })
-  title: Date;
+  @Prop()
+  title: string;
 
   @Prop({ type: Case })
   caseList: Case[];

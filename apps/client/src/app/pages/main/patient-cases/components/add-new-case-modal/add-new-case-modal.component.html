@@ -45,15 +45,22 @@
 
       <div class='form-field-row column-direction'>
 
-        <mat-label>
-          {{ patientProfile.diseaseInfo.baseInsulin }}
-          {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.LABEL_SUFFIX' | translate }}
-        </mat-label>
+        <div class='checkbox-row'>
+          <mat-label>
+            {{ patientProfile.diseaseInfo.baseInsulin }}
+            {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.LABEL_SUFFIX' | translate }}
+          </mat-label>
+          <mat-checkbox (change)='saveBaseInsulinState($event)' [checked]='baseInsulinStateChecked'>
+            {{ 'PATIENT_CASES.CASE_MODAL.BASE_INSULIN_CONTROL.STABLE_DOSE' | translate }}
+          </mat-checkbox>
+        </div>
+
         <mat-slider thumbLabel
                     tickInterval="1"
                     min="0"
                     max="99"
-                    formControlName='baseInsulin'>
+                    formControlName='baseInsulin'
+                    (change)='revokeBaseInsulinState()'>
         </mat-slider>
 
       </div>
@@ -66,7 +73,7 @@
           <mat-chip-list [selectable]='true' [multiple]='false' formControlName='mealType'>
             <mat-chip *ngFor='let mealType of mealTypeChipList;'
                       (click)='selectMealType(mealType)'
-                      [value]='mealType.value' [selected]='mealType.selected'>
+                      [value]='mealType.value'>
               {{ mealType.label | translate }}
             </mat-chip>
           </mat-chip-list>
@@ -101,7 +108,7 @@
             <ellipse style="fill: rgb(231, 236, 237);" cx="225.645" cy="338.98" rx="6.449" ry="8.552"/>
             <ellipse style="fill: rgb(231, 236, 237);" cx="250.858" cy="339.509" rx="6.449" ry="8.552"/>
             <ellipse style="fill: rgb(231, 236, 237);" cx="275.888" cy="339.414" rx="6.449" ry="8.552"/>
-            <rect x="142.722" y="105" width="217.598" height="164" style="stroke-opacity: 0; stroke: rgb(186, 218, 85); stroke-linecap: round; stroke-miterlimit: 32; fill: rgb(66, 66, 66); stroke-linejoin: round; stroke-dashoffset: 11px; paint-order: stroke;"/>
+            <rect x="142.722" y="105" width="217.598" height="164" style="stroke-opacity: 0; stroke: rgb(186, 218, 85); stroke-linecap: round; stroke-miterlimit: 32; fill: #ffffff; stroke-linejoin: round; stroke-dashoffset: 11px; paint-order: stroke;"/>
           </g>
         </svg>
 
@@ -109,7 +116,8 @@
           <mat-label>
             {{ 'PATIENT_CASES.CASE_MODAL.GLUCOMETER.INDICATION_LABEL' | translate }}
           </mat-label>
-          <input matInput type='number' min='0' max='999' formControlName='glucometerIndication' />
+          <input matInput type='number' min='0' formControlName='glucometerIndication'
+                 (keydown)='checkIndicationType($event)' />
         </mat-form-field>
 
         <mat-form-field class='glucometer-value-type'>

@@ -70,10 +70,10 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
+  logout(refreshTokenID?: string): Observable<any> {
     return this.http.post(
       `${ environment.server.host }/${ environment.server.prefix }/${ API_ENDPOINTS.AUTH.LOGOUT }`,
-      { refreshTokenID: this.lsService.get('refresh-token-id') }
+      { refreshTokenID: refreshTokenID || this.lsService.get('refresh-token-id') }
     ).pipe(switchMap((_: any) => {
 
       this.lsService.remove('access-token');

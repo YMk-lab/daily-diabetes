@@ -95,6 +95,6 @@ export class HttpErrorsHandlerInterceptor implements HttpInterceptor {
       progressAnimation: 'decreasing',
       progressBar: true,
       newestOnTop: true
-    })
+    });
   }
 }

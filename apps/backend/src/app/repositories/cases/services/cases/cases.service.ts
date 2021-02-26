@@ -12,10 +12,16 @@ export class CasesService {
 
   async create(newCase: Case): Promise<CaseGroupDocument | any> {
 
-    const foundCaseGroup = await this.caseGroupModel.findOne({ userId: newCase.userId });
+    const foundCaseGroup = await this.caseGroupModel.findOne({
+      userId: newCase.userId,
+      title: newCase.currentDay
+    });
 
     if (!foundCaseGroup) {
-      const createdCaseGroup = new this.caseGroupModel({ userId: newCase.userId });
+      const createdCaseGroup = new this.caseGroupModel({
+        userId: newCase.userId,
+        title: newCase.currentDay
+      });
       const savedCaseGroup = await createdCaseGroup.save();
 
       return await savedCaseGroup.updateOne({

@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@daily-diabetes/material-shared": ["libs/material-shared/src/index.ts"],
-      "@daily-diabetes/shared-data": ["libs/shared-data/src/index.ts"]
+      "@daily-diabetes/shared-data": ["libs/shared-data/src/index.ts"],
+      "@daily-diabetes/common-shared": ["libs/common-shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
