@@ -26,7 +26,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
   patientProfile: UserInterface;
-  currentDay = new Date();
+  currentDay: Date = new Date();
   editorConfig = {
     toolbar: [
       ['bold', 'italic', 'underline'],
@@ -103,8 +103,9 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     }
 
     const newCase = this.form.value as CaseInterface;
-    newCase.currentDay = this.currentDay;
     newCase.userId = this.patientProfile.uuid;
+    newCase.currentDay = moment(this.form.controls[CASE_MODAL_FORM_PARAMS.CURRENT_DAY].value)
+      .format('DD.MM.YYYY');
 
     this.casesService.create(newCase)
       .subscribe((createdCase: CaseInterface) => this.addNewCaseModal.close(createdCase));
