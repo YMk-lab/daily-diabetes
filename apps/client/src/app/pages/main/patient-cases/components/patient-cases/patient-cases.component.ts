@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 
 import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
 
   caseGroups: CaseGroupInterface[];
   areCasesLoaded: boolean;
+  today = moment(new Date()).format('DD.MM.YYYY');
 
   private patientProfile: UserInterface;
   private subscriptions: Subscription = new Subscription();
@@ -34,7 +36,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     this.initCaseGroupsList();
   }
 
-  initCaseGroupsList() {
+  initCaseGroupsList(): void {
     const casesSubscription = this.usersService.patient$.pipe(
       switchMap((patientProfile: UserInterface) => {
 
@@ -42,7 +44,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
         return this.initCaseGroups(patientProfile.uuid);
       })
     ).subscribe((caseGroups: CaseGroupInterface[]) => {
-      this.caseGroups = caseGroups;
+      this.caseGroups = caseGroups.reverse();
       this.areCasesLoaded = !!(caseGroups && caseGroups.length);
     });
 

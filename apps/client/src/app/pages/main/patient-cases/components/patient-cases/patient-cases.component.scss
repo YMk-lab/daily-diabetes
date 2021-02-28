@@ -1,3 +1,5 @@
+@import "../../../../../../assets/styles/variables";
+
 .dd-patient-cases-container {
   position: relative;
   flex-direction: column;
@@ -13,16 +15,89 @@
     flex-direction: column;
   }
 
-  .dd-patient-cases-paginator {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #eeeeee;
+  .dd-patient-cases-actions-panel {
+    margin-bottom: 10px;
+  }
 
-    .mat-paginator-container {
-      justify-content: flex-start;
+  mat-accordion {
+    height: 100%;
+
+    .dd-patient-cases-viewport {
+      min-height: 100%;
+
+      mat-expansion-panel {
+        border-radius: 0;
+
+        &:first-of-type {
+          border-radius: 0;
+        }
+
+        &:last-of-type {
+          border-radius: 0;
+        }
+
+        &.current-day {
+          border-left: 3px solid $generalThemeColor;
+        }
+
+        mat-expansion-panel-header {
+
+          mat-panel-title {
+
+            mat-chip-list {
+
+              mat-chip {
+                min-height: 20px;
+              }
+
+            }
+
+          }
+
+          mat-panel-description {
+            display: flex;
+
+            .dd-patient-cases-group-item {
+              min-width: 150px;
+              max-width: 200px;
+              display: flex;
+              align-items: center;
+
+              span {
+                font-style: italic;
+                font-size: 12px;
+                min-width: 70px;
+
+                i {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: 16px;
+                  background-color: $generalThemeColor;
+                  color: $whiteColor;
+                  padding: 0 5px;
+                  margin-left: 5px;
+                  min-height: 20px;
+                }
+
+              }
+
+              svg {
+                margin-left: 5px;
+
+                path {
+                  fill: $generalThemeColor;
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
     }
-
   }
 }

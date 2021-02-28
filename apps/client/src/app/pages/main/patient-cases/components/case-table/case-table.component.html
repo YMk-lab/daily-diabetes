@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="cases" class="mat-elevation-z2">
+
+  <ng-container matColumnDef="currentTime">
+    <th mat-header-cell *matHeaderCellDef>Time</th>
+    <td mat-cell *matCellDef="let element">{{ element.currentTime }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="glucometerIndication">
+    <th mat-header-cell *matHeaderCellDef>Glucose indication</th>
+    <td mat-cell *matCellDef="let element">{{ element.glucometerIndication }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="glucometerIndicationType">
+    <th mat-header-cell *matHeaderCellDef>Glucose indication type</th>
+    <td mat-cell *matCellDef="let element">{{ element.glucometerIndicationType }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="shortInsulin">
+    <th mat-header-cell *matHeaderCellDef>Amount of Short Insulin</th>
+    <td mat-cell *matCellDef="let element">{{ element.shortInsulin }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="baseInsulin">
+    <th mat-header-cell *matHeaderCellDef>Amount of Base Insulin</th>
+    <td mat-cell *matCellDef="let element">{{ element.baseInsulin }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="mealType">
+    <th mat-header-cell *matHeaderCellDef>Meal type</th>
+    <td mat-cell *matCellDef="let element">{{ element.mealType }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="mealDescription">
+    <th mat-header-cell *matHeaderCellDef>What was eaten</th>
+    <td mat-cell *matCellDef="let element" [innerHTML]='element.mealDescription'></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumnDefs"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumnDefs;"></tr>
+</table>
+
