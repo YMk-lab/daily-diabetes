@@ -1,10 +1,6 @@
-<div class='dd-patient-cases-container' *ngIf='casesList; else isLoading'>
+<div class='dd-patient-cases-container' *ngIf='caseGroups; else isLoading'>
 
-  <button mat-mini-fab color='primary' *ngIf='casesList' (click)='openNewCaseModal()'>
-    +
-  </button>
-
-  <div class='dd-empty-cases-list' *ngIf='!(casesList && casesList.length)'>
+  <div class='dd-empty-cases-list' *ngIf='!(caseGroups && caseGroups.length)'>
 
     <h3>{{ 'PATIENT_CASES.EMPTY_CASE_LIST_TITLE' | translate }}</h3>
     <button mat-mini-fab color='primary' (click)='openNewCaseModal()'>
@@ -13,17 +9,66 @@
 
   </div>
 
-  <!-- ADD top nav bar with toggle button for filters sidenav -->
-  <!-- ADD cases-list [case]="case" -->
+  <div class='dd-patient-cases-actions-panel'>
 
-  <pre>
-    {{ casesList | json }}
-  </pre>
+    <button mat-mini-fab color='primary' (click)='openNewCaseModal()'>
+      +
+    </button>
+
+  </div>
+
+  <table class='dd-patient-cases-group-table' mat-table [dataSource]='caseGroups'>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Current day</th>
+      <td mat-cell *matCellDef="let element">
+
+        <mat-chip-list *ngIf='element.title === today'>
+          <mat-chip color='default' [selected]='element.title === today'>{{ element.title }}</mat-chip>
+        </mat-chip-list>
+
+        <ng-container *ngIf='element.title !== today'>
+          {{ element.title }}
+        </ng-container>
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastIndication">
+      <th mat-header-cell *matHeaderCellDef>Last glucose indication</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastIndication }} {{ element.lastIndicationType }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastShortInsulin">
+      <th mat-header-cell *matHeaderCellDef>Last injected short insulin</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastShortInsulin }} Un.</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastBaseInsulin">
+      <th mat-header-cell *matHeaderCellDef>Last injected base insulin</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastBaseInsulin }} Un.</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element"></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="groupsTableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: groupsTableColumns;" (click)='test(row)'></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[13]"
+                 [length]='caseGroups.length'
+                 showFirstLastButtons>
+  </mat-paginator>
 
 </div>
 
 <ng-template #isLoading>
+
   <div class='dd-progress-bar-onload'>
     <mat-progress-bar mode='buffer'></mat-progress-bar>
   </div>
+
 </ng-template>

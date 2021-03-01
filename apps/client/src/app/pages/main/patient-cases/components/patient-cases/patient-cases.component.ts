@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 
 import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { CaseInterface, UserInterface } from '@daily-diabetes/shared-data';
+import { CaseGroupInterface, UserInterface } from '@daily-diabetes/shared-data';
 
 import { CasesService } from '../../../../../services/cases/cases.service';
 import { UsersService } from '../../../../../services/users/users.service';
@@ -18,8 +19,16 @@ import { AddNewCaseModalComponent } from '../add-new-case-modal/add-new-case-mod
 })
 export class PatientCasesComponent implements OnInit, OnDestroy {
 
-  casesList: CaseInterface[];
+  caseGroups: CaseGroupInterface[];
   areCasesLoaded: boolean;
+  today = moment(new Date()).format('DD.MM.YYYY');
+  groupsTableColumns: string[] = [
+    'title',
+    'lastIndication',
+    'lastShortInsulin',
+    'lastBaseInsulin',
+    'actions'
+  ];
 
   private patientProfile: UserInterface;
   private subscriptions: Subscription = new Subscription();
@@ -31,19 +40,19 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.initCaseListData();
+    this.initCaseGroupsList();
   }
 
-  initCaseListData() {
+  initCaseGroupsList(): void {
     const casesSubscription = this.usersService.patient$.pipe(
       switchMap((patientProfile: UserInterface) => {
 
         this.patientProfile = patientProfile;
-        return this.initCases(patientProfile.uuid);
+        return this.initCaseGroups(patientProfile.uuid);
       })
-    ).subscribe((casesList: CaseInterface[]) => {
-      this.casesList = casesList;
-      this.areCasesLoaded = !!(casesList && casesList.length);
+    ).subscribe((caseGroups: CaseGroupInterface[]) => {
+      this.caseGroups = caseGroups.reverse();
+      this.areCasesLoaded = !!(caseGroups && caseGroups.length);
     });
 
     this.subscriptions.add(casesSubscription);
@@ -63,7 +72,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
 
     const modalSubscription = modal.afterClosed().subscribe((data) => {
       if (data) {
-        this.initCaseListData();
+        this.initCaseGroupsList();
       }
     });
     this.subscriptions.add(modalSubscription);
@@ -73,7 +82,11 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  private initCases(uuid: string): Observable<CaseInterface[]> {
+  private initCaseGroups(uuid: string): Observable<CaseGroupInterface[]> {
     return this.casesService.getAll(uuid);
+  }
+
+  test(row) {
+    console.log(row);
   }
 }

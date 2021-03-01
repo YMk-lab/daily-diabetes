@@ -35,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -73,7 +74,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
+    ScrollingModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -111,7 +113,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
+    ScrollingModule
   ],
 })
 export class MaterialSharedModule { }

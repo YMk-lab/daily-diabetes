@@ -1,7 +1,12 @@
+@import "../../../../../../assets/styles/variables";
+
 .dd-patient-cases-container {
   position: relative;
+  flex-direction: column;
   display: flex;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .dd-empty-cases-list {
     display: flex;
@@ -10,5 +15,41 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .dd-patient-cases-actions-panel {
+
+    button {
+      box-shadow: none;
+    }
+
+  }
+
+  .dd-patient-cases-group-table {
+    width: 100%;
+    margin-top: 20px;
+
+    tbody {
+      tr {
+        cursor: pointer;
+        transition: 0.3s ease;
+
+        &:hover {
+          background-color: $generalGreyColor;
+        }
+      }
+    }
+  }
+
+  mat-paginator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    .mat-paginator-container {
+      justify-content: flex-start;
+    }
+
   }
 }
