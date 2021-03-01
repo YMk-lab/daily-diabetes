@@ -13,8 +13,8 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpLocalizationLoader } from './classes/http-localization-loader';
 import { HttpErrorsHandlerInterceptor } from './interceptors/http-errors-handler.interceptor';
-import { currentLocale } from './helpers/locale-factory';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { currentLocale } from './helpers/locale-factory';
 
 @NgModule({
   declarations: [

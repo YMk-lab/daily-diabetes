@@ -21,7 +21,6 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
 
   caseGroups: CaseGroupInterface[];
   areCasesLoaded: boolean;
-  today = moment(new Date()).format('DD.MM.YYYY');
   groupsTableColumns: string[] = [
     'title',
     'lastIndication',
@@ -29,6 +28,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     'lastBaseInsulin',
     'actions'
   ];
+  isCurrentDay: boolean;
 
   private patientProfile: UserInterface;
   private subscriptions: Subscription = new Subscription();
@@ -51,7 +51,8 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
         return this.initCaseGroups(patientProfile.uuid);
       })
     ).subscribe((caseGroups: CaseGroupInterface[]) => {
-      this.caseGroups = caseGroups.reverse();
+
+      this.caseGroups = caseGroups;
       this.areCasesLoaded = !!(caseGroups && caseGroups.length);
     });
 
@@ -84,9 +85,5 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
 
   private initCaseGroups(uuid: string): Observable<CaseGroupInterface[]> {
     return this.casesService.getAll(uuid);
-  }
-
-  test(row) {
-    console.log(row);
   }
 }
