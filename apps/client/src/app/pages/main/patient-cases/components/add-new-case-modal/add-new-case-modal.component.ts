@@ -100,8 +100,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
 
     const newCase = this.form.value as CaseInterface;
     newCase.userId = this.patientProfile.uuid;
-    newCase.currentDay = moment(this.form.controls[CASE_MODAL_FORM_PARAMS.CURRENT_DAY].value)
-      .format('DD.MM.YYYY');
+    newCase.currentDay = this.form.controls[CASE_MODAL_FORM_PARAMS.CURRENT_DAY].value;
 
     this.casesService.create(newCase)
       .subscribe((createdCase: CaseInterface) => this.addNewCaseModal.close(createdCase));

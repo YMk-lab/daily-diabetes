@@ -2,7 +2,7 @@ export class CaseInterface {
   _id?: string;
   uuid?: string;
   userId?: string;
-  currentDay: string;
+  currentDay: Date;
   currentTime: string;
   shortInsulin: number;
   baseInsulin: number;

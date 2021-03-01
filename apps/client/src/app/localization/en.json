@@ -53,6 +53,9 @@
       }
     },
     "SAFETY_ERROR_TITLE": "Safety error",
-    "SAFETY_ERROR_MESSAGE": "You been logged out for safety reasons since illegal actions were detected"
+    "SAFETY_ERROR_MESSAGE": "You been logged out for safety reasons since illegal actions were detected",
+    "MAT_PAGINATOR": {
+      "LABEL": "Items per page"
+    }
   }
 }

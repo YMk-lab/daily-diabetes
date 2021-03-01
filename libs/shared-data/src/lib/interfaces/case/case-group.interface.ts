@@ -3,7 +3,7 @@ import { CaseInterface } from './case.interface';
 export class CaseGroupInterface {
   userId: string;
   uuid: string;
-  title: string;
+  title: Date;
   lastIndication: number;
   lastIndicationType: string;
   lastShortInsulin: number;

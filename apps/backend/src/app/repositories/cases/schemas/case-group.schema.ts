@@ -17,7 +17,7 @@ export class CaseGroup extends Document {
   uuid: string;
 
   @Prop()
-  title: string;
+  title: Date;
 
   @Prop()
   lastIndication: number;
