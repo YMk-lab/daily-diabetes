@@ -10,86 +10,58 @@
   </div>
 
   <div class='dd-patient-cases-actions-panel'>
+
     <button mat-mini-fab color='primary' (click)='openNewCaseModal()'>
       +
     </button>
+
   </div>
 
-  <mat-accordion>
+  <table class='dd-patient-cases-group-table' mat-table [dataSource]='caseGroups'>
 
-    <cdk-virtual-scroll-viewport itemSize="50" class="dd-patient-cases-viewport">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Current day</th>
+      <td mat-cell *matCellDef="let element">
 
-      <mat-expansion-panel *cdkVirtualFor='let group of caseGroups'
-                           [expanded]='group.title === today'>
+        <mat-chip-list *ngIf='element.title === today'>
+          <mat-chip color='default' [selected]='element.title === today'>{{ element.title }}</mat-chip>
+        </mat-chip-list>
 
-      <mat-expansion-panel-header>
+        <ng-container *ngIf='element.title !== today'>
+          {{ element.title }}
+        </ng-container>
 
-        <mat-panel-title>
+      </td>
+    </ng-container>
 
-          <mat-chip-list>
-            <mat-chip [selected]='group.title === today'>{{ group.title }}</mat-chip>
-          </mat-chip-list>
+    <ng-container matColumnDef="lastIndication">
+      <th mat-header-cell *matHeaderCellDef>Last glucose indication</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastIndication }} {{ element.lastIndicationType }}</td>
+    </ng-container>
 
-        </mat-panel-title>
+    <ng-container matColumnDef="lastShortInsulin">
+      <th mat-header-cell *matHeaderCellDef>Last injected short insulin</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastShortInsulin }} Un.</td>
+    </ng-container>
 
-        <mat-panel-description>
+    <ng-container matColumnDef="lastBaseInsulin">
+      <th mat-header-cell *matHeaderCellDef>Last injected base insulin</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastBaseInsulin }} Un.</td>
+    </ng-container>
 
-          <div class='dd-patient-cases-group-item'>
-            <span>
-              {{ group.lastIndication }} {{ group.lastIndicationType }}
-            </span>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element"></td>
+    </ng-container>
 
-            <svg matTooltip="Amount of last glucose indication"
-                 matTooltipPosition='below' width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Element/Patient_Fälle" transform="translate(-95.000000, -205.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                  <path d="M102,205 C98.142298,205 95,208.142298 95,212 C95,215.857702 98.142298,219 102,219 C105.857702,219 109,215.857702 109,212 C109,208.142298 105.857702,205 102,205 Z M102,206.4 C105.101086,206.4 107.6,208.898914 107.6,212 C107.6,215.101086 105.101086,217.6 102,217.6 C98.8989142,217.6 96.4,215.101086 96.4,212 C96.4,208.898914 98.8989142,206.4 102,206.4 Z M101.3,208.5 L101.3,209.9 L102.7,209.9 L102.7,208.5 L101.3,208.5 Z M101.3,211.3 L101.3,215.5 L102.7,215.5 L102.7,211.3 L101.3,211.3 Z" id="Shape"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
+    <tr mat-header-row *matHeaderRowDef="groupsTableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: groupsTableColumns;" (click)='test(row)'></tr>
+  </table>
 
-          <div class='dd-patient-cases-group-item'>
-            <span>
-              SI <i matRipple>{{ group.lastShortInsulin }} Un.</i>
-            </span>
-
-            <svg matTooltip="Amount of last injected short insulin in Units"
-                 matTooltipPosition='below' width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Element/Patient_Fälle" transform="translate(-95.000000, -205.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                  <path d="M102,205 C98.142298,205 95,208.142298 95,212 C95,215.857702 98.142298,219 102,219 C105.857702,219 109,215.857702 109,212 C109,208.142298 105.857702,205 102,205 Z M102,206.4 C105.101086,206.4 107.6,208.898914 107.6,212 C107.6,215.101086 105.101086,217.6 102,217.6 C98.8989142,217.6 96.4,215.101086 96.4,212 C96.4,208.898914 98.8989142,206.4 102,206.4 Z M101.3,208.5 L101.3,209.9 L102.7,209.9 L102.7,208.5 L101.3,208.5 Z M101.3,211.3 L101.3,215.5 L102.7,215.5 L102.7,211.3 L101.3,211.3 Z" id="Shape"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-
-          <div class='dd-patient-cases-group-item'>
-            <span>
-              BI <i>{{ group.lastBaseInsulin }} Un.</i>
-            </span>
-
-            <svg matTooltip="Amount of last injected base insulin in Units"
-                 matTooltipPosition='below' width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Element/Patient_Fälle" transform="translate(-95.000000, -205.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                  <path d="M102,205 C98.142298,205 95,208.142298 95,212 C95,215.857702 98.142298,219 102,219 C105.857702,219 109,215.857702 109,212 C109,208.142298 105.857702,205 102,205 Z M102,206.4 C105.101086,206.4 107.6,208.898914 107.6,212 C107.6,215.101086 105.101086,217.6 102,217.6 C98.8989142,217.6 96.4,215.101086 96.4,212 C96.4,208.898914 98.8989142,206.4 102,206.4 Z M101.3,208.5 L101.3,209.9 L102.7,209.9 L102.7,208.5 L101.3,208.5 Z M101.3,211.3 L101.3,215.5 L102.7,215.5 L102.7,211.3 L101.3,211.3 Z" id="Shape"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-
-        </mat-panel-description>
-
-      </mat-expansion-panel-header>
-
-      <dd-case-table [cases]='group.caseList'></dd-case-table>
-
-    </mat-expansion-panel>
-
-    </cdk-virtual-scroll-viewport>
-
-  </mat-accordion>
+  <mat-paginator [pageSizeOptions]="[13]"
+                 [length]='caseGroups.length'
+                 showFirstLastButtons>
+  </mat-paginator>
 
 </div>
 

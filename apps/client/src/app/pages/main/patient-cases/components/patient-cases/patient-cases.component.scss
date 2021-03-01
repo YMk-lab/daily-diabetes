@@ -5,6 +5,8 @@
   flex-direction: column;
   display: flex;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .dd-empty-cases-list {
     display: flex;
@@ -16,88 +18,38 @@
   }
 
   .dd-patient-cases-actions-panel {
-    margin-bottom: 10px;
+
+    button {
+      box-shadow: none;
+    }
+
   }
 
-  mat-accordion {
-    height: 100%;
+  .dd-patient-cases-group-table {
+    width: 100%;
+    margin-top: 20px;
 
-    .dd-patient-cases-viewport {
-      min-height: 100%;
+    tbody {
+      tr {
+        cursor: pointer;
+        transition: 0.3s ease;
 
-      mat-expansion-panel {
-        border-radius: 0;
-
-        &:first-of-type {
-          border-radius: 0;
+        &:hover {
+          background-color: $generalGreyColor;
         }
-
-        &:last-of-type {
-          border-radius: 0;
-        }
-
-        &.current-day {
-          border-left: 3px solid $generalThemeColor;
-        }
-
-        mat-expansion-panel-header {
-
-          mat-panel-title {
-
-            mat-chip-list {
-
-              mat-chip {
-                min-height: 20px;
-              }
-
-            }
-
-          }
-
-          mat-panel-description {
-            display: flex;
-
-            .dd-patient-cases-group-item {
-              min-width: 150px;
-              max-width: 200px;
-              display: flex;
-              align-items: center;
-
-              span {
-                font-style: italic;
-                font-size: 12px;
-                min-width: 70px;
-
-                i {
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                  border-radius: 16px;
-                  background-color: $generalThemeColor;
-                  color: $whiteColor;
-                  padding: 0 5px;
-                  margin-left: 5px;
-                  min-height: 20px;
-                }
-
-              }
-
-              svg {
-                margin-left: 5px;
-
-                path {
-                  fill: $generalThemeColor;
-                }
-
-              }
-
-            }
-
-          }
-
-        }
-
       }
     }
+  }
+
+  mat-paginator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    .mat-paginator-container {
+      justify-content: flex-start;
+    }
+
   }
 }
