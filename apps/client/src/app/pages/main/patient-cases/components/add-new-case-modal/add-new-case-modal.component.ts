@@ -2,7 +2,6 @@ import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angula
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import * as moment from 'moment';
 
 import { Subscription } from 'rxjs';
 
@@ -12,6 +11,7 @@ import { CasesService } from '../../../../../services/cases/cases.service';
 import { MealTypeInterface } from '../../interfaces/meal-type.interface';
 import { IndicationTypeEnum } from '../../enums/indication-type.enum';
 import { LocalStorageService } from '../../../../../services/local-storage/local-storage.service';
+import { DateTimeFormatter } from '../../../../../helpers/date-time-formatter';
 import { CASE_MODAL_FORM_PARAMS } from './case-modal-form.params';
 
 
@@ -72,7 +72,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
 
     this.form = this.fb.group({
       [CASE_MODAL_FORM_PARAMS.CURRENT_DAY]: [{ value: this.currentDay, disabled: true }],
-      [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [moment().format('HH:mm')],
+      [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [DateTimeFormatter.formTime()],
       [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [0],
       [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [0],
       [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: ['breakfast'],

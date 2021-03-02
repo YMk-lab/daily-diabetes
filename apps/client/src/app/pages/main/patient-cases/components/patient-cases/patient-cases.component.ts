@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import * as moment from 'moment';
 
 import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
