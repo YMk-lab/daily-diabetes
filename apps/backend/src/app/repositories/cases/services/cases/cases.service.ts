@@ -49,6 +49,6 @@ export class CasesService {
   }
 
   async findAll(userId: string): Promise<CaseGroupDocument | any> {
-    return this.caseGroupModel.find({ userId: userId }).sort({ title: -1 });
+    return this.caseGroupModel.find({ userId: userId }).sort({ createdAt: -1 });
   }
 }

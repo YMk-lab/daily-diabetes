@@ -2,6 +2,7 @@ import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angula
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 
@@ -13,7 +14,6 @@ import { IndicationTypeEnum } from '../../enums/indication-type.enum';
 import { LocalStorageService } from '../../../../../services/local-storage/local-storage.service';
 import { DateTimeFormatter } from '../../../../../helpers/date-time-formatter';
 import { CASE_MODAL_FORM_PARAMS } from './case-modal-form.params';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -60,7 +60,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    private modalData: { patientProfile: UserInterface },
+    private modalData: { patientProfile: UserInterface, createdAt: Date },
     private modal: MatDialog,
     private fb: FormBuilder,
     private casesService: CasesService,
@@ -73,7 +73,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     this.patientProfile = this.modalData.patientProfile;
 
     this.form = this.fb.group({
-      [CASE_MODAL_FORM_PARAMS.CURRENT_DAY]: [{ value: this.currentDay, disabled: false }],
+      [CASE_MODAL_FORM_PARAMS.CURRENT_DAY]: [{ value: this.modalData.createdAt || this.currentDay, disabled: true }],
       [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [DateTimeFormatter.formTime()],
       [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [0],
       [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [0],
@@ -104,7 +104,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
 
     newCase.userId = this.patientProfile.uuid;
     newCase.currentDay = DateTimeFormatter.formatDate(this.form.controls[CASE_MODAL_FORM_PARAMS.CURRENT_DAY].value);
-    newCase.createdAt = new Date();
+    newCase.createdAt = this.form.controls[CASE_MODAL_FORM_PARAMS.CURRENT_DAY].value;
 
     const foundMealType = this.mealTypeChipList.find((mealType: MealTypeInterface) =>
     mealType.value === this.form.controls[CASE_MODAL_FORM_PARAMS.MEAL_TYPE].value);

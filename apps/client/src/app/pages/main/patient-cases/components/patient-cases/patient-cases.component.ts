@@ -1,5 +1,10 @@
-import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit, ChangeDetectorRef, Component, Inject,
+  OnDestroy, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { DOCUMENT } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
@@ -20,9 +25,11 @@ import { DynamicComponentsService } from '../../../../../services/dynamic-compon
   styleUrls: ['./patient-cases.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PatientCasesComponent implements OnInit, OnDestroy {
+export class PatientCasesComponent implements AfterViewInit, OnDestroy {
 
-  caseGroups: CaseGroupInterface[];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  caseGroups: MatTableDataSource<CaseGroupInterface>;
   areCasesLoaded: boolean;
   groupsTableColumns: string[] = [
     'title',
@@ -41,10 +48,11 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     private casesService: CasesService,
     private usersService: UsersService,
     private modal: MatDialog,
-    private dcService: DynamicComponentsService
+    private dcService: DynamicComponentsService,
+    private cdr: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.initCaseGroupsList();
   }
 
@@ -57,15 +65,18 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
       })
     ).subscribe((caseGroups: CaseGroupInterface[]) => {
 
-      this.caseGroups = caseGroups;
+      this.caseGroups = new MatTableDataSource<CaseGroupInterface>(caseGroups);
       this.areCasesLoaded = !!(caseGroups && caseGroups.length);
+      this.cdr.detectChanges();
+
+      this.caseGroups.paginator = this.paginator;
       this.initCurrentDayCheck();
     });
 
     this.subscriptions.add(casesSubscription);
   }
 
-  openNewCaseModal(): void {
+  openNewCaseModal(group?: CaseGroupInterface): void {
     const modal = this.modal.open(AddNewCaseModalComponent, {
       width: '60vw',
       height: '85vh',
@@ -74,7 +85,10 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
       disableClose: true,
       panelClass: 'dd-general-modal',
       id: 'add-new-cases-modal',
-      data: { patientProfile: this.patientProfile }
+      data: {
+        patientProfile: this.patientProfile,
+        createdAt: group && group.createdAt ? group.createdAt : null
+      }
     });
 
     const modalSubscription = modal.afterClosed().subscribe((data) => {
@@ -107,7 +121,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
 
     const today = DateTimeFormatter.formatDate(new Date());
 
-    this.isCurrentDay = this.caseGroups.find((currentDayGroup: CaseGroupInterface) => {
+    this.isCurrentDay = this.caseGroups.data.find((currentDayGroup: CaseGroupInterface) => {
       return currentDayGroup.title === today;
     });
   }
