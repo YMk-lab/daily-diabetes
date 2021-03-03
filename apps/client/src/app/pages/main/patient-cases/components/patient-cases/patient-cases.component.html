@@ -13,7 +13,7 @@
 
     <div class='dd-patient-cases-actions-panel' *ngIf='caseGroups && caseGroups.length'>
 
-      <button *ngIf='!isCurrentDay' mat-mini-fab color='primary' (click)='openNewCaseModal()'>
+      <button mat-mini-fab color='primary' (click)='openNewCaseModal()'>
         +
       </button>
 
@@ -86,7 +86,7 @@
         <td mat-cell *matCellDef="let element">
 
           <ng-container>
-            {{ element.title | date: 'dd.MM.YYYY' }}
+            {{ element.title }}
           </ng-container>
 
         </td>

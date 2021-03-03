@@ -21,6 +21,7 @@ export class CasesService {
       const createdCaseGroup = new this.caseGroupModel({
         userId: newCase.userId,
         title: newCase.currentDay,
+        createdAt: newCase.createdAt,
         lastIndication: newCase.glucometerIndication,
         lastIndicationType: newCase.glucometerIndicationType,
         lastShortInsulin: newCase.shortInsulin,

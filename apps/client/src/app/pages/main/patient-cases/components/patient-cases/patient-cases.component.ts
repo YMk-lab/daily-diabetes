@@ -1,4 +1,4 @@
-import { Component, Inject, ComponentRef, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
 
@@ -36,14 +36,12 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
   private patientProfile: UserInterface;
   private subscriptions: Subscription = new Subscription();
 
-  private componentRef: ComponentRef<SingleGroupPdfTemplateComponent>;
-
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private casesService: CasesService,
     private usersService: UsersService,
     private modal: MatDialog,
-    private dcService:DynamicComponentsService
+    private dcService: DynamicComponentsService
   ) { }
 
   ngOnInit(): void {
@@ -62,9 +60,6 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
       this.caseGroups = caseGroups;
       this.areCasesLoaded = !!(caseGroups && caseGroups.length);
       this.initCurrentDayCheck();
-
-      //  TODO remove after implementing
-      // this.generatePDF(this.caseGroups[0]);
     });
 
     this.subscriptions.add(casesSubscription);
@@ -113,7 +108,7 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     const today = DateTimeFormatter.formatDate(new Date());
 
     this.isCurrentDay = this.caseGroups.find((currentDayGroup: CaseGroupInterface) => {
-      return DateTimeFormatter.formatDate(currentDayGroup.title) === today;
+      return currentDayGroup.title === today;
     });
   }
 }
