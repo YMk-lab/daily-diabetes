@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, ComponentRef, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DOCUMENT } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -9,6 +10,9 @@ import { CaseGroupInterface, UserInterface } from '@daily-diabetes/shared-data';
 import { CasesService } from '../../../../../services/cases/cases.service';
 import { UsersService } from '../../../../../services/users/users.service';
 import { AddNewCaseModalComponent } from '../add-new-case-modal/add-new-case-modal.component';
+import { DateTimeFormatter } from '../../../../../helpers/date-time-formatter';
+import { SingleGroupPdfTemplateComponent } from '../single-group-pdf-template/single-group-pdf-template.component';
+import { DynamicComponentsService } from '../../../../../services/dynamic-components/dynamic-components.service';
 
 @Component({
   selector: 'dd-patient-cases',
@@ -27,15 +31,19 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     'lastBaseInsulin',
     'actions'
   ];
-  isCurrentDay: boolean;
+  isCurrentDay: CaseGroupInterface;
 
   private patientProfile: UserInterface;
   private subscriptions: Subscription = new Subscription();
 
+  private componentRef: ComponentRef<SingleGroupPdfTemplateComponent>;
+
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private casesService: CasesService,
     private usersService: UsersService,
-    private modal: MatDialog
+    private modal: MatDialog,
+    private dcService:DynamicComponentsService
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +61,10 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
 
       this.caseGroups = caseGroups;
       this.areCasesLoaded = !!(caseGroups && caseGroups.length);
+      this.initCurrentDayCheck();
+
+      //  TODO remove after implementing
+      // this.generatePDF(this.caseGroups[0]);
     });
 
     this.subscriptions.add(casesSubscription);
@@ -78,11 +90,30 @@ export class PatientCasesComponent implements OnInit, OnDestroy {
     this.subscriptions.add(modalSubscription);
   }
 
+  generatePDF(group: CaseGroupInterface): void {
+    this.dcService.attachComponentToBody(this.document.body, SingleGroupPdfTemplateComponent);
+    this.dcService.componentRefInstance.instance.caseGroup = group;
+    this.dcService.componentRefInstance.instance.patientProfile = this.patientProfile;
+  }
+
+  delete(group: CaseGroupInterface): void {
+    this.dcService.destroyComponent();
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
   private initCaseGroups(uuid: string): Observable<CaseGroupInterface[]> {
     return this.casesService.getAll(uuid);
+  }
+
+  private initCurrentDayCheck(): void {
+
+    const today = DateTimeFormatter.formatDate(new Date());
+
+    this.isCurrentDay = this.caseGroups.find((currentDayGroup: CaseGroupInterface) => {
+      return DateTimeFormatter.formatDate(currentDayGroup.title) === today;
+    });
   }
 }

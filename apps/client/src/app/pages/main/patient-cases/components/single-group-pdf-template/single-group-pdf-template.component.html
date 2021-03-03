@@ -1,0 +1,134 @@
+<div id='single-group-pdf-template' #mainContent>
+
+  <div class='header'>
+    Виписка станом на {{ caseGroup.title | date: 'dd.MM.YYYY' }}
+  </div>
+
+  <div class='content-columns'>
+
+    <div class='content-column'>
+
+      <div class='header'>
+        Дані пацієнта
+      </div>
+
+      <div class='content-column-item'>
+        <span>Пацієнт:</span>
+        <span><b>{{ patientProfile.firstName }} {{ patientProfile.lastName }}</b></span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>День народження:</span>
+        <span>{{ patientProfile.birthDate | date: 'dd.MM.YYYY' }}</span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Контактний телефон:</span>
+        <span>{{ patientProfile.phone }}</span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Країна:</span>
+        <span>{{ patientProfile.address.country }}</span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Місто чи село</span>
+        <span>{{ patientProfile.address.cityOrVillage }} (Індекс: {{ patientProfile.address.postalZipCode }})</span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Адреса</span>
+        <span>{{ patientProfile.address.address }}</span>
+      </div>
+
+    </div>
+
+    <div class='content-column'>
+
+      <div class='header'>
+        Попередній діагноз пацієнта
+      </div>
+
+      <div class='content-column-item'>
+        <span>Тип діабету:</span>
+        <span><b>{{ patientProfile.diseaseInfo.diabetesType | translate }}</b></span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Період хворування:</span>
+        <span>{{ patientProfile.diseaseInfo.illPeriod.time }} {{ patientProfile.diseaseInfo.illPeriod.timeUnit | translate }}</span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Короткий інсулін:</span>
+        <span>{{ patientProfile.diseaseInfo.shortInsulin }}</span>
+      </div>
+
+      <div class='content-column-item'>
+        <span>Базовий інсулін:</span>
+        <span>{{ patientProfile.diseaseInfo.baseInsulin }}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class='content-rows'>
+
+    <div class='content-row'>
+
+      <div class='header'>
+        Показники за день
+      </div>
+
+      <div class='content-row-item'>
+
+        <table class='table'>
+
+          <tr>
+            <th>Час</th>
+            <th>Показник глюкометра</th>
+            <th>Доза ({{ patientProfile.diseaseInfo.shortInsulin }})</th>
+            <th>Доза ({{ patientProfile.diseaseInfo.baseInsulin }})</th>
+            <th>Прийом їжі</th>
+            <th>Спожиті продукти та кількість</th>
+          </tr>
+
+          <tr *ngFor='let caseItem of caseGroup.caseList'>
+
+            <td>
+              {{ caseItem.currentTime }}
+            </td>
+
+            <td>
+              {{ caseItem.glucometerIndication }} {{ caseItem.glucometerIndicationType }}
+            </td>
+
+            <td>
+              {{ caseItem.shortInsulin }}
+            </td>
+
+            <td>
+              {{ caseItem.baseInsulin }}
+            </td>
+
+            <td>
+              {{ caseItem.mealType | translate }}
+            </td>
+
+            <td [innerHTML]='caseItem.mealDescription'></td>
+
+          </tr>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class='page-indicator'>Сторінка 1</div>
+
+</div>

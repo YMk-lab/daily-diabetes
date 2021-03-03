@@ -35,20 +35,16 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
   }
   mealTypeChipList: MealTypeInterface[] = [
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST',
-      value: 'breakfast'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST'
     },
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.DINNER',
-      value: 'dinner'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.DINNER'
     },
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SUPPER',
-      value: 'supper'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SUPPER'
     },
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SNACK',
-      value: 'snack'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SNACK'
     }
   ];
   indicationTypes: string[] = ['mmol/L', 'mg/dL'];
@@ -71,11 +67,11 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     this.patientProfile = this.modalData.patientProfile;
 
     this.form = this.fb.group({
-      [CASE_MODAL_FORM_PARAMS.CURRENT_DAY]: [{ value: this.currentDay, disabled: true }],
+      [CASE_MODAL_FORM_PARAMS.CURRENT_DAY]: [{ value: this.currentDay, disabled: false }],
       [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [DateTimeFormatter.formTime()],
       [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [0],
       [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [0],
-      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: ['breakfast'],
+      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: ['PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST'],
       [CASE_MODAL_FORM_PARAMS.MEAL_DESCRIPTION]: [''],
       [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION]: [''],
       [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE]: ['mmol/L']

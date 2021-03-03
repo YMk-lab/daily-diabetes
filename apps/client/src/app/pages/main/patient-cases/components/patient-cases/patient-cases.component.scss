@@ -48,6 +48,29 @@
     tbody {
       tr {
         cursor: pointer;
+        transition: 0.3s ease;
+
+        &:hover {
+
+          td {
+
+            &:first-of-type {
+              position: relative;
+
+              &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                height: 100%;
+                width: 5px;
+                background: $generalThemeColor;
+                top: 0;
+              }
+            }
+
+          }
+
+        }
 
         svg {
           width: 20px;

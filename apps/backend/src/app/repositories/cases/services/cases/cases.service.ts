@@ -48,6 +48,6 @@ export class CasesService {
   }
 
   async findAll(userId: string): Promise<CaseGroupDocument | any> {
-    return this.caseGroupModel.find({ userId: userId });
+    return this.caseGroupModel.find({ userId: userId }).sort({ title: -1 });
   }
 }
