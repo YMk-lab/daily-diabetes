@@ -73,7 +73,7 @@
           <mat-chip-list [selectable]='true' [multiple]='false' formControlName='mealType'>
             <mat-chip *ngFor='let mealType of mealTypeChipList;'
                       (click)='selectMealType(mealType)'
-                      [value]='mealType.label'>
+                      [value]='mealType.value'>
               {{ mealType.label | translate }}
             </mat-chip>
           </mat-chip-list>

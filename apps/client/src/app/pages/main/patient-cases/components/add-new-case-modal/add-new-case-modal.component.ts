@@ -13,6 +13,7 @@ import { IndicationTypeEnum } from '../../enums/indication-type.enum';
 import { LocalStorageService } from '../../../../../services/local-storage/local-storage.service';
 import { DateTimeFormatter } from '../../../../../helpers/date-time-formatter';
 import { CASE_MODAL_FORM_PARAMS } from './case-modal-form.params';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -35,16 +36,20 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
   }
   mealTypeChipList: MealTypeInterface[] = [
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST',
+      value: 'breakfast'
     },
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.DINNER'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.DINNER',
+      value: 'dinner'
     },
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SUPPER'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SUPPER',
+      value: 'supper'
     },
     {
-      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SNACK'
+      label: 'PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.SNACK',
+      value: 'snack'
     }
   ];
   indicationTypes: string[] = ['mmol/L', 'mg/dL'];
@@ -59,7 +64,8 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     private modal: MatDialog,
     private fb: FormBuilder,
     private casesService: CasesService,
-    private lsService: LocalStorageService
+    private lsService: LocalStorageService,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -71,7 +77,7 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
       [CASE_MODAL_FORM_PARAMS.CURRENT_TIME]: [DateTimeFormatter.formTime()],
       [CASE_MODAL_FORM_PARAMS.SHORT_INSULIN]: [0],
       [CASE_MODAL_FORM_PARAMS.BASE_INSULIN]: [0],
-      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: ['PATIENT_CASES.CASE_MODAL.MEAL_TYPE.VALUES.BREAKFAST'],
+      [CASE_MODAL_FORM_PARAMS.MEAL_TYPE]: ['breakfast'],
       [CASE_MODAL_FORM_PARAMS.MEAL_DESCRIPTION]: [''],
       [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION]: [''],
       [CASE_MODAL_FORM_PARAMS.GLUCO_INDICATION_TYPE]: ['mmol/L']
@@ -95,9 +101,15 @@ export class AddNewCaseModalComponent implements OnInit, OnDestroy {
     }
 
     const newCase = this.form.value as CaseInterface;
+
     newCase.userId = this.patientProfile.uuid;
     newCase.currentDay = DateTimeFormatter.formatDate(this.form.controls[CASE_MODAL_FORM_PARAMS.CURRENT_DAY].value);
     newCase.createdAt = new Date();
+
+    const foundMealType = this.mealTypeChipList.find((mealType: MealTypeInterface) =>
+    mealType.value === this.form.controls[CASE_MODAL_FORM_PARAMS.MEAL_TYPE].value);
+
+    newCase.mealType = this.translateService.instant(foundMealType.label);
 
     this.casesService.create(newCase)
       .subscribe((createdCase: CaseInterface) => this.addNewCaseModal.close(createdCase));

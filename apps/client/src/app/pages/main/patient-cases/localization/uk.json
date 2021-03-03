@@ -35,6 +35,14 @@
       },
       "CLOSE_BUTTON_TITLE": "Закрити",
       "CONFIRM_BUTTON_TITLE": "Додати"
+    },
+    "CASE_TABLE": {
+      "DATE": "Дата",
+      "GLUCOSE_INDICATION_TITLE": "Останній показник глюкози",
+      "SHORT_INSULIN_TITLE": "Останньо введений короткий інсулін",
+      "BASE_INSULIN_TITLE": "Останньо введений базовий інсулін",
+      "ACTIONS": "Дії",
+      "UNITS_SUFFIX": "Од."
     }
   }
 }

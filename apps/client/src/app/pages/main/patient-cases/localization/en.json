@@ -35,6 +35,14 @@
       },
       "CLOSE_BUTTON_TITLE": "Close",
       "CONFIRM_BUTTON_TITLE": "Add"
+    },
+    "CASE_TABLE": {
+      "DATE": "Date",
+      "GLUCOSE_INDICATION_TITLE": "Last glucose indication",
+      "SHORT_INSULIN_TITLE": "Last injected short insulin",
+      "BASE_INSULIN_TITLE": "Last injected base insulin",
+      "ACTIONS": "Actions",
+      "UNITS_SUFFIX": "Un."
     }
   }
 }
