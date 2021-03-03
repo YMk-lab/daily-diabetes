@@ -10,12 +10,14 @@ import { MaterialSharedModule } from '@daily-diabetes/material-shared';
 import { PatientCasesComponent } from './components/patient-cases/patient-cases.component';
 import { PatientCasesRoutingModule } from './patient-cases-routing.module';
 import { AddNewCaseModalComponent } from './components/add-new-case-modal/add-new-case-modal.component';
+import { SingleGroupPdfTemplateComponent } from './components/single-group-pdf-template/single-group-pdf-template.component';
 
 
 @NgModule({
   declarations: [
     PatientCasesComponent,
-    AddNewCaseModalComponent
+    AddNewCaseModalComponent,
+    SingleGroupPdfTemplateComponent
   ],
   imports: [
     CommonModule,

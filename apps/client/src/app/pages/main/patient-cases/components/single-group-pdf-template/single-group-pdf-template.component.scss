@@ -1,0 +1,125 @@
+@import "../../../../../../assets/styles/variables";
+
+#single-group-pdf-template {
+  width: 210mm;
+  height: 297mm;
+  background-color: $whiteColor;
+  box-shadow: $oneFactorBoxShadow;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 222;
+  display: grid;
+  grid-template-rows: 35px auto 1fr;
+
+  .header {
+    height: 35px;
+    background-color: $generalThemeColor;
+    color: $whiteColor;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  .content-columns, .content-rows {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    font-size: 14px;
+
+    .content-column, .content-row {
+      display: flex;
+      flex-direction: column;
+
+      .header {
+        font-size: 14px;
+        padding-left: 10px;
+      }
+
+      .content-column-item, .content-row-item {
+        display: flex;
+        margin: 5px 0;
+        padding: 0 10px;
+
+        span {
+          &:first-of-type {
+            min-width: 150px;
+            max-width: 200px;
+          }
+
+          &:last-of-type {
+            padding-left: 10px;
+          }
+        }
+      }
+
+    }
+  }
+
+  .content-rows {
+    grid-template-columns: 1fr;
+
+    .content-row {
+
+      .content-row-item {
+
+        .table {
+          width: 100%;
+
+          tr {
+
+            th {
+              border-spacing: 0;
+              font-weight: normal;
+              border-bottom: 1px solid $generalGreyColor;
+              padding: 0 10px;
+
+              &:first-of-type {
+                text-align: left;
+                padding: 0;
+              }
+
+              &:last-of-type {
+                text-align: right;
+                padding: 0;
+                min-width: 250px;
+              }
+
+            }
+
+
+            td {
+              margin: 0 10px;
+              border-bottom: 1px solid $generalGreyColor;
+              text-align: center;
+
+              &:first-of-type {
+                text-align: left;
+                padding: 0;
+              }
+
+              &:last-of-type {
+                text-align: right;
+                padding: 0;
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+  }
+
+  .page-indicator {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    font-size: 12px;
+    font-style: italic;
+  }
+}

@@ -15,7 +15,10 @@ export class Case extends Document {
   groupId: string;
 
   @Prop()
-  currentDay: Date;
+  currentDay: string;
+
+  @Prop()
+  createdAt: Date;
 
   @Prop()
   currentTime: string;

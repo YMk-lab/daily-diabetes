@@ -21,6 +21,7 @@ export class CasesService {
       const createdCaseGroup = new this.caseGroupModel({
         userId: newCase.userId,
         title: newCase.currentDay,
+        createdAt: newCase.createdAt,
         lastIndication: newCase.glucometerIndication,
         lastIndicationType: newCase.glucometerIndicationType,
         lastShortInsulin: newCase.shortInsulin,
@@ -48,6 +49,6 @@ export class CasesService {
   }
 
   async findAll(userId: string): Promise<CaseGroupDocument | any> {
-    return this.caseGroupModel.find({ userId: userId });
+    return this.caseGroupModel.find({ userId: userId }).sort({ createdAt: -1 });
   }
 }
