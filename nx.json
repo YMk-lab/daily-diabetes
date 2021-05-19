@@ -20,6 +20,8 @@
     "client-e2e": { "tags": [], "implicitDependencies": ["client"] },
     "backend": { "tags": ["backend"] },
     "material-shared": { "tags": [] },
-    "shared-data": { "tags": [] }
+    "shared-data": { "tags": [] },
+    "mobile": { "tags": [] },
+    "mobile-e2e": { "tags": [], "implicitDependencies": ["mobile"] }
   }
 }
