@@ -3,15 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full',
+    path: 'test-examples',
+    loadChildren: () => import('./pages/test-examples/test-examples.module')
+      .then((m) => m.TestExamplesModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () =>
-      import('./folder/folder.module').then((m) => m.FolderPageModule),
-  },
+    path: '',
+    redirectTo: 'test-examples',
+    pathMatch: 'full',
+  }
 ];
 
 @NgModule({
@@ -20,4 +20,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
